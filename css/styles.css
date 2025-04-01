@@ -1,0 +1,45 @@
+
+:root{
+    --bg : #0294b8;
+    --cor-texto: #ffffff;
+    --cor-container: #082946;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+#horarios-ocupados {
+    margin-top: 20px;
+}
+
+#horarios-ocupados ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#mensagem {
+    color: red;
+    font-weight: bold;
+}
+
+#spinner {
+    position: fixed;
+    background-color: var(--bg);
+    color: var(--cor-texto);
+    width: 100vw;
+    height: 100vh;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+

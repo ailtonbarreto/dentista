@@ -1,0 +1,211 @@
+
+:root{
+    --bg : #0294b8;
+    --cor-texto: #ffffff;
+    --cor-container: #082946;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    color: var(--bg);
+}
+
+
+.logo{
+    width: 15vw;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center ;
+    position: absolute;
+    z-index: 1;
+    background-color: var(--bg);
+    width: 100vw;
+    height: 100vh;
+}
+
+form{
+    margin-top: 2vw;
+    color: var(--bg);
+    padding: 0.5vw;
+    background-color: var(--cor-container);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4vw;
+    border-radius: 4px;
+    width: 25vw;
+    height: 30vw;
+}
+
+input{
+    outline: none;
+    height: 1.5vw;
+    width: 100%;
+    color: var(--bg);
+}
+
+
+button{
+    margin-top: 1vw;
+    color: var(--cor-texto);
+    border: none;
+    background-color: var(--bg);
+    height: 2vw;
+    padding: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    border-radius: 3px;
+    margin-bottom: 1vw;
+    cursor: pointer;
+}
+
+.message{
+    color: red;
+    font-weight: bold;
+    height: 3vw;
+
+}
+
+
+.msg{
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    height: 2.5vw;
+    padding: 0vw 2vw;
+    align-items: center;
+    background-color: var(--cor-container);
+    color: var(--cor-texto);
+
+}
+
+.msg img{
+    width: 8vw;
+}
+
+.screen-logged{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+}
+
+
+iframe{
+    height: 100vh;
+    width: 100vw;
+    border: none;
+    
+}
+
+
+/* ---------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .form{
+        justify-content: space-around;
+        height: 100vh;
+        width: 100vw;
+        border: none;
+        margin: 0;
+    }
+
+    .form img{
+        width: 50vw;
+        margin-top: 30vw;
+    }
+
+    #menu-icon{
+        width: 8vw;
+    }
+    
+
+    .sidebar img{
+        width: 220px;
+        margin-bottom: 5vw;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 10vw;
+    }
+
+    label{
+        font-weight: bold;
+        font-size: 8vw;
+        margin: 2vw 0vw;
+    }
+
+    input{
+        outline: none;
+        height: 8vw;
+        width: 100%;
+        color: var(--cor-container);
+    } 
+    
+    button{
+        border: none;
+        height: 10vw;
+        width: 40%;
+        border-radius: 3px;
+    }
+
+    iframe{
+        height: 105vh;
+        width: 100vw;
+        border: none; 
+    }
+
+    .msg{
+        display: flex;
+        justify-content: space-between;
+        width: 100vw;
+        height: 10vw;
+        padding: 0vw 2vw;
+    }
+
+    .exit-btn{
+        width: 20vw;
+        padding: 0.6vw;
+        font-size: 4vw;
+        margin: 0vw;
+        height: 6vw;
+        cursor: pointer;
+    }
+
+    #logged-message{
+        display: none;
+    }
+
+    .msg img{
+        width: 30vw;
+    }
+
+    .message{
+        margin-bottom: 50vw;
+    }
+    
+}
