@@ -6,15 +6,20 @@ window.addEventListener("load", function () {
     configurarFormularioLogin();
 
     function configurarFormularioLogin() {
+        
         const loginForm = document.getElementById("loginForm");
+
         loginForm.addEventListener("submit", async function (event) {
+
             event.preventDefault();
 
             const username = document.getElementById("input-user").value.trim();
+
             const password = document.getElementById("password").value.trim();
             
 
             if (!username || !password) {
+
                 exibirAlerta("Usuário e senha são obrigatórios!");
                 return;
             }
@@ -24,38 +29,51 @@ window.addEventListener("load", function () {
     }
 
     async function obterDadosPlanilha() {
+
         try {
             const response = await fetch("./js/keys.json");
+
             if (!response.ok) throw new Error("Erro ao carregar arquivo keys.json");
 
             const data = await response.json();
+
             if (!data.length || !data[0].base) throw new Error("Formato inválido do JSON.");
 
             const planilhaURL = data[0].base;
 
             const planilhaResponse = await fetch(planilhaURL);
+
             if (!planilhaResponse.ok) throw new Error("Erro ao carregar a planilha.");
 
             const csvText = await planilhaResponse.text();
 
             return processarCSV(csvText);
+
         } catch (error) {
+
             console.error("Erro:", error);
+
             exibirAlerta("Erro ao carregar dados.");
+
             return [];
         }
     }
 
     async function validarCredenciais(username, password) {
+
         const usuarios = await obterDadosPlanilha();
+
         const user = usuarios.find(u => u.user === username && u.password === password);
 
         if (user) {
 
+            sessionStorage.setItem("user_name", user.user);
+
+            window.dispatchEvent(new Event("storage")); 
+
             document.getElementById("container-login").style.display = "none";
 
-            sessionStorage.setItem("user_name", user.user);
-     
+
         } else {
             exibirAlerta("Usuário ou senha incorretos!");
         }

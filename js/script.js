@@ -2,9 +2,29 @@ window.addEventListener('load', function () {
 
     const btn_agendar = document.getElementById("btn_agendar");
 
-    let user_name = sessionStorage.getItem("user_name");
+    function atualizarUser() {
 
-    console.log(user_name);
+        let user_name = sessionStorage.getItem("user_name");
+
+        if (user_name) {
+
+            console.log("Usuário logado:");
+
+        } else {
+
+            console.log("Nenhum usuário logado ainda.");
+        }
+        return user_name;
+    }
+
+    let user_name = atualizarUser();
+
+    window.addEventListener("storage", function () {
+
+        user_name = atualizarUser();
+
+    });
+
 
     document.getElementById('data').addEventListener('change', function () {
 
@@ -49,6 +69,7 @@ window.addEventListener('load', function () {
 
 
                 atualizarListaOcupados();
+                
                 atualizarHorarios();
             })
 
@@ -62,6 +83,7 @@ window.addEventListener('load', function () {
     });
 
     // ---------------------------------------------------------------------------------------------------------
+    // DEFINIR SALA A RESERVA
 
     let horariosOcupados = {
         "Sala De Reunião": {},
