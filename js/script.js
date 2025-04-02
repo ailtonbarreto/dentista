@@ -27,67 +27,60 @@ window.addEventListener('load', function () {
 
 
     document.getElementById('data').addEventListener('change', function () {
-
         const dataFiltro = this.value;
-
-        fetch("https://api-tbpreco.onrender.com/horarios")
-
+    
+        fetch("https://api-localizacao-e69z.onrender.com/agendamento")
             .then(response => {
-
                 if (!response.ok) {
-
                     throw new Error(`Erro na resposta. Status: ${response.status}`);
                 }
-
                 return response.json();
-
             })
-
-            .then(data => {
-
-                horariosOcupados = {};
-
-
-                data.forEach(reserva => {
-                    
-                    const { sala, data: dataReserva, hora_inicio, hora_fim, nome } = reserva;
-
-
+            .then(responseData => {
+                console.log("Resposta da API:", responseData);
+    
+    
+                if (!responseData.data || !Array.isArray(responseData.data)) {
+                    throw new Error("Formato de resposta inesperado da API");
+                }
+    
+                const agendamentos = responseData.data;
+                let horariosOcupados = {};
+    
+                agendamentos.forEach(reserva => {
+                    const { profissional, data: dataReserva, hora_inicio, hora_fim, nome } = reserva;
+   
                     const dataReservaFormatada = new Date(dataReserva).toISOString().split('T')[0];
-
+    
                     if (dataReservaFormatada === dataFiltro) {
-                        if (!horariosOcupados[sala]) {
-                            horariosOcupados[sala] = {};
+                        if (!horariosOcupados[profissional]) {
+                            horariosOcupados[profissional] = {};
                         }
-                        if (!horariosOcupados[sala][dataFiltro]) {
-                            horariosOcupados[sala][dataFiltro] = [];
+                        if (!horariosOcupados[profissional][dataFiltro]) {
+                            horariosOcupados[profissional][dataFiltro] = [];
                         }
-
-                        horariosOcupados[sala][dataFiltro].push({ nome, inicio: hora_inicio, fim: hora_fim });
+                        horariosOcupados[profissional][dataFiltro].push({ nome, inicio: hora_inicio, fim: hora_fim });
                     }
                 });
-
-
-                atualizarListaOcupados();
-                
-                atualizarHorarios();
+    
+                console.log("Horários Ocupados:", horariosOcupados);
+    
+                atualizarListaOcupados(horariosOcupados);
+                atualizarHorarios(horariosOcupados);
             })
-
             .catch(error => {
-
                 console.error("Erro ao buscar horários:", error);
-
                 alert("Erro ao buscar horários. Verifique a API ou a sua conexão.");
-
             });
     });
+    
 
     // ---------------------------------------------------------------------------------------------------------
     // DEFINIR SALA A RESERVA
 
     let horariosOcupados = {
-        "Sala De Reunião": {},
-        "Sala De Treinamento": {}
+        "Profissional A": {},
+        "Profissional B": {}
     };
 
     function gerarHorariosDisponiveis() {
@@ -172,7 +165,7 @@ window.addEventListener('load', function () {
         e.preventDefault();
 
         const nome = user_name;
-        const salaEscolhida = document.getElementById('sala').value;
+        const profissionalescolhido = document.getElementById('sala').value;
         const dataEscolhida = document.getElementById('data').value;
         const horaInicio = document.getElementById('hora-inicio').value;
         const horaFim = document.getElementById('hora-fim').value;
@@ -181,7 +174,7 @@ window.addEventListener('load', function () {
         spinner.style.display = "flex";
 
 
-        if (!salaEscolhida || !dataEscolhida || !horaInicio || !horaFim) {
+        if (!profissionalescolhido || !dataEscolhida || !horaInicio || !horaFim) {
             alert("Por favor, preencha todos os campos.");
             return;
         }
@@ -198,7 +191,7 @@ window.addEventListener('load', function () {
 
         const reserva = {
             nome: nome,
-            sala: salaEscolhida,
+            profissional: profissionalescolhido,
             data: dataEscolhida,
             hora_inicio: formatarHora(horaInicio),
             hora_fim: formatarHora(horaFim)
@@ -206,7 +199,7 @@ window.addEventListener('load', function () {
 
 
         try {
-            const response = await fetch("https://api-tbpreco.onrender.com/reserva_input", {
+            const response = await fetch("https://api-localizacao-e69z.onrender.com/input_agendamento", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(reserva)
