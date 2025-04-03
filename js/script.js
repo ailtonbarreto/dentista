@@ -96,35 +96,42 @@ window.addEventListener('load', function () {
     function atualizarListaOcupados(horariosOcupados) {
         const lista = document.getElementById('lista-horarios');
         lista.innerHTML = '';
-
-        for (let profissional in horariosOcupados) {
-            for (let data in horariosOcupados[profissional]) {
-                horariosOcupados[profissional][data].forEach(intervalo => {
+    
+        const userName = sessionStorage.getItem("user_name") || "Usuário desconhecido";
+    
+        for (let sala in horariosOcupados) {
+            for (let data in horariosOcupados[sala]) {
+                horariosOcupados[sala][data].forEach(intervalo => {
                     const li = document.createElement('li');
-                    li.innerHTML = `<strong>${intervalo.nome}</strong> reservou <strong>${profissional}</strong> das ${intervalo.inicio} até ${intervalo.fim} (${data})
-                                    <button class='btn-excluir' data-id='${intervalo.id}'>Excluir</button>`;
+                    li.innerHTML = `<strong>${intervalo.nome}</strong> reservou <strong>${sala}</strong> das ${intervalo.inicio} até ${intervalo.fim} (${data})`;
+    
+                    if (intervalo.nome === userName) {
+                        const btnExcluir = document.createElement('button');
+                        btnExcluir.classList.add('btn-excluir');
+                        btnExcluir.textContent = 'Excluir';
+                        btnExcluir.setAttribute('data-id', intervalo.id);
+                        btnExcluir.addEventListener('click', excluirReserva);
+                        li.appendChild(btnExcluir);
+                    }
+    
                     lista.appendChild(li);
                 });
             }
         }
-        document.querySelectorAll('.btn-excluir').forEach(button => {
-            button.addEventListener('click', excluirReserva);
-        });
     }
+    
 
     function excluirReserva(event) {
         const idReserva = event.target.getAttribute('data-id');
-        // fetch(`https://api-localizacao-e69z.onrender.com/delete_agendamento/${idReserva}`, {
-        //     method: "DELETE",
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     alert("Reserva excluída com sucesso!");
-        //     window.location.reload();
-        // })
-        // .catch(error => alert("Erro ao excluir reserva:" + error));
-
-        alert(`id da reserva ${idReserva}`)
+        fetch(`https://api-localizacao-e69z.onrender.com/delete_agendamento/${idReserva}`, {
+            method: "DELETE",
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Reserva excluída com sucesso!");
+            window.location.reload();
+        })
+        .catch(error => alert("Erro ao excluir reserva:" + error));
     }
 
     btn_agendar.addEventListener("click", async function (e) {
@@ -144,7 +151,6 @@ window.addEventListener('load', function () {
             return;
         }
 
-        // Verifica se há conflito de horários para o mesmo profissional no mesmo dia
         if (horariosOcupados[profissional] && horariosOcupados[profissional][dataEscolhida]) {
             const conflito = horariosOcupados[profissional][dataEscolhida].some(intervalo => {
                 return !(intervalo.fim <= horaInicio || intervalo.inicio >= horaFim);
