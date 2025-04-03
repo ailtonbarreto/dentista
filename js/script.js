@@ -1,131 +1,70 @@
 window.addEventListener('load', function () {
-
     const btn_agendar = document.getElementById("btn_agendar");
+    let horariosOcupados = {};
 
     function atualizarUser() {
-
         let user_name = sessionStorage.getItem("user_name");
-
-        if (user_name) {
-
-            console.log("Usuário logado:");
-
-        } else {
-
-            console.log("Nenhum usuário logado ainda.");
-        }
-        return user_name;
+        return user_name || "Usuário desconhecido";
     }
 
     let user_name = atualizarUser();
-
     window.addEventListener("storage", function () {
-
         user_name = atualizarUser();
-
     });
-
 
     document.getElementById('data').addEventListener('change', function () {
         const dataFiltro = this.value;
-    
+        if (!dataFiltro) return;
+
         fetch("https://api-localizacao-e69z.onrender.com/agendamento")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erro na resposta. Status: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(responseData => {
-                console.log("Resposta da API:", responseData);
-    
-    
-                if (!responseData.data || !Array.isArray(responseData.data)) {
-                    throw new Error("Formato de resposta inesperado da API");
-                }
-    
-                const agendamentos = responseData.data;
-                let horariosOcupados = {};
-    
-                agendamentos.forEach(reserva => {
-                    const { profissional, data: dataReserva, hora_inicio, hora_fim, nome } = reserva;
-   
-                    const dataReservaFormatada = new Date(dataReserva).toISOString().split('T')[0];
-    
-                    if (dataReservaFormatada === dataFiltro) {
-                        if (!horariosOcupados[profissional]) {
-                            horariosOcupados[profissional] = {};
-                        }
-                        if (!horariosOcupados[profissional][dataFiltro]) {
-                            horariosOcupados[profissional][dataFiltro] = [];
-                        }
-                        horariosOcupados[profissional][dataFiltro].push({ nome, inicio: hora_inicio, fim: hora_fim });
-                    }
+                const agendamentos = responseData.data || [];
+                horariosOcupados = {};
+
+                // Filtrando apenas os agendamentos da data selecionada
+                const agendamentosFiltrados = agendamentos.filter(reserva => {
+                    return new Date(reserva.data).toISOString().split('T')[0] === dataFiltro;
                 });
-    
-                console.log("Horários Ocupados:", horariosOcupados);
-    
+
+                // Processando apenas os agendamentos da data escolhida
+                agendamentosFiltrados.forEach(reserva => {
+                    const { id, profissional, hora_inicio, hora_fim, nome } = reserva;
+
+                    if (!horariosOcupados[profissional]) {
+                        horariosOcupados[profissional] = {};
+                    }
+                    if (!horariosOcupados[profissional][dataFiltro]) {
+                        horariosOcupados[profissional][dataFiltro] = [];
+                    }
+                    horariosOcupados[profissional][dataFiltro].push({ id, nome, inicio: hora_inicio, fim: hora_fim });
+                });
+
                 atualizarListaOcupados(horariosOcupados);
-                atualizarHorarios(horariosOcupados);
+                atualizarHorarios();
             })
-            .catch(error => {
-                console.error("Erro ao buscar horários:", error);
-                alert("Erro ao buscar horários. Verifique a API ou a sua conexão.");
-            });
+            .catch(error => console.error("Erro ao buscar horários:", error));
     });
-    
-
-    // ---------------------------------------------------------------------------------------------------------
-    // DEFINIR SALA A RESERVA
-
-    let horariosOcupados = {
-        "Profissional A": {},
-        "Profissional B": {}
-    };
-
-    function gerarHorariosDisponiveis() {
-        const horarios = [];
-        let hora = 7;
-        let minuto = 0;
-
-        while (hora < 18) {
-            horarios.push(`${hora.toString().padStart(2, '0')}:${minuto.toString().padStart(2, '0')}`);
-            minuto = minuto === 0 ? 30 : 0;
-            if (minuto === 0) hora++;
-        }
-        return horarios;
-    }
 
     function atualizarHorarios() {
         const dataEscolhida = document.getElementById('data').value;
-        const salaEscolhida = document.getElementById('sala').value;
+        const profissionalEscolhido = document.getElementById('sala').value;
         const horaInicioSelect = document.getElementById('hora-inicio');
         const horaFimSelect = document.getElementById('hora-fim');
 
-        if (!dataEscolhida || !salaEscolhida) return;
+        if (!dataEscolhida || !profissionalEscolhido) return;
 
         horaInicioSelect.innerHTML = '';
         horaFimSelect.innerHTML = '';
 
-        if (!horariosOcupados[salaEscolhida]) {
-            horariosOcupados[salaEscolhida] = {};
-        }
-        if (!horariosOcupados[salaEscolhida][dataEscolhida]) {
-            horariosOcupados[salaEscolhida][dataEscolhida] = [];
-        }
-
         let horariosRestantes = gerarHorariosDisponiveis();
 
-        if (horariosOcupados[salaEscolhida][dataEscolhida].length > 0) {
+        if (horariosOcupados[profissionalEscolhido] && horariosOcupados[profissionalEscolhido][dataEscolhida]) {
             horariosRestantes = horariosRestantes.filter(horario => {
-                return !horariosOcupados[salaEscolhida][dataEscolhida].some(intervalo =>
+                return !horariosOcupados[profissionalEscolhido][dataEscolhida].some(intervalo =>
                     !(intervalo.fim <= horario || intervalo.inicio >= horario)
                 );
             });
-        }
-
-        if (horariosRestantes.length === 0) {
-            horariosRestantes = gerarHorariosDisponiveis();
         }
 
         horariosRestantes.forEach(horario => {
@@ -141,83 +80,97 @@ window.addEventListener('load', function () {
         });
     }
 
+    function gerarHorariosDisponiveis() {
+        const horarios = [];
+        let hora = 7;
+        let minuto = 0;
 
-    function atualizarListaOcupados() {
+        while (hora < 18) {
+            horarios.push(`${hora.toString().padStart(2, '0')}:${minuto.toString().padStart(2, '0')}`);
+            minuto = minuto === 0 ? 30 : 0;
+            if (minuto === 0) hora++;
+        }
+        return horarios;
+    }
+
+    function atualizarListaOcupados(horariosOcupados) {
         const lista = document.getElementById('lista-horarios');
         lista.innerHTML = '';
 
-        for (let sala in horariosOcupados) {
-            for (let data in horariosOcupados[sala]) {
-                horariosOcupados[sala][data].forEach(intervalo => {
+        for (let profissional in horariosOcupados) {
+            for (let data in horariosOcupados[profissional]) {
+                horariosOcupados[profissional][data].forEach(intervalo => {
                     const li = document.createElement('li');
-                    li.innerHTML = `<strong>${intervalo.nome}</strong> reservou <strong>${sala}</strong> das ${intervalo.inicio} até ${intervalo.fim} (${data})`;
+                    li.innerHTML = `<strong>${intervalo.nome}</strong> reservou <strong>${profissional}</strong> das ${intervalo.inicio} até ${intervalo.fim} (${data})
+                                    <button class='btn-excluir' data-id='${intervalo.id}'>Excluir</button>`;
                     lista.appendChild(li);
                 });
             }
         }
+        document.querySelectorAll('.btn-excluir').forEach(button => {
+            button.addEventListener('click', excluirReserva);
+        });
     }
 
-    // ---------------------------------------------------------------------------------------------------------
-    // INSERIR RESERVA
+    function excluirReserva(event) {
+        const idReserva = event.target.getAttribute('data-id');
+        // fetch(`https://api-localizacao-e69z.onrender.com/delete_agendamento/${idReserva}`, {
+        //     method: "DELETE",
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     alert("Reserva excluída com sucesso!");
+        //     window.location.reload();
+        // })
+        // .catch(error => alert("Erro ao excluir reserva:" + error));
+
+        alert(`id da reserva ${idReserva}`)
+    }
 
     btn_agendar.addEventListener("click", async function (e) {
-
         e.preventDefault();
-
         const nome = user_name;
-        const profissionalescolhido = document.getElementById('sala').value;
+        const profissional = document.getElementById('sala').value;
         const dataEscolhida = document.getElementById('data').value;
         const horaInicio = document.getElementById('hora-inicio').value;
         const horaFim = document.getElementById('hora-fim').value;
-        const spinner = document.getElementById('spinner');
 
-        spinner.style.display = "flex";
-
-
-        if (!profissionalescolhido || !dataEscolhida || !horaInicio || !horaFim) {
+        if (!profissional || !dataEscolhida || !horaInicio || !horaFim) {
             alert("Por favor, preencha todos os campos.");
             return;
         }
-
         if (horaFim <= horaInicio) {
             alert("O horário de fim deve ser posterior ao horário de início.");
             return;
         }
 
-        const formatarHora = (hora) => {
-            const [hh, mm] = hora.split(":");
-            return `${hh.padStart(2, '0')}:${mm.padStart(2, '0')}:00`;
-        };
+        // Verifica se há conflito de horários para o mesmo profissional no mesmo dia
+        if (horariosOcupados[profissional] && horariosOcupados[profissional][dataEscolhida]) {
+            const conflito = horariosOcupados[profissional][dataEscolhida].some(intervalo => {
+                return !(intervalo.fim <= horaInicio || intervalo.inicio >= horaFim);
+            });
 
-        const reserva = {
-            nome: nome,
-            profissional: profissionalescolhido,
-            data: dataEscolhida,
-            hora_inicio: formatarHora(horaInicio),
-            hora_fim: formatarHora(horaFim)
-        };
+            if (conflito) {
+                alert("Este profissional já tem um agendamento neste horário!");
+                return;
+            }
+        }
 
-
+        const reserva = { nome, profissional, data: dataEscolhida, hora_inicio: horaInicio, hora_fim: horaFim };
         try {
             const response = await fetch("https://api-localizacao-e69z.onrender.com/input_agendamento", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(reserva)
             });
-
-            const data = await response.json();
-            console.log("Resposta recebida:", data);
-
             if (response.ok) {
+                alert("Reserva realizada com sucesso!");
                 window.location.reload();
             } else {
-                alert(data.error || "Erro ao fazer a reserva.");
+                alert("Erro ao fazer a reserva.");
             }
         } catch (error) {
-            console.error("Erro ao enviar reserva:", error);
             alert("Erro ao conectar com o servidor.");
         }
     });
-
 });
-
