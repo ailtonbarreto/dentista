@@ -6,6 +6,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
     <title>Reservar Sala</title>
     <link rel="stylesheet" href="../css/styles.css">
 
@@ -14,52 +17,101 @@
 <body>
 
     <div id="spinner" style="display: none;">
-        
-        Enviando...
-    
+
+        Carregando...
+
     </div>
 
-    <h1>Reservar Horário</h1>
 
-    <form id="form">
+    <div class="container">
 
-        <label for="sala">Profissional</label>
 
-        <select id="sala">
+        <div class="btn_enviar">
 
-            <option value="Profissional A">Profissional A</option>
+            <div class="titulo_topo">
 
-            <option value="Profissional B">Profissional B</option>
+                <span class="material-symbols-outlined" id="book">book_6</span>
 
-        </select>
+                <h1>Agendar Atendimento</h1>
 
-        <label for="data">Escolha o Dia:</label>
 
-        <input type="date" id="data" required>
+            </div>
+
+            <span class="material-icons-outlined" id="btn_agendar">save</span> 
+
+
+        </div>
+
+        <form id="form">
+
+            <div class="agendamento">
         
-        <label for="hora-inicio">Hora de início:</label>
+                <div class="linha-container">
+        
+                    <div class="subcontainer2">
 
-        <select id="hora-inicio" required>
+                        <div class="sala">
 
-        </select>
+                            <h4>Escolher Profissional</h4>
 
-        <label for="hora-fim">Hora de fim:</label>
+                            <select id="profissional">
 
-        <select id="hora-fim" required>
+                                <option value="Profissional A">Profissional A</option>
 
-        </select>
+                                <option value="Profissional B">Profissional B</option>
 
-        <button type="submit" id="btn_agendar">Agendar</button>
+                            </select>
+                        </div>
 
-    </form>
+                        <div class="data">
 
-    <div id="mensagem"></div>
+                            <h4>Data</h4>
 
-    <div id="horarios-ocupados">
+                            <input type="date" id="data" required>
 
-        <h2>Horários Reservados:</h2>
+                        </div>
 
-        <ul id="lista-horarios"></ul>
+                        <div class="hora_inicio">
+
+                            <h4>Início</h4>
+
+
+                            <input type="time" id="hora-inicio" step="600" min="07:00" max="17:00">
+
+                        </div>
+
+                        <div class="hora_fim">
+
+                            <h4>Fim</h4>
+
+
+                            <input type="time" id="hora-fim" step="600">
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+        
+            </div>
+            
+        </form>
+        
+
+        <div id="mensagem"></div>
+
+        <div id="horarios-ocupados">
+
+            <h2>Agenda Do Dia</h2>
+
+            <ul id="lista-horarios">
+
+
+            </ul>
+
+        </div>
+
 
     </div>
 

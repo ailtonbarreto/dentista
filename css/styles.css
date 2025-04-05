@@ -1,39 +1,193 @@
-
-:root{
-    --bg : #0294b8;
-    --cor-texto: #ffffff;
-    --cor-container: #082946;
+:root {
+    --cor_texto: #ffffff;
+    --bg_cor: #ffffff;
+    --card_cor: #93d0db;
+    --cor-container: #2ea8be;
+    --cor-botao: #2684d1;
+    --cor-botao-hover: #93d0db;
+    --cor-excluir: #ff4d4d;
+    --cor-excluir-hover: #cc0000;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    background-color: var(--bg_cor);
+}
+
+
+.titulo_topo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#book{
+    font-size: 2.5vw;
+}
+
+h1 {
+    color: var(--cor_texto);
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background-color: var(--card_cor);
+    color: var(--cor_texto);
+    padding: 2vw;
+    width: 80vw;
+    min-height: 80vh;
+    border-radius: 0.5vw;
+    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
+}
+
+.agendamento {
+    align-items: center;
+}
+
+.subcontainer2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1vw;
+    width: 100%;
+    margin-bottom: 1vw;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.titulo{
+    border: none;
+}
+
+.sala, .data, .hora_inicio,.hora_fim{
+    background-color: var(--cor-container);
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5vw;
+    padding: 0.5vw 1vw;
+}
+
+.sala select, 
+.titulo {
+    background-color: var(--cor-container);
+    color: var(--cor_texto);
+    border: 1px solid #fff;
+    padding: 0.3vw;
+    border-radius: 0.3vw;
+    text-align: center;
+    margin-top: 0.5vw;
+    min-width: 26vw;
+}
+
+.titulo{
+    border: none;
+    margin: 0;
+}
+
+.hora_inicio input, 
+.data input,
+.titulo input,
+.hora_fim input {
+    background-color: var(--cor-container);
+    color: var(--cor_texto);
+    border: 1px solid #fff;
+    padding: 0.3vw;
+    border-radius: 0.3vw;
+    text-align: center;
+    margin-top: 0.5vw;
+    min-width: 10vw;
+    outline: none;
 }
 
 #horarios-ocupados {
-    margin-top: 20px;
+    min-height: 30vw;
+    background-color: var(--cor-container);
+    border-radius: 0.5vw;
+    padding: 1vw;
 }
 
-#horarios-ocupados ul {
-    list-style-type: none;
-    padding-left: 0;
+#horarios-ocupados h2 {
+    margin-top: 1vw;
 }
 
-#mensagem {
-    color: red;
-    font-weight: bold;
+#lista-horarios {
+    margin-top: 2vw;
+    max-height: 15vw;
+    overflow-y: auto;
+    text-align: left;
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    font-size: 1vw;
+}
+
+
+#form {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn_enviar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
+}
+
+#btn_agendar {
+    padding: 0.5vw;
+    margin: 0.5vw;
+    border-radius: 0.5vw;
+    color: var(--cor-container);
+    cursor: pointer;
+    font-size: 2.6vw;
+}
+
+
+
+.btn-excluir {
+    background-color: var(--cor-excluir);
+    color: var(--cor_texto);
+    padding: 0.2vw 1vw;
+    margin-left: 0.5vw;
+    border-radius: 0.3vw;
+    float: right;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-excluir:hover {
+    background-color: var(--cor-excluir-hover);
 }
 
 #spinner {
     position: fixed;
-    background-color: var(--bg);
-    color: var(--cor-texto);
+    background-color: var(--cor-container);
+    color: var(--cor_texto);
     width: 100vw;
     height: 100vh;
     font-size: 16px;
@@ -41,5 +195,97 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
+/* ---------------------------------------------------------- */
+
+@media screen and (max-width: 720px) {
+
+    body {
+        flex-direction: column;
+        padding: 4vw;
+        gap: 3vw;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        padding: 2vw;
+    }
+
+    .btn_enviar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2vw;
+        text-align: center;
+        margin-bottom: 2vw;
+    }
+
+    h1 {
+        font-size: 6vw;
+    }
+
+    #btn_agendar {
+        font-size: 5vw;
+        padding: 2vw 6vw;
+        border-radius: 8px;
+    }
+
+    .agendamento {
+        display: flex;
+        flex-direction: column;
+        gap: 4vw;
+    }
+
+    .linha-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4vw;
+    }
+
+    .subcontainer1,
+    .subcontainer2 {
+        display: flex;
+        flex-direction: column;
+        gap: 3vw;
+        width: 80vw;
+    }
+
+    .sala, .titulo, .hora_inicio, .hora_fim{
+        padding: 1vw !important;
+    }
+
+    .sala select,
+    .data input,
+    .hora_inicio input,
+    .hora_fim input,
+    .titulo input {
+        width: 100%;
+        padding: 3vw 2vw !important;
+        font-size: 4vw;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin: 4vw 0;
+    }
+
+    h4 {
+        font-size: 4.5vw;
+        margin-bottom: 1vw;
+    }
+
+    #horarios-ocupados {
+        display: none;
+    }
+
+    #horarios-ocupados h2 {
+        font-size: 5vw;
+        text-align: center;
+    }
+
+    #lista-horarios {
+        font-size: 4vw;
+        padding-left: 5vw;
+    }
+}
