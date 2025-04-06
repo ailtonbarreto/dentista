@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>Reservar Sala</title>
     <link rel="stylesheet" href="../css/styles.css">
 
@@ -25,34 +25,44 @@
 
     <div class="container">
 
+        <div class="btn-salvar">
+
+            <img src="../assets/save.png" id="btn_agendar" alt="">
+
+        </div>
+
 
         <div class="btn_enviar">
 
             <div class="titulo_topo">
 
-                <span class="material-symbols-outlined" id="book">book_6</span>
+                <img src="../assets/report.png" alt="">
 
-                <h1>Agendar Atendimento</h1>
-
+                <h1>Agendar Atendimento - Consultório Dr. Fulando de Tal</h1>
 
             </div>
-
-            <span class="material-icons-outlined" id="btn_agendar">save</span> 
-
 
         </div>
 
         <form id="form">
 
             <div class="agendamento">
-        
+
                 <div class="linha-container">
-        
+
                     <div class="subcontainer2">
+
+                        <div class="paciente">
+
+                            <h4>Paciente</h4>
+
+                            <input type="text" id="paciente">
+
+                        </div>
 
                         <div class="sala">
 
-                            <h4>Escolher Profissional</h4>
+                            <h4>Profissional</h4>
 
                             <select id="profissional">
 
@@ -82,7 +92,7 @@
 
                         <div class="hora_fim">
 
-                            <h4>Fim</h4>
+                            <h4>Término</h4>
 
 
                             <input type="time" id="hora-fim" step="600">
@@ -90,25 +100,37 @@
 
                         </div>
 
+
                     </div>
 
                 </div>
-        
+
             </div>
-            
+
         </form>
-        
+
 
         <div id="mensagem"></div>
 
         <div id="horarios-ocupados">
 
-            <h2>Agenda Do Dia</h2>
+            <h2 id="agenda_title">Agenda Do Dia</h2>
 
-            <ul id="lista-horarios">
-
-
-            </ul>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Paciente</th>
+                    <th>Profissional</th>
+                    <th>Início</th>
+                    <th>Término</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="lista-horarios">
+                  <!-- Linhas serão inseridas aqui -->
+                </tbody>
+              </table>
+              
 
         </div>
 

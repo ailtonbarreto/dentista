@@ -27,28 +27,30 @@ window.addEventListener('load', function () {
 
     async function carregarHorariosOcupados() {
         spinner.style.display = "flex";
-
+    
         const dataFiltro = document.getElementById('data').value;
-        if (!dataFiltro) {
+        const profissionalEscolhido = document.getElementById('profissional').value;
+    
+        if (!dataFiltro || !profissionalEscolhido) {
             spinner.style.display = "none";
             return;
         }
-
+    
         try {
             const response = await fetch("https://api-localizacao-e69z.onrender.com/agendamento");
             const resposta = await response.json();
-
+    
             horariosOcupados = {};
             const reservas = resposta.data;
-
+    
             reservas.forEach(reserva => {
                 const { id, profissional, data: dataReserva, hora_inicio, hora_fim, nome } = reserva;
                 const dataFormatada = new Date(dataReserva).toISOString().split('T')[0];
-
-                if (dataFormatada === dataFiltro) {
+    
+                if (dataFormatada === dataFiltro && profissional === profissionalEscolhido) {
                     if (!horariosOcupados[profissional]) horariosOcupados[profissional] = {};
                     if (!horariosOcupados[profissional][dataFiltro]) horariosOcupados[profissional][dataFiltro] = [];
-
+    
                     horariosOcupados[profissional][dataFiltro].push({
                         id,
                         nome,
@@ -57,7 +59,7 @@ window.addEventListener('load', function () {
                     });
                 }
             });
-
+    
             atualizarListaOcupados();
             atualizarHorarios();
         } catch (error) {
@@ -66,6 +68,7 @@ window.addEventListener('load', function () {
             spinner.style.display = "none";
         }
     }
+    
 
     function atualizarHorarios() {
         const dataEscolhida = document.getElementById('data').value;
@@ -132,29 +135,59 @@ window.addEventListener('load', function () {
     }
 
     function atualizarListaOcupados() {
-        const lista = document.getElementById('lista-horarios');
-        lista.innerHTML = '';
+        const tabela = document.getElementById('lista-horarios');
+        const title = document.getElementById("agenda_title");
+        const dataSelecionada = document.getElementById('data').value;
 
+        const data = new Date(`${dataSelecionada}T00:00:00`);
+        const dataFormatada = data.toLocaleDateString('pt-BR');
+
+    
+        tabela.innerHTML = '';
+
+        title.innerHTML = `Agenda do Dia ${dataFormatada}`;
+    
         for (const profissional in horariosOcupados) {
             for (const data in horariosOcupados[profissional]) {
-                horariosOcupados[profissional][data].forEach(intervalo => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<strong>${intervalo.nome}</strong> <strong>${profissional}</strong> das ${intervalo.inicio} até ${intervalo.fim}`;
-
-                    if (intervalo.nome === user_name) {
-                        const btnExcluir = document.createElement('button');
-                        btnExcluir.classList.add('btn-excluir');
-                        btnExcluir.textContent = 'Excluir';
+                horariosOcupados[profissional][data]
+                    .sort((a, b) => a.inicio.localeCompare(b.inicio))
+                    .forEach(intervalo => {
+                        const tr = document.createElement('tr');
+    
+                        const tdNome = document.createElement('td');
+                        tdNome.textContent = intervalo.nome;
+    
+                        const tdProfissional = document.createElement('td');
+                        tdProfissional.textContent = profissional;
+    
+                        const tdInicio = document.createElement('td');
+                        tdInicio.textContent = formatarHorario(intervalo.inicio);
+    
+                        const tdFim = document.createElement('td');
+                        tdFim.textContent = formatarHorario(intervalo.fim);
+    
+                        const tdAcoes = document.createElement('td');
+                        const btnExcluir = document.createElement('span');
+                        btnExcluir.classList.add('btn-excluir', 'material-symbols-outlined');
+                        btnExcluir.textContent = 'delete';
+                        btnExcluir.title = 'Excluir reserva';
                         btnExcluir.dataset.id = intervalo.id;
+                        btnExcluir.style.cursor = 'pointer';
                         btnExcluir.addEventListener('click', excluirReserva);
-                        li.appendChild(btnExcluir);
-                    }
-
-                    lista.appendChild(li);
-                });
+                        tdAcoes.appendChild(btnExcluir);
+    
+                        tr.appendChild(tdNome);
+                        tr.appendChild(tdProfissional);
+                        tr.appendChild(tdInicio);
+                        tr.appendChild(tdFim);
+                        tr.appendChild(tdAcoes);
+    
+                        tabela.appendChild(tr);
+                    });
             }
         }
     }
+    
 
     async function excluirReserva(event) {
         spinner.style.display = "flex";
@@ -180,13 +213,14 @@ window.addEventListener('load', function () {
         e.preventDefault();
         spinner.style.display = "flex";
 
-        const nome = user_name;
+        // const nome = user_name;
+        const nome = document.getElementById('paciente').value;
         const profissional = document.getElementById('profissional').value;
         const data = document.getElementById('data').value;
         const hora_inicio = document.getElementById('hora-inicio').value;
         const hora_fim = document.getElementById('hora-fim').value;
 
-        if (!profissional || !data || !hora_inicio || !hora_fim) {
+        if (!nome || !profissional || !data || !hora_inicio || !hora_fim) {
             alert("Por favor, preencha todos os campos.");
             spinner.style.display = "none";
             return;
@@ -240,4 +274,13 @@ window.addEventListener('load', function () {
     if (document.getElementById('data').value) {
         carregarHorariosOcupados();
     }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    document.getElementById('data').value = `${ano}-${mes}-${dia}`;
+    inputData.value = hoje;
 });
