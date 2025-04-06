@@ -51,7 +51,7 @@ h1 {
     background-color: var(--card_cor);
     color: var(--cor_texto);
     padding: 1vw 2vw 2vw 2vw;
-    width: 60vw;
+    width: 80vw;
     min-height: 80vh;
     border-radius: 1vw;
     box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
@@ -134,7 +134,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 #horarios-ocupados {
-    min-height: 30vw;
+    min-height: 25vw;
     background-color: var(--cor-container);
     border-radius: 0.5vw;
     padding: 1vw;
