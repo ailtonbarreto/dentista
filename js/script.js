@@ -282,5 +282,5 @@ window.addEventListener('DOMContentLoaded', () => {
     const mes = String(hoje.getMonth() + 1).padStart(2, '0');
     const dia = String(hoje.getDate()).padStart(2, '0');
     document.getElementById('data').value = `${ano}-${mes}-${dia}`;
-    inputData.value = hoje;
+    // inputData.value = hoje;
 });
