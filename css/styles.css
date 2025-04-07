@@ -63,6 +63,10 @@ h1 {
 
 .agendamento {
     align-items: center;
+    background-color: var(--bg_cor);
+    padding: 0.5vw;
+    border-radius: 0.5vw;
+    margin-bottom: 0.5vw;
 }
 
 .subcontainer2 {
