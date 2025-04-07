@@ -4,7 +4,7 @@
     --card_cor: #93d0db;
     --cor-container: #2ea8be;
     --cor-botao: #2684d1;
-    --cor-botao-hover: #93d0db;
+    --cor-botao-hover: #63bece;
     --cor-excluir: #ff4d4d;
     --cor-excluir-hover: #cc0000;
 }
@@ -51,7 +51,7 @@ h1 {
     background-color: var(--card_cor);
     color: var(--cor_texto);
     padding: 1vw 2vw 2vw 2vw;
-    width: 80vw;
+    width: 90vw;
     min-height: 80vh;
     border-radius: 1vw;
     box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
@@ -63,10 +63,12 @@ h1 {
 
 .agendamento {
     align-items: center;
-    background-color: var(--bg_cor);
+    background-color: var(--card_cor);
     padding: 0.5vw;
     border-radius: 0.5vw;
     margin-bottom: 0.5vw;
+    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
+
 }
 
 .subcontainer2 {
@@ -96,6 +98,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     border-radius: 0.5vw;
     padding: 0.5vw 1vw;
+    min-width: 15vw;
+
 }
 
 .sala select, 
@@ -107,7 +111,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     border-radius: 0.3vw;
     text-align: center;
     margin-top: 0.5vw;
-    min-width: 10vw;
 }
 
 .titulo{
@@ -127,7 +130,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     border-radius: 0.3vw;
     text-align: center;
     margin-top: 0.5vw;
-    min-width: 7vw;
     outline: none;
 }
 
@@ -142,6 +144,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     background-color: var(--cor-container);
     border-radius: 0.5vw;
     padding: 1vw;
+    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
+
 }
 
 #horarios-ocupados h2 {
