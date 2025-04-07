@@ -63,7 +63,7 @@ h1 {
 
 .agendamento {
     align-items: center;
-    background-color: var(--card_cor);
+    background-color: var(--cor-container);
     padding: 0.5vw;
     border-radius: 0.5vw;
     margin-bottom: 0.5vw;
@@ -93,13 +93,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .paciente, .sala, .data, .hora_inicio,.hora_fim{
-    background-color: var(--cor-container);
+    background-color: var(--card_cor);
     display: flex;
     flex-direction: column;
     border-radius: 0.5vw;
     padding: 0.5vw 1vw;
     min-width: 15vw;
-
+    color: var(--cor-container);
+    font-weight: bold;
 }
 
 .sala select, 
@@ -199,7 +200,7 @@ tbody tr:hover {
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    border-radius: 0.5vw;
+    margin-bottom: 0.5vw;
 }
 
 
