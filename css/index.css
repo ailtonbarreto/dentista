@@ -19,7 +19,7 @@ body{
 
 
 .logo{
-    width: 15vw;
+    width: 10vw;
     margin-bottom: 2vw;
     margin-top: 2vw;
 }
@@ -45,7 +45,6 @@ form{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 0.4vw;
     border-radius: 4px;
     width: 25vw;
     height: 30vw;
@@ -53,7 +52,10 @@ form{
 
 input{
     outline: none;
+    border: none;
+    margin: 0.5vw 0 0.5vw 0;
     height: 1.5vw;
+    border-radius: 0.3vw;
     width: 100%;
     color: var(--bg);
 }
@@ -69,7 +71,7 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    width: 50%;
     border-radius: 3px;
     margin-bottom: 1vw;
     cursor: pointer;
@@ -129,6 +131,7 @@ iframe{
         width: 100vw;
         border: none;
         margin: 0;
+        text-align: center;
     }
 
     .form img{
@@ -140,11 +143,6 @@ iframe{
         width: 8vw;
     }
     
-
-    .sidebar img{
-        width: 220px;
-        margin-bottom: 5vw;
-    }
 
     .close-btn {
         position: absolute;
@@ -162,15 +160,17 @@ iframe{
     input{
         outline: none;
         height: 8vw;
-        width: 100%;
+        width: 80%;
         color: var(--cor-container);
     } 
     
     button{
         border: none;
         height: 10vw;
-        width: 40%;
+        width: 80%;
+        margin-top: 6vw;
         border-radius: 3px;
+        font-size: 5vw;
     }
 
     iframe{
@@ -187,25 +187,10 @@ iframe{
         padding: 0vw 2vw;
     }
 
-    .exit-btn{
-        width: 20vw;
-        padding: 0.6vw;
-        font-size: 4vw;
-        margin: 0vw;
-        height: 6vw;
-        cursor: pointer;
-    }
-
-    #logged-message{
-        display: none;
-    }
-
-    .msg img{
-        width: 30vw;
-    }
 
     .message{
-        margin-bottom: 50vw;
+        margin: auto;
+        /* margin-bottom: 50vw; */
     }
     
 }

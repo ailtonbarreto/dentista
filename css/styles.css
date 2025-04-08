@@ -42,6 +42,11 @@ h1 {
     color: var(--cor_texto);
 }
 
+.material-symbols-outlined{
+    font-size: 2.5vw;
+    cursor: pointer;
+    
+}
 
 .container {
     display: flex;
@@ -53,12 +58,13 @@ h1 {
     padding: 1vw 2vw 2vw 2vw;
     width: 90vw;
     min-height: 80vh;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
     box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
 }
 
 .titulo_topo img{
     width: 5vw;
+    display: none;
 }
 
 .agendamento {
@@ -71,7 +77,7 @@ h1 {
 
 }
 
-.subcontainer2 {
+.subcontainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -99,7 +105,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     border-radius: 0.5vw;
     padding: 0.5vw 1vw;
     min-width: 15vw;
-    color: var(--cor-container);
+    color: var(--bg_cor);
     font-weight: bold;
 }
 
@@ -134,14 +140,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     outline: none;
 }
 
-.btn-salvar{
+.header{
     border: none;
     display: flex;
     justify-content: right;
 }
 
 #horarios-ocupados {
-    min-height: 20vw;
+    min-height: 22vw;
     background-color: var(--cor-container);
     border-radius: 0.5vw;
     padding: 1vw;
@@ -165,7 +171,7 @@ table {
 th, td {
     border: 1px solid #ffffff55;
     padding: 0.5vw 1vw;
-    text-align: left;
+    text-align: center;
 }
 
 th {
@@ -245,7 +251,6 @@ tbody tr:hover {
 
     .container {
         width: 100%;
-        height: 100vh;
         padding: 2vw;
         border-radius: 2vw;
     }
@@ -281,18 +286,18 @@ tbody tr:hover {
         gap: 4vw;
     }
 
-    .subcontainer1,
-    .subcontainer2 {
+    .subcontainer {
         display: flex;
         flex-direction: column;
         gap: 3vw;
         width: 80vw;
     }
 
-    .sala, .titulo, .hora_inicio, .hora_fim{
+    .paciente, .sala, .titulo, .hora_inicio, .hora_fim{
         padding: 1vw !important;
     }
 
+    .paciente input,
     .sala select,
     .data input,
     .hora_inicio input,
@@ -300,7 +305,7 @@ tbody tr:hover {
     .titulo input {
         width: 100%;
         padding: 3vw 2vw !important;
-        font-size: 4vw;
+        font-size: 5vw;
         border-radius: 5px;
         border: 1px solid #ccc;
         margin: 4vw 0;
