@@ -94,11 +94,16 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .titulo{
     border: none;
 }
 
-.paciente, .sala, .data, .hora_inicio,.hora_fim{
+.paciente, .sala, .data, .hora_inicio,.hora_fim, .telefone, .genero{
     background-color: var(--card_cor);
     display: flex;
     flex-direction: column;
@@ -109,7 +114,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-weight: bold;
 }
 
-.sala select, 
+.sala select,
+.genero select,
 .titulo {
     background-color: var(--cor-container);
     color: var(--cor_texto);
@@ -126,6 +132,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .paciente input,
+.telefone input,
 .hora_inicio input, 
 .data input,
 .titulo input,

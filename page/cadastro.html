@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <title>Reservar Sala</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>Cadastrar Paciente</title>
+    <link rel="stylesheet" href="../css/cadastro.css">
 
 </head>
 
@@ -32,7 +32,7 @@
 
                 <img src="../assets/report.png" alt="">
 
-                <h1>Consultório Dr. Fulando de Tal</h1>
+                <h1>Cadastro de Pacientes</h1>
 
             </div>
 
@@ -64,12 +64,41 @@
 
                         </div>
 
+                        <div class="paciente">
+
+                            <h4>Sobrenome</h4>
+
+                            <input type="text" id="sobrenome">
+
+                        </div>
 
                         <div class="data">
 
                             <h4>Data Nascimento</h4>
 
                             <input type="date" id="data" required>
+
+                        </div>
+
+                        <div class="telefone">
+
+                            <h4>Telefone</h4>
+
+                            <input type="number" id="fone" required>
+
+                        </div>
+
+                        <div class="genero">
+
+                            <h4>Genero</h4>
+
+                            <select id="genero">
+
+                                <option value="Masculino">Masculino</option>
+
+                                <option value="Feminino">Feminino</option>
+
+                            </select>
 
                         </div>
 
@@ -85,15 +114,13 @@
 
         <div id="mensagem"></div>
 
-        <div id="horarios-ocupados">
+        <div id="pacientes_cadastrados">
 
             <h2>Pacientes</h2>
 
-
-
     </div>
 
-    <script src="../js/script.js"></script>
+    <script src="../js/cadastro_paciente.js"></script>
 
 </body>
 
