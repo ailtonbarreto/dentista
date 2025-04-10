@@ -61,7 +61,7 @@ window.addEventListener('load', function () {
         };
 
         try {
-            const response = await fetch("https://api-localizacao-e69z.onrender.com/input_paciente", {
+            const response = await fetch("http://barretoapps.com.br:3004/input_paciente", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(novo_cadastro)

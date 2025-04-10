@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
         }
     
         try {
-            const response = await fetch("https://api-localizacao-e69z.onrender.com/agendamento");
+            const response = await fetch("http://barretoapps.com.br:3004/agendamento");
             const resposta = await response.json();
     
             horariosOcupados = {};
@@ -195,7 +195,7 @@ window.addEventListener('load', function () {
         const idReserva = event.target.dataset.id;
 
         try {
-            const response = await fetch(`https://api-localizacao-e69z.onrender.com/delete_agendamento/${idReserva}`, {
+            const response = await fetch(`http://barretoapps.com.br:3004/delete_agendamento/${idReserva}`, {
                 method: "DELETE",
             });
 
@@ -254,7 +254,7 @@ window.addEventListener('load', function () {
         };
 
         try {
-            const response = await fetch("https://api-localizacao-e69z.onrender.com/input_agendamento", {
+            const response = await fetch("http://barretoapps.com.br:3004/input_agendamento", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(novaReserva)
