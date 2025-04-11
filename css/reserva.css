@@ -1,0 +1,79 @@
+:root {
+    --cor_texto: #ffffff;
+    --bg_cor: #051e33;
+    --card_cor: #082946;
+    --cor-container: #0d3b66;
+    --cor-botao: #2684d1;
+    --cor-botao-hover: #1a5d9a;
+    --cor-excluir: #e0a80b;
+    --cor-excluir-hover: #eb0b03;
+}
+
+body {
+    background-color: var(--card_cor);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+
+#ano-completo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1vw;
+    padding: 1vw;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    background-color: var(--cor-botao-hover);
+    border-radius: 0.5vw;
+}
+
+.fc {
+    background-color: var(--card_cor);
+    color: var(--cor_texto);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+/* Estilo dos dias */
+.fc-daygrid-day {
+    background-color: var(--cor-container);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Título do mês e cabeçalhos */
+.fc-toolbar-title,
+.fc-col-header-cell-cushion {
+    color: var(--cor_texto);
+}
+
+
+/* Hoje destacado */
+.fc-day-today {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Eventos */
+.fc-event {
+    border: none;
+    font-size: 0.9vw;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.fc-view-harness {
+    min-height: 30vw !important;
+    background-color: var(--cor-botao);
+}
+
+#btn-voltar {
+    background-color: var(--cor-botao);
+    padding: 0.5vw;
+    margin: 1vw 0;
+    border-radius: 0.5vw;
+    color: var(--cor_texto);
+    cursor: pointer;
+    min-width: 10vw;
+    transition: background 0.3s ease-in-out;
+}
