@@ -16,30 +16,31 @@
     document.addEventListener('DOMContentLoaded', async function () {
       const container = document.getElementById('ano-completo');
       const ano = 2025;
-
+  
       const response = await fetch('http://barretoapps.com.br:3004/agendamento');
       const dados = await response.json();
-
-      const eventos = dados.map(item => {
+  
+      const eventos = dados.data.map(item => { // ← Correção aqui!
         const data = item.data.split('T')[0];
         return {
-          title: `${item.titulo} - ${item.nome}`,
+          title: `${item.profissional} - ${item.nome}`,
           start: `${data}T${item.hora_inicio}`,
           end: `${data}T${item.hora_fim}`,
           color: '#e0a80b',
           extendedProps: {
             profissional: item.profissional,
-            id: item.id
+            id: item.id,
+            nome: item.nome
           }
         };
       });
-
+  
       for (let i = 0; i < 12; i++) {
         const month = String(i + 1).padStart(2, '0');
         const calendarDiv = document.createElement('div');
         calendarDiv.id = `calendar-${i}`;
         container.appendChild(calendarDiv);
-
+  
         const calendar = new FullCalendar.Calendar(calendarDiv, {
           initialView: 'dayGridMonth',
           initialDate: `${ano}-${month}-01`,
@@ -52,18 +53,19 @@
           events: eventos,
           eventClick: function(info) {
             alert(
-              `Título: ${info.event.title}\n` +
-              `Sala: ${info.event.extendedProps.sala}\n` +
+              `Profissional: ${info.event.extendedProps.profissional}\n` +
+              `Nome: ${info.event.extendedProps.nome}\n` +
               `Início: ${info.event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}\n` +
               `Fim: ${info.event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
             );
           }
         });
-
+  
         calendar.render();
       }
     });
   </script>
+  
 
 </body>
 </html>
