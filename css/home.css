@@ -3,7 +3,7 @@
     --bg_cor: #ffffff;
     --card_cor: #93d0db;
     --cor-container: #2ea8be;
-    --cor-botao: #2684d1;
+    --cor-botao: #137b8d;
     --cor-botao-hover: #63bece;
     --cor-excluir: #ff4d4d;
     --cor-excluir-hover: #cc0000;
@@ -150,29 +150,39 @@ input::-webkit-inner-spin-button {
 .header{
     border: none;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #horarios-ocupados {
-    min-height: 22vw;
+    height: 22vw;
     background-color: var(--cor-container);
     border-radius: 0.5vw;
     padding: 1vw;
+    overflow-y: scroll;
     box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
-
 }
+
+#horarios-ocupados::-webkit-scrollbar{
+    display: none;
+}
+
+
 
 #horarios-ocupados h2 {
     margin-top: 1vw;
     text-align: left;
+
+    display: none;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1vw;
+    /* margin-top: 1vw; */
     color: var(--cor_texto);
     font-size: 1vw;
+    
 }
 
 th, td {
@@ -181,9 +191,12 @@ th, td {
     text-align: center;
 }
 
-th {
-    background-color: var(--cor-container);
+thead th {
+    background-color: var(--cor-botao);
     color: var(--cor_texto);
+    position: sticky;
+    top: 0;
+    line-height: 2vw;
 }
 
 tbody tr:nth-child(even) {
