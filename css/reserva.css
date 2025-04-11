@@ -16,21 +16,26 @@
 
 body {
     background-color: var(--bg_cor);
-    padding: 2rem;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+    align-items: center;
+    height: 100vh;
+    padding: 1vw;
 }
 
 #calendar {
     max-width: 90vw;
-    width: 100%;
+    max-height: 92vh;
+    width: 90vw;
     background-color: var(--cor-container);
     padding: 1rem;
     color: var(--cor_texto);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+thead{
+    font-size: 1.5vw;
 }
 
 /* Estilizando os botões de navegação */
@@ -68,8 +73,6 @@ body {
     color: var(--cor_texto);
 }
 
-
-
 .fc-event {
     border: none;
     font-size: 0.7vw;
@@ -83,9 +86,10 @@ body {
 }
 
 .fc .fc-daygrid-day-frame {
-    height: 2vw;
+    height: 4vw;
     overflow-y: scroll;
     padding-bottom: 0.2vw;
     background-color: var(--cor_texto);
     color: var(--cor-botao);
+    font-size: 1vw;
   }
