@@ -27,7 +27,7 @@ body {
     max-width: 90vw;
     max-height: 92vh;
     width: 90vw;
-    background-color: var(--cor-container);
+    background-color: var(--card_cor);
     padding: 1rem;
     color: var(--cor_texto);
     border-radius: 12px;
@@ -82,7 +82,8 @@ thead{
 }
 
 .fc-event:hover{
-    color: var(--cor-botao);
+    color: var(--bg_cor);
+    background-color: var(--cor-botao-hover);
 }
 
 .fc .fc-daygrid-day-frame {
