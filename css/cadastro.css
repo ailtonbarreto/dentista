@@ -19,14 +19,13 @@
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
     background-color: var(--bg_cor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 1vw;
 }
-
 
 .titulo_topo{
     display: flex;
@@ -34,9 +33,6 @@ body {
     align-items: center;
 }
 
-#book{
-    font-size: 2.5vw;
-}
 
 h1 {
     color: var(--cor_texto);
@@ -49,17 +45,14 @@ h1 {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    background-color: var(--card_cor);
-    color: var(--cor_texto);
-    padding: 1vw 2vw 2vw 2vw;
+    max-width: 90vw;
+    max-height: 92vh;
     width: 90vw;
-    min-height: 80vh;
-    border-radius: 0.5vw;
-    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
+    background-color: var(--card_cor);
+    padding: 1rem;
+    color: var(--cor_texto);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .titulo_topo img{
