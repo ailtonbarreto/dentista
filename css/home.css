@@ -27,13 +27,21 @@ body {
 
 #calendar {
     max-width: 90vw;
-    max-height: 92vh;
+    max-height: 90vh;
     width: 90vw;
+    height: 90vh;
     background-color: var(--card_cor);
-    padding: 1rem;
+    padding: 1vw;
     color: var(--cor_texto);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table{
+    padding: 1vw;
+    background-color: var(--cor-botao);
+    border-radius: 0.5vw;
+    border: none;
 }
 
 thead {
@@ -83,6 +91,7 @@ thead {
 }
 
 
+
 .fc-daygrid-event-dot{
     width: 14px;
     height: 14px;
@@ -113,12 +122,29 @@ thead {
 
 .custom-icons{
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
 }
 
 .fc-day{
-    background-color: var(--cor-botao);
+    background-color: var(--card_cor);
     color: var(--bg_cor);
 }
 
+.fc-toolbar-chunk{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fc-toolbar-chunk h2 {
+    display:  inline;
+}
+
+.fc-toolbar {
+    display: flex;
+    align-items: center;
+}

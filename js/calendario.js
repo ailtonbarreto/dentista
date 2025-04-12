@@ -61,11 +61,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         iconsContainer.classList.add('custom-icons');
 
         const icons = [
-          { icon: 'note_add', href: 'agendar.html' },
-          { icon: 'person_add', href: 'cadastro.html' }
+          { icon: 'calendar_month'},
+          { icon: 'note_add', href: 'agendar.html',color:'#2ea8be' },
+          { icon: 'person_add', href: 'cadastro.html',color:'#2ea8be' }
         ];
 
-        icons.forEach(({ icon, href }) => {
+        icons.forEach(({ icon, href,color }) => {
           const link = document.createElement('a');
           link.href = href || '#';
           link.title = icon;
@@ -74,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           const span = document.createElement('span');
           span.classList.add('material-symbols-outlined');
           span.textContent = icon;
+          span.style.color = color;
 
           link.appendChild(span);
           iconsContainer.appendChild(link);
