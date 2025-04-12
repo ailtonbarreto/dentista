@@ -38,7 +38,6 @@ thead {
     font-size: 1.5vw;
 }
 
-/* Estilizando os botões de navegação */
 .fc .fc-button {
     background-color: var(--cor-botao);
     border: none;
@@ -81,6 +80,14 @@ thead {
     cursor: pointer;
 }
 
+
+.fc-daygrid-event-dot{
+    width: 14px;
+    height: 14px;
+    margin: 0 5px 0 0;
+}
+  
+
 .fc-event:hover {
     color: var(--bg_cor);
     background-color: var(--cor-botao-hover);
@@ -95,8 +102,21 @@ thead {
     font-size: 1vw;
 }
 
-.material-symbols-outlined{
+
+.material-symbols-outlined {
     font-size: 2.5vw;
     cursor: pointer;
     color: var(--bg_cor);
 }
+
+.custom-icons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.fc-day{
+    background-color: var(--cor-botao);
+    color: var(--bg_cor);
+}
+
