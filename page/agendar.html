@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <title>Reservar Sala</title>
+    <link rel="stylesheet" href="../css/home.css">
+
+</head>
+
+<body>
+
+    <div id="spinner" style="display: none;">
+
+        Carregando...
+
+    </div>
+
+
+    <div class="container">
+
+
+        <div class="btn_enviar">
+
+            <div class="titulo_topo">
+
+                <img src="../assets/report.png" alt="">
+
+                <h1>Consultório Dr. Fulando de Tal</h1>
+
+            </div>
+
+            <span class="material-symbols-outlined" onclick="window.location.href='reservas.html'">Calendar_Month</span>
+
+
+            <span class="material-symbols-outlined" onclick="window.location.href='cadastro.html'">person_add</span>
+
+        </div>
+
+        <form id="form">
+
+            <div class="agendamento">
+
+                <div class="header">
+
+                    <h2>Agendar Atendimnento</h2>
+
+                    <img src="../assets/save.png" id="btn_agendar" alt="">
+        
+                </div>
+
+                <div class="linha-container">
+
+                    <div class="subcontainer">
+
+                        <div class="paciente">
+
+                            <h4>Paciente</h4>
+
+                            <input type="text" id="paciente">
+
+                        </div>
+
+                        <div class="sala">
+
+                            <h4>Profissional</h4>
+
+                            <select id="profissional">
+
+                                <option value="Profissional A">Profissional A</option>
+
+                                <option value="Profissional B">Profissional B</option>
+
+                            </select>
+                        </div>
+
+                        <div class="data">
+
+                            <h4>Data</h4>
+
+                            <input type="date" id="data" required>
+
+                        </div>
+
+                        <div class="hora_inicio">
+
+                            <h4>Início</h4>
+
+
+                            <input type="time" id="hora-inicio" step="600" min="07:00" max="17:00">
+
+                        </div>
+
+                        <div class="hora_fim">
+
+                            <h4>Término</h4>
+
+
+                            <input type="time" id="hora-fim" step="600">
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <div id="mensagem"></div>
+
+        <div id="horarios-ocupados">
+
+            <h2 id="agenda_title">Agenda Do Dia</h2>
+
+            <table>
+                <thead>
+                  <tr>
+                    <th>Paciente</th>
+                    <th>Profissional</th>
+                    <th>Início</th>
+                    <th>Término</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="lista-horarios">
+             
+                </tbody>
+              </table>
+              
+
+        </div>
+
+
+    </div>
+
+    <script src="../js/agendar.js"></script>
+
+</body>
+
+</html>

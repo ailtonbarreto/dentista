@@ -34,7 +34,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-thead{
+thead {
     font-size: 1.5vw;
 }
 
@@ -81,7 +81,7 @@ thead{
     cursor: pointer;
 }
 
-.fc-event:hover{
+.fc-event:hover {
     color: var(--bg_cor);
     background-color: var(--cor-botao-hover);
 }
@@ -93,4 +93,10 @@ thead{
     background-color: var(--cor_texto);
     color: var(--cor-botao);
     font-size: 1vw;
-  }
+}
+
+.material-symbols-outlined{
+    font-size: 2.5vw;
+    cursor: pointer;
+    color: var(--bg_cor);
+}
