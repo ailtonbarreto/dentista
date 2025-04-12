@@ -5,348 +5,118 @@
     --cor-container: #2ea8be;
     --cor-botao: #137b8d;
     --cor-botao-hover: #63bece;
-    --cor-excluir: #ff4d4d;
-    --cor-excluir-hover: #cc0000;
 }
+
 
 * {
     margin: 0;
     padding: 0;
-    border: 0;
     box-sizing: border-box;
-    list-style: none;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
     background-color: var(--bg_cor);
-}
-
-
-.titulo_topo{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#book{
-    font-size: 2.5vw;
-}
-
-h1 {
-    color: var(--cor_texto);
-}
-
-.material-symbols-outlined{
-    font-size: 2.5vw;
-    cursor: pointer;
-    
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    background-color: var(--card_cor);
-    color: var(--cor_texto);
-    padding: 1vw 2vw 2vw 2vw;
-    width: 90vw;
-    min-height: 80vh;
-    border-radius: 0.5vw;
-    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
-}
-
-.titulo_topo img{
-    width: 5vw;
-    display: none;
-}
-
-.agendamento {
-    align-items: center;
-    background-color: var(--cor-container);
-    padding: 0.5vw;
-    border-radius: 0.5vw;
-    margin-bottom: 0.5vw;
-    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
-
-}
-
-.subcontainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1vw;
-    width: 100%;
-    margin-bottom: 1vw;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-}
-
-input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.titulo{
-    border: none;
-}
-
-.paciente, .sala, .data, .hora_inicio,.hora_fim, .telefone, .genero{
-    background-color: var(--card_cor);
-    display: flex;
-    flex-direction: column;
-    border-radius: 0.5vw;
-    padding: 0.5vw 1vw;
-    min-width: 15vw;
-    color: var(--bg_cor);
-    font-weight: bold;
-}
-
-.sala select,
-.genero select,
-.titulo {
-    background-color: var(--cor-container);
-    color: var(--cor_texto);
-    border: 1px solid #fff;
-    padding: 0.3vw;
-    border-radius: 0.3vw;
-    text-align: center;
-    margin-top: 0.5vw;
-}
-
-.titulo{
-    border: none;
-    margin: 0;
-}
-
-.paciente input,
-.telefone input,
-.hora_inicio input, 
-.data input,
-.titulo input,
-.hora_fim input{
-    background-color: var(--cor-container);
-    color: var(--cor_texto);
-    border: 1px solid #fff;
-    padding: 0.3vw;
-    border-radius: 0.3vw;
-    text-align: center;
-    margin-top: 0.5vw;
-    outline: none;
-}
-
-.header{
-    border: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#horarios-ocupados {
-    height: 22vw;
-    background-color: var(--cor-container);
-    border-radius: 0.5vw;
-    padding: 1vw;
-    overflow-y: scroll;
-    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
-}
-
-#horarios-ocupados::-webkit-scrollbar{
-    display: none;
-}
-
-
-
-#horarios-ocupados h2 {
-    margin-top: 1vw;
-    text-align: left;
-
-    display: none;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    /* margin-top: 1vw; */
-    color: var(--cor_texto);
-    font-size: 1vw;
-    
-}
-
-th, td {
-    border: 1px solid #ffffff55;
-    padding: 0.5vw 1vw;
-    text-align: center;
-}
-
-thead th {
-    background-color: var(--cor-botao);
-    color: var(--cor_texto);
-    position: sticky;
-    top: 0;
-    line-height: 2vw;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #ffffff22;
-}
-
-tbody tr:hover {
-    background-color: var(--cor-botao-hover);
-    transition: background 0.3s;
-}
-
-
-#form {
-    display: flex;
-    flex-direction: column;
-}
-
-.btn_enviar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1vw;
-}
-
-#btn_agendar{
-    width: 3vw;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0.5vw;
-}
-
-
-.btn-excluir {
-    color: var(--cor-excluir-hover);
-    font-size: 1.5vw;
-    padding: 0.2vw 1vw;
-    margin-left: 0.5vw;
-    border-radius: 0.3vw;
-    float: right;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-}
-
-.btn-excluir:hover {
-    color: var(--cor-excluir);
-}
-
-#spinner {
-    position: fixed;
-    background-color: var(--cor-container);
-    color: var(--cor_texto);
-    width: 100vw;
-    height: 100vh;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    height: 100vh;
+    padding: 1vw;
 }
 
-/* ---------------------------------------------------------- */
-
-@media screen and (max-width: 720px) {
-
-    body {
-        flex-direction: column;
-        padding: 4vw;
-        gap: 3vw;
-    }
-
-    .container {
-        width: 100%;
-        padding: 2vw;
-        border-radius: 2vw;
-    }
-
-    .btn_enviar {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 2vw;
-        text-align: center;
-        margin-bottom: 2vw;
-    }
-
-    h1 {
-        font-size: 6vw;
-    }
-
-    #btn_agendar {
-        font-size: 5vw;
-        padding: 2vw 6vw;
-        border-radius: 8px;
-    }
-
-    .agendamento {
-        display: flex;
-        flex-direction: column;
-        gap: 4vw;
-    }
-
-    .linha-container {
-        display: flex;
-        flex-direction: column;
-        gap: 4vw;
-    }
-
-    .subcontainer {
-        display: flex;
-        flex-direction: column;
-        gap: 3vw;
-        width: 80vw;
-    }
-
-    .paciente, .sala, .titulo, .hora_inicio, .hora_fim{
-        padding: 1vw !important;
-    }
-
-    .paciente input,
-    .sala select,
-    .data input,
-    .hora_inicio input,
-    .hora_fim input,
-    .titulo input {
-        width: 100%;
-        padding: 3vw 2vw !important;
-        font-size: 5vw;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        margin: 4vw 0;
-    }
-
-    h4 {
-        font-size: 4.5vw;
-        margin-bottom: 1vw;
-    }
-
-    #horarios-ocupados {
-        display: none;
-    }
-
-    #horarios-ocupados h2 {
-        font-size: 5vw;
-        text-align: center;
-    }
-
-    #lista-horarios {
-        font-size: 4vw;
-        padding-left: 5vw;
-    }
+#calendar {
+    max-width: 90vw;
+    max-height: 92vh;
+    width: 90vw;
+    background-color: var(--card_cor);
+    padding: 1rem;
+    color: var(--cor_texto);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+thead {
+    font-size: 1.5vw;
+}
+
+.fc .fc-button {
+    background-color: var(--cor-botao);
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin: 0 2px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.fc .fc-button:hover {
+    background-color: var(--cor-container);
+}
+
+.fc .fc-button:disabled {
+    background-color: var(--card_cor);
+    cursor: not-allowed;
+}
+
+.fc-toolbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.fc-daygrid-event {
+    font-size: 0.85rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: var(--cor-botao);
+    color: var(--cor_texto);
+}
+
+.fc-event {
+    border: none;
+    font-size: 0.7vw;
+    padding: 2px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.fc-daygrid-event-dot{
+    width: 14px;
+    height: 14px;
+    margin: 0 5px 0 0;
+}
+  
+
+.fc-event:hover {
+    color: var(--bg_cor);
+    background-color: var(--cor-botao-hover);
+}
+
+.fc .fc-daygrid-day-frame {
+    height: 4vw;
+    overflow-y: scroll;
+    padding-bottom: 0.2vw;
+    background-color: var(--cor_texto);
+    color: var(--cor-botao);
+    font-size: 1vw;
+}
+
+
+.material-symbols-outlined {
+    font-size: 2.5vw;
+    cursor: pointer;
+    color: var(--bg_cor);
+}
+
+.custom-icons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.fc-day{
+    background-color: var(--cor-botao);
+    color: var(--bg_cor);
+}
+
