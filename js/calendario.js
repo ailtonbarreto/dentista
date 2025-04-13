@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   const dados = await response.json();
 
 
-
   const coresProfissional = {
     'profissional a': 'red',
     'profissional b': 'blue'
@@ -13,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   
   const eventos = dados.data.map(item => {
     const data = item.data.split('T')[0];
-    const nomeProf = item.profissional.toLowerCase(); // Normaliza para lowercase
+    const nomeProf = item.profissional.toLowerCase();
     const cor = coresProfissional[nomeProf] || '#e0a80b';
     return {
       title: `${item.profissional} - ${item.nome}`,

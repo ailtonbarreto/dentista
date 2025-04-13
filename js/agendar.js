@@ -1,6 +1,7 @@
 window.addEventListener('load', function () {
     const btn_agendar = document.getElementById("btn_agendar");
     const spinner = document.getElementById("spinner");
+
     let horariosOcupados = {};
 
     function atualizarUser() {
@@ -71,6 +72,7 @@ window.addEventListener('load', function () {
     
 
     function atualizarHorarios() {
+
         const dataEscolhida = document.getElementById('data').value;
         const profissionalEscolhido = document.getElementById('profissional').value;
         const horaInicioSelect = document.getElementById('hora-inicio');
@@ -135,11 +137,10 @@ window.addEventListener('load', function () {
     }
 
     function atualizarListaOcupados() {
+
+    
         const tabela = document.getElementById('lista-horarios');
-
-
-        tabela.innerHTML = '';
-
+        const fragment = document.createDocumentFragment();
     
         for (const profissional in horariosOcupados) {
             for (const data in horariosOcupados[profissional]) {
@@ -176,11 +177,15 @@ window.addEventListener('load', function () {
                         tr.appendChild(tdFim);
                         tr.appendChild(tdAcoes);
     
-                        tabela.appendChild(tr);
+                        fragment.appendChild(tr);
                     });
             }
         }
+    
+        tabela.innerHTML = ''; // limpa só uma vez
+        tabela.appendChild(fragment); // atualiza tudo de uma vez, suave
     }
+    
     
 
     async function excluirReserva(event) {
@@ -202,6 +207,46 @@ window.addEventListener('load', function () {
             spinner.style.display = "none";
         }
     }
+
+    async function popularSelectPacientes() {
+        const select = document.getElementById("paciente");
+    
+        if (!select) {
+            console.error("Elemento com id 'paciente_id_select' não encontrado.");
+            return;
+        }
+    
+        select.innerHTML = '<option value="">Selecione um paciente</option>';
+    
+        try {
+            const resposta = await fetch("http://localhost:3000/lista_pacientes");
+            
+            if (!resposta.ok) {
+                throw new Error('Erro na requisição: ' + resposta.status);
+            }
+    
+            const dados = await resposta.json();
+            const lista = dados.data;
+    
+            if (!Array.isArray(lista)) {
+                console.error("O retorno da API não é um array.");
+                return;
+            }
+    
+            lista.forEach(paciente => {
+                const option = document.createElement("option");
+                option.value = paciente.id;
+                option.textContent = `${paciente.nome} ${paciente.sobrenome}`;
+                select.appendChild(option);
+            });
+    
+            console.log("Pacientes populados no select:", lista);
+        } catch (error) {
+            console.error("Erro ao carregar pacientes:", error);
+        }
+    }
+    
+    
 
     btn_agendar.addEventListener("click", async function (e) {
         e.preventDefault();
@@ -264,10 +309,12 @@ window.addEventListener('load', function () {
         }
     });
 
-    // Carrega os horários automaticamente se já tiver data preenchida
     if (document.getElementById('data').value) {
         carregarHorariosOcupados();
     }
+
+    popularSelectPacientes();
+
 });
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -276,5 +323,4 @@ window.addEventListener('DOMContentLoaded', () => {
     const mes = String(hoje.getMonth() + 1).padStart(2, '0');
     const dia = String(hoje.getDate()).padStart(2, '0');
     document.getElementById('data').value = `${ano}-${mes}-${dia}`;
-    // inputData.value = hoje;
 });

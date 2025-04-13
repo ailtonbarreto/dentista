@@ -116,6 +116,7 @@ input::-webkit-inner-spin-button {
     font-weight: bold;
 }
 
+.paciente select,
 .sala select,
 .genero select,
 .titulo {
@@ -133,7 +134,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.paciente input,
+
 .telefone input,
 .hora_inicio input, 
 .data input,
@@ -308,7 +309,7 @@ tbody tr:hover {
         padding: 1vw !important;
     }
 
-    .paciente input,
+    
     .sala select,
     .data input,
     .hora_inicio input,
