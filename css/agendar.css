@@ -19,12 +19,12 @@
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
     background-color: var(--bg_cor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 1vw;
 }
 
 
@@ -49,18 +49,20 @@ h1 {
 }
 
 .container {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: 90vw;
+    height: 90vh;
+    background-color: var(--card_cor);
+    padding: 1vw;
+    color: var(--cor_texto);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    text-align: center;
-    background-color: var(--card_cor);
-    color: var(--cor_texto);
-    padding: 1vw 2vw 2vw 2vw;
-    width: 90vw;
-    min-height: 80vh;
-    border-radius: 0.5vw;
-    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
 }
+
 
 .titulo_topo img{
     width: 5vw;
@@ -154,36 +156,26 @@ input::-webkit-inner-spin-button {
     align-items: center;
 }
 
-#horarios-ocupados {
-    height: 22vw;
-    background-color: var(--cor-container);
-    border-radius: 0.5vw;
-    padding: 1vw;
-    overflow-y: scroll;
-    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
-}
-
 #horarios-ocupados::-webkit-scrollbar{
     display: none;
 }
 
 
-
-#horarios-ocupados h2 {
-    margin-top: 1vw;
-    text-align: left;
-
-    display: none;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
-    /* margin-top: 1vw; */
+    margin-top: 1vw;
     color: var(--cor_texto);
     font-size: 1vw;
-    
 }
+
+#horarios-ocupados {
+    min-height: 29vw;
+    background-color: var(--cor-container);
+    border-radius: 0.5vw;
+    padding: 1vw;
+}
+
 
 th, td {
     border: 1px solid #ffffff55;
@@ -196,7 +188,6 @@ thead th {
     color: var(--cor_texto);
     position: sticky;
     top: 0;
-    line-height: 2vw;
 }
 
 tbody tr:nth-child(even) {

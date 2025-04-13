@@ -37,7 +37,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-table{
+table {
     padding: 1vw;
     background-color: var(--cor-botao);
     border-radius: 0.5vw;
@@ -90,6 +90,9 @@ thead {
     cursor: pointer;
 }
 
+.fc .fc-button-group{
+    font-size: 0.5vw;
+}
 
 
 .fc-daygrid-event-dot{

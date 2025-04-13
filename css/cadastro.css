@@ -3,7 +3,7 @@
     --bg_cor: #ffffff;
     --card_cor: #93d0db;
     --cor-container: #2ea8be;
-    --cor-botao: #2684d1;
+    --cor-botao: #137b8d;
     --cor-botao-hover: #63bece;
     --cor-excluir: #ff4d4d;
     --cor-excluir-hover: #cc0000;
@@ -51,7 +51,7 @@ h1 {
     width: 90vw;
     height: 90vh;
     background-color: var(--card_cor);
-    padding: 1rem;
+    padding: 1vw;
     color: var(--cor_texto);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -149,16 +149,16 @@ input::-webkit-inner-spin-button {
 .header{
     border: none;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #pacientes_cadastrados {
-    display: flex;
     min-height: 29vw;
     background-color: var(--cor-container);
     border-radius: 0.5vw;
     padding: 1vw;
-    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
+    overflow-y: scroll;
 
 }
 
@@ -205,6 +205,10 @@ tbody tr:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+thead th{
+    background-color: var(--cor-botao);
 }
 
 #btn_agendar{

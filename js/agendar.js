@@ -136,16 +136,10 @@ window.addEventListener('load', function () {
 
     function atualizarListaOcupados() {
         const tabela = document.getElementById('lista-horarios');
-        const title = document.getElementById("agenda_title");
-        const dataSelecionada = document.getElementById('data').value;
 
-        const data = new Date(`${dataSelecionada}T00:00:00`);
-        const dataFormatada = data.toLocaleDateString('pt-BR');
 
-    
         tabela.innerHTML = '';
 
-        title.innerHTML = `Agenda do Dia ${dataFormatada}`;
     
         for (const profissional in horariosOcupados) {
             for (const data in horariosOcupados[profissional]) {

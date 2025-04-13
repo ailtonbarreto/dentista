@@ -15,25 +15,6 @@ window.addEventListener('load', function () {
     });
 
 
-    // async function excluirReserva(event) {
-    //     spinner.style.display = "flex";
-
-    //     const idReserva = event.target.dataset.id;
-
-    //     try {
-    //         const response = await fetch(`https://api-localizacao-e69z.onrender.com/delete_agendamento/${idReserva}`, {
-    //             method: "DELETE",
-    //         });
-
-    //         if (!response.ok) throw new Error(`Erro ${response.status}: ${response.statusText}`);
-
-    //         document.getElementById('data').dispatchEvent(new Event('change'));
-    //     } catch (error) {
-    //         alert("Erro ao excluir reserva: " + error.message);
-    //     } finally {
-    //         spinner.style.display = "none";
-    //     }
-    // }
 
     btn_agendar.addEventListener("click", async function (e) {
         e.preventDefault();
@@ -76,7 +57,58 @@ window.addEventListener('load', function () {
         }
     });
 
+    Lista_pacientes();
 
 });
 
+async function Lista_pacientes() {
+    try {
+      const resposta = await fetch("http://localhost:3000/lista_pacientes");
+      if (!resposta.ok) {
+        throw new Error('Erro na requisição: ' + resposta.status);
+      }
+  
+      const dados = await resposta.json();
+      const lista = dados.data;
+  
+      const div = document.getElementById("pacientes_cadastrados");
 
+
+      let tabela = document.createElement("table");
+      tabela.border = "1";
+      tabela.style.borderCollapse = "collapse";
+  
+      let thead = document.createElement("thead");
+      thead.innerHTML = `
+        <tr>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Gênero</th>
+          <th>Data de Nascimento</th>
+          <th>Telefone</th>
+        </tr>
+      `;
+      tabela.appendChild(thead);
+  
+      let tbody = document.createElement("tbody");
+  
+      lista.forEach(paciente => {
+        let linha = document.createElement("tr");
+        linha.innerHTML = `
+          <td>${paciente.nome}</td>
+          <td>${paciente.sobrenome}</td>
+          <td>${paciente.genero}</td>
+          <td>${new Date(paciente.data_nascimento).toLocaleDateString()}</td>
+          <td>${paciente.telefone}</td>
+        `;
+        tbody.appendChild(linha);
+      });
+  
+      tabela.appendChild(tbody);
+      div.appendChild(tabela);
+  
+    } catch (erro) {
+      console.error('Erro ao fazer o fetch:', erro);
+    }
+  }
+  
