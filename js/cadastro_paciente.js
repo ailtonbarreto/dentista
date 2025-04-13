@@ -91,13 +91,20 @@ async function Lista_pacientes() {
 
       let tbody = document.createElement("tbody");
 
+      function formatarDataISOParaBR(dataISOCompleta) {
+        const data = dataISOCompleta.split("T")[0];
+        const [ano, mes, dia] = data.split("-");
+        return `${dia}/${mes}/${ano}`;
+      }
+      
+
       lista.forEach(paciente => {
           let linha = document.createElement("tr");
           linha.innerHTML = `
               <td>${paciente.nome}</td>
               <td>${paciente.sobrenome}</td>
               <td>${paciente.genero}</td>
-              <td>${new Date(paciente.data_nascimento).toLocaleDateString()}</td>
+              <td>${formatarDataISOParaBR(paciente.data_nascimento)}</td>
               <td>${paciente.telefone}</td>
           `;
           tbody.appendChild(linha);
