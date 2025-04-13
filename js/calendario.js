@@ -86,4 +86,5 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 
   calendar.render();
+
 });
