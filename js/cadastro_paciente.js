@@ -61,7 +61,7 @@ window.addEventListener('load', function () {
 async function Lista_pacientes() {
 
   try {
-      const resposta = await fetch("http://localhost:3000/lista_pacientes");
+      const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
       if (!resposta.ok) {
           throw new Error('Erro na requisição: ' + resposta.status);
       }
