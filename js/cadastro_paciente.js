@@ -23,7 +23,7 @@ window.addEventListener('load', function () {
       const telefone = document.getElementById('fone').value;
       const genero = document.getElementById('genero').value;
 
-      if (!nome || !data_nascimento || !telefone || !genero) {
+      if (!nome || !sobrenome || !data_nascimento || !telefone || !genero) {
           alert("Por favor, preencha todos os campos.");
           spinner.style.display = "none";
           return;

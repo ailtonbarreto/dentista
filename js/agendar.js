@@ -28,39 +28,41 @@ window.addEventListener('load', function () {
 
     async function carregarHorariosOcupados() {
         spinner.style.display = "flex";
-    
+
         const dataFiltro = document.getElementById('data').value;
         const profissionalEscolhido = document.getElementById('profissional').value;
-    
+
         if (!dataFiltro || !profissionalEscolhido) {
             spinner.style.display = "none";
             return;
         }
-    
+
         try {
             const response = await fetch("http://barretoapps.com.br:3004/agendamento");
             const resposta = await response.json();
-    
+
             horariosOcupados = {};
             const reservas = resposta.data;
-    
+
             reservas.forEach(reserva => {
-                const { id, profissional, data: dataReserva, hora_inicio, hora_fim, nome } = reserva;
+ 
+                const { id, profissional, data: dataReserva, hora_inicio, hora_fim, nome, sobrenome } = reserva;
                 const dataFormatada = new Date(dataReserva).toISOString().split('T')[0];
-    
+
                 if (dataFormatada === dataFiltro && profissional === profissionalEscolhido) {
                     if (!horariosOcupados[profissional]) horariosOcupados[profissional] = {};
                     if (!horariosOcupados[profissional][dataFiltro]) horariosOcupados[profissional][dataFiltro] = [];
-    
+
                     horariosOcupados[profissional][dataFiltro].push({
                         id,
                         nome,
+                        sobrenome,  // Aqui está o sobrenome
                         inicio: hora_inicio,
                         fim: hora_fim
                     });
                 }
             });
-    
+
             atualizarListaOcupados();
             atualizarHorarios();
         } catch (error) {
@@ -69,7 +71,6 @@ window.addEventListener('load', function () {
             spinner.style.display = "none";
         }
     }
-    
 
     function atualizarHorarios() {
 
@@ -137,8 +138,6 @@ window.addEventListener('load', function () {
     }
 
     function atualizarListaOcupados() {
-
-    
         const tabela = document.getElementById('lista-horarios');
         const fragment = document.createDocumentFragment();
     
@@ -147,10 +146,12 @@ window.addEventListener('load', function () {
                 horariosOcupados[profissional][data]
                     .sort((a, b) => a.inicio.localeCompare(b.inicio))
                     .forEach(intervalo => {
+
                         const tr = document.createElement('tr');
     
                         const tdNome = document.createElement('td');
-                        tdNome.textContent = intervalo.nome;
+                        // Agora estamos pegando o nome e sobrenome diretamente da reserva
+                        tdNome.textContent = `${intervalo.nome} ${intervalo.sobrenome || ''}`;
     
                         const tdProfissional = document.createElement('td');
                         tdProfissional.textContent = profissional;
@@ -182,8 +183,8 @@ window.addEventListener('load', function () {
             }
         }
     
-        tabela.innerHTML = ''; // limpa só uma vez
-        tabela.appendChild(fragment); // atualiza tudo de uma vez, suave
+        tabela.innerHTML = '';
+        tabela.appendChild(fragment);
     }
     
     
@@ -210,49 +211,46 @@ window.addEventListener('load', function () {
 
     async function popularSelectPacientes() {
         const select = document.getElementById("paciente");
-    
+
         if (!select) {
             console.error("Elemento com id 'paciente_id_select' não encontrado.");
             return;
         }
-    
+
         select.innerHTML = '<option value="">Selecione um paciente</option>';
-    
+
         try {
             const resposta = await fetch("http://localhost:3000/lista_pacientes");
-            
+
             if (!resposta.ok) {
                 throw new Error('Erro na requisição: ' + resposta.status);
             }
-    
+
             const dados = await resposta.json();
             const lista = dados.data;
-    
+
             if (!Array.isArray(lista)) {
                 console.error("O retorno da API não é um array.");
                 return;
             }
-    
+
             lista.forEach(paciente => {
                 const option = document.createElement("option");
-                option.value = paciente.id;
+                option.value = paciente.nome;
                 option.textContent = `${paciente.nome} ${paciente.sobrenome}`;
                 select.appendChild(option);
             });
-    
-            console.log("Pacientes populados no select:", lista);
+
+
         } catch (error) {
             console.error("Erro ao carregar pacientes:", error);
         }
     }
-    
-    
 
     btn_agendar.addEventListener("click", async function (e) {
         e.preventDefault();
         spinner.style.display = "flex";
 
-        // const nome = user_name;
         const nome = document.getElementById('paciente').value;
         const profissional = document.getElementById('profissional').value;
         const data = document.getElementById('data').value;
