@@ -70,7 +70,7 @@ h1 {
     background-color: var(--cor-container);
     padding: 0.5vw;
     border-radius: 0.5vw;
-    margin-bottom: 0.5vw;
+    /* margin-bottom: 0.5vw; */
     box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
 
 }
@@ -155,7 +155,8 @@ input::-webkit-inner-spin-button {
 
 
 #pacientes_cadastrados {
-    min-height: 29vw;
+    min-height: 55vh;
+    max-height: 55vh;
     background-color: var(--cor-container);
     border-radius: 0.5vw;
     padding: 1vw;
