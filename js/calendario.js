@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     locale: 'pt-br',
-    hiddenDays: [0, 6],  // Esconde domingo (0) e sábado (6)
+    hiddenDays: [0, 6], //ESCONDENDO O FIM DE SEMANA PATETICO
     headerToolbar: {
       left: 'prev,next',
       center: 'title',

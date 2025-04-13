@@ -75,13 +75,6 @@ h1 {
 
 }
 
-.icones{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5vw;
-}
 
 .subcontainer {
     display: flex;
@@ -152,6 +145,14 @@ input::-webkit-inner-spin-button {
     justify-content: space-between;
     align-items: center;
 }
+
+.icones {
+    display: flex;
+    gap: 0.6vw;
+    align-items: center;
+    justify-content: center;
+}
+
 
 #pacientes_cadastrados {
     min-height: 29vw;
