@@ -139,6 +139,11 @@ input::-webkit-inner-spin-button {
     outline: none;
 }
 
+.paciente input{
+    min-width: 25vw;
+    text-align: left;
+}
+
 .header{
     border: none;
     display: flex;

@@ -18,12 +18,11 @@ window.addEventListener('load', function () {
       spinner.style.display = "flex";
 
       const nome = document.getElementById('paciente').value;
-      const sobrenome = document.getElementById('sobrenome').value;
       const data_nascimento = document.getElementById('data').value;
       const telefone = document.getElementById('fone').value;
       const genero = document.getElementById('genero').value;
 
-      if (!nome || !sobrenome || !data_nascimento || !telefone || !genero) {
+      if (!nome || !data_nascimento || !telefone || !genero) {
           alert("Por favor, preencha todos os campos.");
           spinner.style.display = "none";
           return;
@@ -31,7 +30,6 @@ window.addEventListener('load', function () {
 
       const novo_cadastro = {
           nome,
-          sobrenome,
           data_nascimento,
           telefone,
           genero
@@ -80,8 +78,7 @@ async function Lista_pacientes() {
       let thead = document.createElement("thead");
       thead.innerHTML = `
           <tr>
-              <th>Nome</th>
-              <th>Sobrenome</th>
+              <th>NomeCompleto</th>
               <th>Gênero</th>
               <th>Data de Nascimento</th>
               <th>Telefone</th>
@@ -102,7 +99,6 @@ async function Lista_pacientes() {
           let linha = document.createElement("tr");
           linha.innerHTML = `
               <td>${paciente.nome}</td>
-              <td>${paciente.sobrenome}</td>
               <td>${paciente.genero}</td>
               <td>${formatarDataISOParaBR(paciente.data_nascimento)}</td>
               <td>${paciente.telefone}</td>
