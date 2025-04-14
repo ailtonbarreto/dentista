@@ -78,7 +78,7 @@ async function Lista_pacientes() {
       let thead = document.createElement("thead");
       thead.innerHTML = `
           <tr>
-              <th>NomeCompleto</th>
+              <th>Nome Completo</th>
               <th>Gênero</th>
               <th>Data de Nascimento</th>
               <th>Telefone</th>
