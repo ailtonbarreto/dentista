@@ -39,7 +39,7 @@ img{
 form{
     background-color: var(--card_cor);
     width: 40vw;
-    height: 70vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,9 +50,10 @@ form{
 
     & .btn{
         display: flex;
-        width: 90%;
+        width: 95%;
         flex-direction: row;
         justify-content: space-between;
+        margin-bottom: 1vw;
     }
 
     & button{
@@ -68,6 +69,7 @@ form{
         border-radius: 0.3vw;
         width: 22vw;
         height: 3vw;
+        margin-bottom: 1vw;
     }
 
 
@@ -112,6 +114,14 @@ form{
         font-weight: bold;
     }
     
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
 
 #calendar {
