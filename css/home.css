@@ -26,7 +26,62 @@ body {
     padding: 1vw;
 }
 
+img{
+    width: 2.5vw;
+}
+
+.modal{
+    display: none;
+    flex-direction: column;
+    text-align: center;
+}
+
+form{
+    background-color: var(--card_cor);
+    width: 40vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1vw;
+    align-items: center;
+    border-radius: 0.5vw;
+
+
+    & .paciente select,
+    .sala select,
+    .genero select,
+    .titulo {
+        background-color: var(--cor-container);
+        color: var(--cor_texto);
+        border: 1px solid #fff;
+        padding: 0.3vw;
+        border-radius: 0.3vw;
+        text-align: center;
+        margin-top: 0.5vw;
+        width: 20vw;
+    }
+    
+    & .telefone input,
+    .hora_inicio input, 
+    .data input,
+    .titulo input,
+    .hora_fim input{
+        background-color: var(--cor-container);
+        color: var(--cor_texto);
+        border: 1px solid #fff;
+        padding: 0.3vw;
+        border-radius: 0.3vw;
+        text-align: center;
+        margin-top: 0.5vw;
+        outline: none;
+        width: 20vw;
+    }
+    
+}
+
 #calendar {
+    display: flex;
     max-width: 90vw;
     max-height: 90vh;
     width: 90vw;
@@ -49,7 +104,7 @@ body {
 
 table {
     padding: 1vw;
-    background-color: var(--cor-botao);
+    background-color: var(--cor-container);
     border-radius: 0.5vw;
     border: none;
 }
@@ -106,11 +161,8 @@ thead {
 
 
 .fc-daygrid-event-dot{
-    width: 14px;
-    height: 14px;
-    margin: 0 5px 0 0;
+    border: 0.5vw solid;
 }
-  
 
 .fc-event:hover {
     color: var(--bg_cor);

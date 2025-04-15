@@ -36,7 +36,7 @@ window.addEventListener('load', function () {
       };
 
       try {
-          const response = await fetch("http://localhost:3004/input_paciente", {
+          const response = await fetch("http://barretoapps.com.br:3004/input_paciente", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(novo_cadastro)
@@ -79,9 +79,10 @@ async function Lista_pacientes() {
       thead.innerHTML = `
           <tr>
               <th>Nome Completo</th>
-              <th>Gênero</th>
               <th>Data de Nascimento</th>
+              <th>Gênero</th>
               <th>Telefone</th>
+              <th>Ação</th>
           </tr>
       `;
       tabela.appendChild(thead);
@@ -99,9 +100,10 @@ async function Lista_pacientes() {
           let linha = document.createElement("tr");
           linha.innerHTML = `
               <td>${paciente.nome}</td>
-              <td>${paciente.genero}</td>
               <td>${formatarDataISOParaBR(paciente.data_nascimento)}</td>
+              <td>${paciente.genero}</td>
               <td>${paciente.telefone}</td>
+              <td><span class="material-symbols-outlined trash">delete</span> <span class="material-symbols-outlined edit">edit_square</span></td>
           `;
           tbody.appendChild(linha);
       });

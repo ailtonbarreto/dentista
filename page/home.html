@@ -13,7 +13,74 @@
 
 <body>
 
+  <div class="modal">
 
+    <form id="form">
+
+      <button>X</button>
+
+      <div class="paciente">
+
+        <h4>Paciente</h4>
+
+        <select id="paciente">
+
+          <option value="">Selecione um paciente</option>
+
+        </select>
+
+      </div>
+
+      <div class="sala">
+
+        <h4>Profissional</h4>
+
+        <select id="profissional">
+
+          <option value="Profissional A">Profissional A</option>
+
+          <option value="Profissional B">Profissional B</option>
+
+        </select>
+      </div>
+
+      <div class="data">
+
+        <h4>Data</h4>
+
+        <input type="date" id="data" required>
+
+      </div>
+
+      <div class="hora_inicio">
+
+        <h4>Início</h4>
+
+
+        <input type="time" id="hora-inicio" step="600" min="07:00" max="17:00">
+
+      </div>
+
+      <div class="hora_fim">
+
+        <h4>Término</h4>
+
+
+        <input type="time" id="hora-fim" step="600">
+
+
+      </div>
+
+      <div class="botao">
+
+        <img src="../assets/save.png" id="btn_agendar" alt="">
+
+      </div>
+
+    </form>
+
+
+  </div>
 
   <div id="calendar"></div>
 

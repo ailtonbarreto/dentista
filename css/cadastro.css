@@ -34,7 +34,7 @@ body {
 }
 
 
-h1 {
+h2 {
     color: var(--cor_texto);
 }
 
@@ -70,7 +70,7 @@ h1 {
     background-color: var(--cor-container);
     padding: 0.5vw;
     border-radius: 0.5vw;
-    /* margin-bottom: 0.5vw; */
+    margin-bottom: 0.5vw;
     box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
 
 }
@@ -82,7 +82,7 @@ h1 {
     justify-content: space-between;
     gap: 1vw;
     width: 100%;
-    margin-bottom: 1vw;
+    /* margin-bottom: 1vw; */
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -95,6 +95,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 .titulo{
     border: none;
 }
@@ -105,7 +106,7 @@ input::-webkit-inner-spin-button {
     flex-direction: column;
     border-radius: 0.5vw;
     padding: 0.5vw 1vw;
-    min-width: 15vw;
+    min-width: 20vw;
     color: var(--bg_cor);
     font-weight: bold;
 }
@@ -140,7 +141,7 @@ input::-webkit-inner-spin-button {
 }
 
 .paciente input{
-    min-width: 25vw;
+    /* min-width: 25vw; */
     text-align: left;
 }
 
@@ -158,15 +159,21 @@ input::-webkit-inner-spin-button {
     justify-content: center;
 }
 
+.trash{
+    color: #cc0000;
+}
+
+.edit{
+    color: rgb(151, 100, 4);
+}
 
 #pacientes_cadastrados {
-    min-height: 55vh;
-    max-height: 55vh;
+    min-height: 62vh;
+    max-height: 62vh;
     background-color: var(--cor-container);
     border-radius: 0.5vw;
     padding: 1vw;
     overflow-y: scroll;
-
 }
 
 #paciente_cadastrados h2 {
@@ -212,6 +219,7 @@ tbody tr:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1vw;
 }
 
 thead th{
@@ -223,7 +231,6 @@ thead th{
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.5vw;
 }
 
 #spinner {

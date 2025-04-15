@@ -232,7 +232,7 @@ tbody tr:hover {
 
 .btn-excluir {
     color: var(--cor-excluir-hover);
-    font-size: 1.5vw;
+    font-size: 2vw;
     padding: 0.2vw 1vw;
     margin-left: 0.5vw;
     border-radius: 0.3vw;

@@ -237,7 +237,7 @@ window.addEventListener('load', function () {
             lista.forEach(paciente => {
                 const option = document.createElement("option");
                 option.value = paciente.nome;
-                option.textContent = `${paciente.nome} ${paciente.sobrenome}`;
+                option.textContent = `${paciente.nome}`;
                 select.appendChild(option);
             });
 
