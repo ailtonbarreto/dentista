@@ -9,15 +9,22 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <link rel="stylesheet" href="../css/home.css">
   <script src="../js/calendario.js"></script>
+  <script src="../js/modal.js"></script>
 </head>
 
 <body>
 
-  <div class="modal">
+  <div class="modal" id="modal">
 
     <form id="form">
 
-      <button>X</button>
+      <div class="btn">
+
+        <h2>Agendar Atendimento</h2>
+
+        <button id="fechar_modal">X</button>
+
+      </div>
 
       <div class="paciente">
 
@@ -73,7 +80,7 @@
 
       <div class="botao">
 
-        <img src="../assets/save.png" id="btn_agendar" alt="">
+        <button id="btn_agendar">Agendar</button>
 
       </div>
 
@@ -86,6 +93,8 @@
 
 
 </body>
+
+  
 
 
 </html>

@@ -61,11 +61,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const icons = [
           { icon: 'calendar_month'},
-          { icon: 'note_add', href: 'agendar.html',color:'#2ea8be' },
-          { icon: 'person_add', href: 'cadastro.html',color:'#2ea8be' }
+          { icon: 'note_add',color:'#2ea8be', id:'btn_abrir' },
+          { icon: 'person_add',color:'#2ea8be', href:'cadastro.html' }
         ];
 
-        icons.forEach(({ icon, href,color }) => {
+        icons.forEach(({ icon, href, color, id }) => {
           const link = document.createElement('a');
           link.href = href || '#';
           link.title = icon;
@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           span.classList.add('material-symbols-outlined');
           span.textContent = icon;
           span.style.color = color;
+          span.id = id;
 
           link.appendChild(span);
           iconsContainer.appendChild(link);
@@ -84,6 +85,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
     }
   });
+
+  
 
   calendar.render();
 

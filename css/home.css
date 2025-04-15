@@ -39,13 +39,36 @@ img{
 form{
     background-color: var(--card_cor);
     width: 40vw;
-    height: 50vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 1vw;
     align-items: center;
     border-radius: 0.5vw;
+    color: var(--bg_cor);
+
+    & .btn{
+        display: flex;
+        width: 90%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    & button{
+        background-color: var(--cor-botao);
+        padding: 0.5vw;
+        border-radius: 50%;
+        cursor: pointer;
+        color: var(--bg_cor);
+    }
+
+    & #btn_agendar{
+        font-size: 1.2vw;
+        border-radius: 0.3vw;
+        width: 22vw;
+        height: 3vw;
+    }
 
 
     & .paciente select,
@@ -77,6 +100,17 @@ form{
         outline: none;
         width: 20vw;
     }
+
+    .paciente, .sala, .data, .hora_inicio,.hora_fim, .telefone, .genero{
+        background-color: var(--cor-botao);
+        display: flex;
+        flex-direction: column;
+        border-radius: 0.5vw;
+        padding: 0.5vw 1vw;
+        min-width: 15vw;
+        color: var(--bg_cor);
+        font-weight: bold;
+    }
     
 }
 
@@ -101,6 +135,8 @@ form{
     background-color: var(--card_cor) !important;
     color: var(--bg_cor) !important;
 }
+
+
 
 table {
     padding: 1vw;
@@ -181,7 +217,6 @@ thead {
 
 .custom-icons {
     display: flex;
-    /* gap: 0.5vw; */
     align-items: center;
     justify-content: center;
 }
