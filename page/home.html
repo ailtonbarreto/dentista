@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Calendário dos Atendimentos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <link rel="stylesheet" href="../css/home.css">
@@ -22,7 +22,7 @@
 
         <h2>Agendar Atendimento</h2>
 
-        <button id="fechar_modal">X</button>
+        <span class="material-symbols-outlined" id="fechar_modal">close</span>
 
       </div>
 
@@ -89,7 +89,35 @@
 
   </div>
 
-  <div id="calendar"></div>
+
+  <div class="container">
+
+    <div class="header">
+
+      <h2>Atendimentos Agendados</h2>
+
+      <div>
+
+        <span class="material-symbols-outlined custom-icons">calendar_month</span>
+        <!-- <span class="material-symbols-outlined custom-icons" id="btn_abrir">note_add</span> -->
+        <span class="material-symbols-outlined custom-icons" onclick="window.location.href='cadastro.html'" style="color: #93d0db !important;">perm_contact_calendar</span>
+        <span class="material-symbols-outlined custom-icons" style="color: #93d0db !important;">stethoscope</span>
+
+      </div>
+
+    </div>
+
+
+    <div id="calendar"></div>
+
+
+  </div>
+
+  
+
+
+
+  </div>
 
 
 </body>

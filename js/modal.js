@@ -8,13 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', function (event) {
         if (event.target.id === 'btn_abrir') {
             event.preventDefault();
-            calendar.style.display = 'none';
             modal.style.display = 'flex';
         }
 
         if (event.target.id === 'fechar_modal') {
             modal.style.display = 'none';
-            calendar.style.display = 'flex';
         }
     });
 
@@ -98,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (!response.ok) throw new Error("Erro ao fazer a reserva.");
 
-                alert("Reserva feita com sucesso!");
                 await carregarHorariosOcupados();
 
                 modal.style.display = 'none';

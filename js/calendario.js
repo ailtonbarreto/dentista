@@ -60,14 +60,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         iconsContainer.classList.add('custom-icons');
 
         const icons = [
-          { icon: 'calendar_month'},
-          { icon: 'note_add',color:'#2ea8be', id:'btn_abrir' },
-          { icon: 'person_add',color:'#2ea8be', href:'cadastro.html' }
+          { icon: 'note_add',color:'#ffffff', id:'btn_abrir' },
         ];
 
-        icons.forEach(({ icon, href, color, id }) => {
+        icons.forEach(({ icon, color, id }) => {
           const link = document.createElement('a');
-          link.href = href || '#';
           link.title = icon;
           link.style.textDecoration = 'none';
 
@@ -84,9 +81,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         toolbar.appendChild(iconsContainer);
       }
     }
-  });
 
-  
+  });
 
   calendar.render();
 
