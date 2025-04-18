@@ -111,6 +111,30 @@ form {
     cursor: pointer;
 }
 
+
+.modal_remove{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(20, 20, 20, 0.7);
+    margin: 0;
+
+    
+
+    & form{
+
+        width: 30vw;
+        height: 30vh;
+
+    }
+}
+
+
+
 .header_titulo{
     width: 38vw;
     display: flex;

@@ -39,7 +39,15 @@
 
             <h2>Pacientes Cadastrados</h2>
 
-            <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal">person_add</span>
+            <div>
+
+                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal">person_add</span>
+
+                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;">person_remove</span>
+
+
+            </div>
+
 
         </div>
 
@@ -107,6 +115,39 @@
 
     </div>
 
+
+    <div class="modal_remove">
+
+
+        <form>
+
+            <div class="header_titulo">
+
+                <h2>Excluir Paciente</h2>
+
+                <span class="material-symbols-outlined" id="fechar_modal_remove" style="color: #ffffff;">close</span>
+
+                
+            </div>
+
+            
+            <div class="paciente">
+
+                <h4>Paciente</h4>
+
+                <input type="text" id="paciente_remover" list="listaPacientes" placeholder="Digite o nome do paciente..." autocomplete="off"/>
+
+                <datalist id="listaPacientes"></datalist>
+
+            </div>
+
+
+            <button id="btn_remove">Excluir Cadastro</button>
+
+        </form>
+
+
+    </div>
 
     <script src="../js/cadastro_paciente.js"></script>
 
