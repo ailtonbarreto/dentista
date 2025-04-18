@@ -65,6 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            if (!nomesPacientes.includes(nome)) {
+                alert("Por favor, selecione um paciente válido da lista.");
+                return;
+            }
+            
             if (hora_fim <= hora_inicio) {
                 alert("O horário de fim deve ser posterior ao horário de início.");
                 return;
@@ -107,26 +112,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    let nomesPacientes = [];
+
     async function popularSelectPacientes() {
-        const select = document.getElementById("paciente");
-        if (!select) return;
-
-        select.innerHTML = '<option value="">Selecione um paciente</option>';
-
+        const datalist = document.getElementById("listaPacientes");
+        if (!datalist) return;
+    
+        datalist.innerHTML = '';
+        nomesPacientes = [];
+    
         try {
             const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
             const dados = await resposta.json();
-
+    
             dados.data.forEach(paciente => {
                 const option = document.createElement("option");
                 option.value = paciente.nome;
-                option.textContent = paciente.nome;
-                select.appendChild(option);
+                datalist.appendChild(option);
+                nomesPacientes.push(paciente.nome); // Guarda pra validação depois
             });
         } catch (error) {
             console.error("Erro ao carregar pacientes:", error);
         }
     }
+    
 
     document.getElementById('profissional')?.addEventListener('change', carregarHorariosOcupados);
     document.getElementById('data')?.addEventListener('change', carregarHorariosOcupados);

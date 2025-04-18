@@ -98,7 +98,6 @@ async function Lista_pacientes() {
               <th>Data de Nascimento</th>
               <th>Gênero</th>
               <th>Telefone</th>
-              <th>Ação</th>
           </tr>
       `;
       tabela.appendChild(thead);
@@ -119,9 +118,6 @@ async function Lista_pacientes() {
               <td>${formatarDataISOParaBR(paciente.data_nascimento)}</td>
               <td>${paciente.genero}</td>
               <td>${paciente.telefone}</td>
-              <td><span class="material-symbols-outlined trash">delete</span> <span class="material-symbols-outlined edit">edit_square</span><span class="material-symbols-outlined">
-sms
-</span></td>
           `;
           tbody.appendChild(linha);
       });

@@ -90,7 +90,7 @@ form {
     }
 
 
-    & .paciente select,
+    & .paciente input,
     .sala select,
     .genero select,
     .titulo {
@@ -103,6 +103,7 @@ form {
         margin-top: 0.5vw;
         width: 20vw;
     }
+
 
     & .telefone input,
     .hora_inicio input,
@@ -146,6 +147,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 input[type="time"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+input.paciente::placeholder {
+    color: var(--cor_texto);
+}
+
 
 #calendar {
     display: flex;
