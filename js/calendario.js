@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const nomeProf = item.profissional.toLowerCase();
     const cor = coresProfissional[nomeProf] || '#e0a80b';
     return {
-      id: item.id, // Garantir que o id esteja aqui
+      id: item.id,
       title: `${item.profissional} - ${item.nome}`,
       start: `${data}T${item.hora_inicio}`,
       end: `${data}T${item.hora_fim}`,
