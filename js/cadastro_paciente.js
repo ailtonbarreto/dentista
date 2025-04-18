@@ -3,6 +3,9 @@ window.addEventListener('load', function () {
   const btn_abrir_modal = document.getElementById("abrir_modal");
   const btn_cadastrar = document.getElementById("btn_cadastrar");
   const btn_fechar_modal = document.getElementById("fechar_modal"); 
+
+  const btn_abrir_modal_remove = document.getElementById('abrir_modal_remove');
+  const btn_fechar_modal_remove = document.getElementById('fechar_modal_remove');
  
   function atualizarUser() {
       return sessionStorage.getItem("user_name") || "Usuário desconhecido";
@@ -25,6 +28,21 @@ window.addEventListener('load', function () {
   btn_fechar_modal.addEventListener("click", function(){
 
     const modal = document.querySelector(".modal").style.display = "none";
+
+  });
+
+  btn_fechar_modal_remove.addEventListener("click", ()=>{
+
+    const modal_remove = document.querySelector(".modal_remove").style.display = "none";
+
+
+  });
+
+
+
+  btn_abrir_modal_remove.addEventListener("click", ()=>{
+
+    const modal_remove = document.querySelector(".modal_remove").style.display = "flex";
 
 
   });
