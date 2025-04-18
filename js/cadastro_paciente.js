@@ -1,7 +1,9 @@
 window.addEventListener('load', function () {
-  const btn_agendar = document.getElementById("btn_agendar");
- 
 
+  const btn_abrir_modal = document.getElementById("abrir_modal");
+  const btn_cadastrar = document.getElementById("btn_cadastrar");
+  const btn_fechar_modal = document.getElementById("fechar_modal"); 
+ 
   function atualizarUser() {
       return sessionStorage.getItem("user_name") || "Usuário desconhecido";
   }
@@ -12,9 +14,25 @@ window.addEventListener('load', function () {
       user_name = atualizarUser();
   });
 
-  btn_agendar.addEventListener("click", async function (e) {
-      e.preventDefault();
 
+  btn_abrir_modal.addEventListener("click", ()=>{
+
+    const modal = document.querySelector(".modal").style.display = "flex";
+
+
+  });
+
+  btn_fechar_modal.addEventListener("click", function(){
+
+    const modal = document.querySelector(".modal").style.display = "none";
+
+
+  });
+
+
+  btn_cadastrar.addEventListener("click", async function (e) {
+
+      e.preventDefault();
 
       const nome = document.getElementById('paciente').value;
       const data_nascimento = document.getElementById('data').value;
@@ -44,6 +62,7 @@ window.addEventListener('load', function () {
           if (!response.ok) throw new Error("Erro ao Cadastrar Paciente.");
 
           Lista_pacientes();
+          const modal = document.querySelector(".modal").style.display = "none";
       } catch (error) {
           alert("Erro ao conectar com o servidor: " + error.message);
       } 
@@ -100,7 +119,9 @@ async function Lista_pacientes() {
               <td>${formatarDataISOParaBR(paciente.data_nascimento)}</td>
               <td>${paciente.genero}</td>
               <td>${paciente.telefone}</td>
-              <td><span class="material-symbols-outlined trash">delete</span> <span class="material-symbols-outlined edit">edit_square</span></td>
+              <td><span class="material-symbols-outlined trash">delete</span> <span class="material-symbols-outlined edit">edit_square</span><span class="material-symbols-outlined">
+sms
+</span></td>
           `;
           tbody.appendChild(linha);
       });

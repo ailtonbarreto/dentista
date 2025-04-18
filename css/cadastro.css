@@ -77,30 +77,48 @@ h2 {
 
 .modal{
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-color: rgba(20, 20, 20, 0.7);
     margin: 0;
 }
 
-/* .agendamento {
-    align-items: center;
-    background-color: var(--cor-container);
-    padding: 0.5vw;
-    border-radius: 0.5vw;
-    margin-bottom: 0.5vw;
-    box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
-
-} */
-
-
-/* .subcontainer {
+form {
+    background-color: var(--card_cor);
+    width: 40vw;
+    height: 80vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 1vw;
-    width: 100%;
-} */
+    padding: 1vw;
+    align-items: center;
+    border-radius: 0.5vw;
+    color: var(--bg_cor);
+}
+
+#btn_cadastrar {
+    font-size: 1vw;
+    background-color: var(--cor-botao);
+    color: var(--cor_texto);
+    border-radius: 0.3vw;
+    width: 20vw;
+    height: 3vw;
+    margin-bottom: 1vw;
+    cursor: pointer;
+}
+
+.header_titulo{
+    width: 38vw;
+    display: flex;
+    color: var(--cor_texto);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
+}
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
@@ -113,17 +131,14 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.titulo{
-    border: none;
-}
 
 .paciente, .data, .telefone, .genero{
-    background-color: var(--card_cor);
+    background-color: var(--cor-botao);
     display: flex;
     flex-direction: column;
     border-radius: 0.5vw;
     padding: 0.5vw 1vw;
-    min-width: 10vw;
+    width: 20vw;
     color: var(--bg_cor);
     font-weight: bold;
 }
