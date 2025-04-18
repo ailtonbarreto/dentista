@@ -123,7 +123,7 @@ form {
     background-color: rgba(20, 20, 20, 0.7);
     margin: 0;
 
-    
+
 
     & form{
 
@@ -131,6 +131,21 @@ form {
         height: 30vh;
 
     }
+
+    & .header_titulo{
+        width: 28vw;
+    }
+
+    & #btn_remove{
+        padding: 0.5vw;
+        border-radius: 0.3vw;
+        cursor: pointer;
+        display: flex;
+        background-color: var(--cor-botao);
+        color: var(--cor_texto);
+        flex-direction: column;
+    }
+    
 }
 
 
