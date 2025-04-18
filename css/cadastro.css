@@ -21,6 +21,7 @@
 body {
     background-color: var(--bg_cor);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -44,27 +45,45 @@ h2 {
     
 }
 
+
+.header {
+    display: flex;
+    color: var(--cor-botao);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
+    width: 98vw;
+}
+
+.header h2{
+    color: var(--cor-botao);
+}
+
 .container {
-    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    max-width: 98vw;
     max-height: 90vh;
-    width: 90vw;
-    height: 90vh;
-    background-color: var(--card_cor);
+    width: 100vw;
+    height: 95vh;
+    background-color: var(--cor-container);
     padding: 1vw;
     color: var(--cor_texto);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-.titulo_topo img{
-    width: 5vw;
-    display: none;
+.modal{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    margin: 0;
 }
 
-.agendamento {
+/* .agendamento {
     align-items: center;
     background-color: var(--cor-container);
     padding: 0.5vw;
@@ -72,17 +91,16 @@ h2 {
     margin-bottom: 0.5vw;
     box-shadow: 8px 8px 15px rgba(0, 0, 1, 0.3);
 
-}
+} */
 
 
-.subcontainer {
+/* .subcontainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 1vw;
     width: 100%;
-    /* margin-bottom: 1vw; */
-}
+} */
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
@@ -105,7 +123,7 @@ input::-webkit-inner-spin-button {
     flex-direction: column;
     border-radius: 0.5vw;
     padding: 0.5vw 1vw;
-    min-width: 20vw;
+    min-width: 10vw;
     color: var(--bg_cor);
     font-weight: bold;
 }
@@ -151,11 +169,15 @@ input::-webkit-inner-spin-button {
     align-items: center;
 }
 
-.icones {
+.header_container{
     display: flex;
-    gap: 0.6vw;
+    justify-content: space-between;
+}
+
+.icones{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
 }
 
 .trash{
@@ -167,18 +189,13 @@ input::-webkit-inner-spin-button {
 }
 
 #pacientes_cadastrados {
-    min-height: 62vh;
-    max-height: 62vh;
-    background-color: var(--cor-container);
+    min-height: 80vh;
+    background-color: var(--card_cor);
     border-radius: 0.5vw;
     padding: 1vw;
     overflow-y: scroll;
 }
 
-#paciente_cadastrados h2 {
-    margin-top: 1vw;
-    text-align: left;
-}
 
 table {
     width: 100%;
@@ -232,16 +249,3 @@ thead th{
     flex-direction: column;
 }
 
-#spinner {
-    position: fixed;
-    background-color: var(--cor-container);
-    color: var(--cor_texto);
-    width: 100vw;
-    height: 100vh;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}

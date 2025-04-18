@@ -16,38 +16,37 @@
 
 <body>
 
-    <div id="spinner" style="display: none;">
+    <div class="header">
 
-        Carregando...
+        <h2>Cadastro de Pacientes</h2>
 
+        <div class="icones">
+      
+            <span class="material-symbols-outlined custom-icons" style="color: #93d0db !important;" onclick="window.location.href='home.html'">calendar_month</span>
+      
+            <span class="material-symbols-outlined custom-icons">perm_contact_calendar</span>
+      
+            <span class="material-symbols-outlined custom-icons" style="color: #93d0db !important;">stethoscope</span>
+      
+        </div>
+      
     </div>
-
 
     <div class="container">
 
+        <div class="header_container">
 
-        <div class="btn_enviar">
+            <h2>Pacientes Cadastrados</h2>
 
-            <div class="titulo_topo">
-
-                <img src="../assets/report.png" alt="">
-
-                <h2>Cadastro de Pacientes</h2>
-
-            </div>
-
-            <div class="icones">
-
-            
-                <span class="material-symbols-outlined" onclick="window.location.href='home.html'">calendar_month</span>
-                <!-- <span class="material-symbols-outlined" onclick="window.location.href='agendar.html'">note_add</span> -->
-                <span class="material-symbols-outlined" style="color: var(--bg_cor);" >person</span>
-
-
-            </div>
-
+            <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;">person_add</span>
 
         </div>
+
+        <div id="pacientes_cadastrados"></div>
+
+    </div>
+
+    <div class="modal">
 
         <form id="form">
 
@@ -113,12 +112,7 @@
         </form>
 
 
-        <div id="mensagem"></div>
 
-        <div id="pacientes_cadastrados">
-
-            
-        </div>
 
     </div>
 

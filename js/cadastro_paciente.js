@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
   const btn_agendar = document.getElementById("btn_agendar");
-  const spinner = document.getElementById("spinner");
+ 
 
   function atualizarUser() {
       return sessionStorage.getItem("user_name") || "Usuário desconhecido";
@@ -15,7 +15,6 @@ window.addEventListener('load', function () {
   btn_agendar.addEventListener("click", async function (e) {
       e.preventDefault();
 
-      spinner.style.display = "flex";
 
       const nome = document.getElementById('paciente').value;
       const data_nascimento = document.getElementById('data').value;
@@ -24,7 +23,7 @@ window.addEventListener('load', function () {
 
       if (!nome || !data_nascimento || !telefone || !genero) {
           alert("Por favor, preencha todos os campos.");
-          spinner.style.display = "none";
+    
           return;
       }
 
@@ -47,9 +46,7 @@ window.addEventListener('load', function () {
           Lista_pacientes();
       } catch (error) {
           alert("Erro ao conectar com o servidor: " + error.message);
-      } finally {
-          spinner.style.display = "none";
-      }
+      } 
   });
 
 
