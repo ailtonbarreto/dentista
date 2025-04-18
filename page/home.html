@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Calendário dos Atendimentos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <link rel="stylesheet" href="../css/home.css">
@@ -44,11 +44,14 @@
 
         <select id="profissional">
 
+          <option value="">Selecione um Profissional</option>
+
           <option value="Profissional A">Profissional A</option>
 
           <option value="Profissional B">Profissional B</option>
 
         </select>
+
       </div>
 
       <div class="data">
@@ -63,7 +66,6 @@
 
         <h4>Início</h4>
 
-
         <input type="time" id="hora-inicio" step="600" min="07:00" max="17:00">
 
       </div>
@@ -72,9 +74,7 @@
 
         <h4>Término</h4>
 
-
         <input type="time" id="hora-fim" step="600">
-
 
       </div>
 
@@ -85,7 +85,6 @@
       </div>
 
     </form>
-
 
   </div>
 
@@ -99,8 +98,9 @@
       <div>
 
         <span class="material-symbols-outlined custom-icons">calendar_month</span>
-        <!-- <span class="material-symbols-outlined custom-icons" id="btn_abrir">note_add</span> -->
+
         <span class="material-symbols-outlined custom-icons" onclick="window.location.href='cadastro.html'" style="color: #93d0db !important;">perm_contact_calendar</span>
+
         <span class="material-symbols-outlined custom-icons" style="color: #93d0db !important;">stethoscope</span>
 
       </div>
@@ -111,18 +111,35 @@
     <div id="calendar"></div>
 
 
-  </div>
-
-  
-
-
 
   </div>
 
+  <div id="popupReserva" class="popup hidden">
+
+    <div class="popup-content">
+
+      <span class="material-symbols-outlined close">close</span>
+
+      <h2>Detalhes do Atendimento</h2>
+
+      <p><strong>Profissional:</strong> <span id="popupProfissional"></span></p>
+
+      <p><strong>Paciente:</strong> <span id="popupNome"></span></p>
+
+      <div class="popup-horarios">
+
+        <p><strong>Início:</strong> <span id="popupInicio"></span></p>
+
+        <p><strong>Fim:</strong> <span id="popupFim"></span></p>
+
+      </div>
+
+    </div>
+
+    <button id="btnExcluir" class="btn-excluir">Excluir Reserva</button>
+    
+  </div>
 
 </body>
-
-  
-
 
 </html>
