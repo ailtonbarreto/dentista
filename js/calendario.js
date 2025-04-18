@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     locale: 'pt-br',
-    hiddenDays: [0, 6], // Escondendo o fim de semana
+    hiddenDays: [0], // Escondendo o fim de semana
     headerToolbar: {
       left: 'prev,next',
       center: 'title',
@@ -87,18 +87,18 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   });
 
-  // Lógica de exclusão do evento
+
   document.getElementById('btnExcluir').addEventListener('click', async () => {
-    if (confirm('Tem certeza que deseja excluir esta reserva?')) {
-      const response = await fetch(`http://barretoapps.com.br:3004/agendamento/${idSelecionado}`, {
+    if (confirm('Tem certeza que deseja excluir este atendimento?')) {
+      const response = await fetch(`http://barretoapps.com.br:3004/delete_agendamento/${idSelecionado}`, {
         method: 'DELETE'
       });
 
       if (response.ok) {
-        alert('Reserva excluída com sucesso!');
+
         document.getElementById('popupReserva').classList.add('hidden');
 
-        // Remover o evento visualmente do calendário sem recarregar a página
+      
         const evento = calendar.getEventById(idSelecionado);
         if (evento) evento.remove();
       } else {
@@ -107,11 +107,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   });
 
-  // Renderiza o calendário
   calendar.render();
 
-  // Lógica para fechar o popup
+
   document.querySelector('.popup .close').addEventListener('click', () => {
     document.getElementById('popupReserva').classList.add('hidden');
   });
+
+
 });
