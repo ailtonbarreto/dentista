@@ -42,19 +42,22 @@ window.addEventListener('load', function () {
 
 
 
-    let mapaNomeId = {}; // global
+    let mapaNomeId = {};
 
     btn_abrir_modal_remove.addEventListener("click", () => {
+
         document.querySelector(".modal_remove").style.display = "flex";
+
         PopularDatalistPacientesRemover();
     });
 
     async function PopularDatalistPacientesRemover() {
+
         const datalist = document.getElementById("listaPacientesRemover");
         if (!datalist) return;
 
         datalist.innerHTML = '';
-        mapaNomeId = {}; // limpa
+        mapaNomeId = {};
 
         try {
             const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
@@ -74,45 +77,47 @@ window.addEventListener('load', function () {
     btn_dlt_paciente.addEventListener('click', async () => {
 
         const nomeDigitado = document.getElementById("paciente_remover").value;
-        
+
         const idPacienteSelecionado = mapaNomeId[nomeDigitado];
     
         if (!idPacienteSelecionado) {
+
+            console.log("Paciente não encontrado no mapa.");
+
             alert("Paciente não encontrado.");
+
             return;
-        }
+        };
     
-        console.log(idPacienteSelecionado);
     
         if (confirm(`Tem certeza que deseja excluir o paciente ${nomeDigitado}?`)) {
             try {
-                const response = await fetch(`http://barretoapps.com.br:3004/delete_cliente/${idPacienteSelecionado}`, {
-                    method: 'DELETE'
+    
+                const response = await fetch(`http://barretoapps.co.br:3004/delete_cliente/${idPacienteSelecionado}`, {
+                    method: 'DELETE',
                 });
     
-                if (!response.ok) {
-                    alert('Erro ao excluir o paciente. Código: ' + response.status);
-                    return;
+              
+                const responseBody = await response.json();
+
+                console.log('Resposta do servidor:', responseBody);
+    
+                if (response.ok) {
+                    
+                    alert(responseBody.message || "Paciente excluído com sucesso!");
+                    Lista_pacientes();
+
+                } else {
+                    
+                    alert('Erro na exclusão do paciente:', responseBody);
                 }
     
-                const jsonResponse = await response.json(); // Garante que a resposta é JSON
-    
-                console.log(jsonResponse);
-                alert(jsonResponse.mensagem || 'Paciente excluído com sucesso.');
-    
-                document.querySelector('.modal_remove').style.display = 'none';
-                await Lista_pacientes();
-                await PopularDatalistPacientesRemover();
-    
-            } catch (err) {
-                console.error("Erro ao conectar com o servidor:", err);
-                alert("Erro ao conectar com o servidor: " + err.message);
+            } catch (error) {
+       
+                console.error('Erro ao comunicar com o servidor:', error);
             }
         }
     });
-    
-      
-
     
 
     btn_cadastrar.addEventListener("click", async function (e) {
