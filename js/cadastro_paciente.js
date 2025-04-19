@@ -71,38 +71,49 @@ window.addEventListener('load', function () {
         }
     }
 
-    btn_remove.addEventListener("click", async () => {
+    btn_dlt_paciente.addEventListener('click', async () => {
 
         const nomeDigitado = document.getElementById("paciente_remover").value;
-
-        const idPaciente = mapaNomeId[nomeDigitado];
-
-        if (!idPaciente) {
+        
+        const idPacienteSelecionado = mapaNomeId[nomeDigitado];
+    
+        if (!idPacienteSelecionado) {
             alert("Paciente não encontrado.");
             return;
         }
-
-        console.log(idPaciente);
-
-        if (!confirm(`Deseja realmente remover ${nomeDigitado}?`)) return;
-
-        try {
-            const resposta = await fetch(`http://barretoapps.com.br:3004/paciente/${idPaciente}`, {
-                method: 'DELETE'
-            });
-
-            if (!resposta.ok) throw new Error("Erro ao deletar paciente.");
-
-            alert("Paciente removido com sucesso.");
-            Lista_pacientes();
-            PopularDatalistPacientesRemover();
-            document.querySelector(".modal_remove").style.display = "none";
-        } catch (error) {
-            alert("Erro ao remover paciente: " + error.message);
+    
+        console.log(idPacienteSelecionado);
+    
+        if (confirm(`Tem certeza que deseja excluir o paciente ${nomeDigitado}?`)) {
+            try {
+                const response = await fetch(`http://barretoapps.com.br:3004/delete_cliente/${idPacienteSelecionado}`, {
+                    method: 'DELETE'
+                });
+    
+                if (!response.ok) {
+                    alert('Erro ao excluir o paciente. Código: ' + response.status);
+                    return;
+                }
+    
+                const jsonResponse = await response.json(); // Garante que a resposta é JSON
+    
+                console.log(jsonResponse);
+                alert(jsonResponse.mensagem || 'Paciente excluído com sucesso.');
+    
+                document.querySelector('.modal_remove').style.display = 'none';
+                await Lista_pacientes();
+                await PopularDatalistPacientesRemover();
+    
+            } catch (err) {
+                console.error("Erro ao conectar com o servidor:", err);
+                alert("Erro ao conectar com o servidor: " + err.message);
+            }
         }
     });
+    
+      
 
-
+    
 
     btn_cadastrar.addEventListener("click", async function (e) {
 
