@@ -94,11 +94,12 @@ window.addEventListener('load', function () {
                     throw new Error(`Erro ao excluir paciente. Status: ${response.status}`);
                 }
     
-                // Tente pegar a resposta JSON apenas se o status for ok
+           
                 const responseBody = await response.json();
+
                 alert(responseBody.message || "Paciente excluído com sucesso!");
     
-                // Chama a função para atualizar a lista de pacientes
+                
                 Lista_pacientes();
     
             } 
