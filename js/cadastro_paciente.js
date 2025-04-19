@@ -93,7 +93,7 @@ window.addEventListener('load', function () {
         if (confirm(`Tem certeza que deseja excluir o paciente ${nomeDigitado}?`)) {
             try {
     
-                const response = await fetch(`http://barretoapps.co.br:3004/delete_cliente/${idPacienteSelecionado}`, {
+                const response = await fetch(`http://barretoapps.com.br:3004/delete_cliente/${idPacienteSelecionado}`, {
                     method: 'DELETE',
                 });
     
