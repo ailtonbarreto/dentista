@@ -89,9 +89,13 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 
   document.getElementById('btnExcluir').addEventListener('click', async () => {
+
     if (confirm('Tem certeza que deseja excluir este atendimento?')) {
+
       const response = await fetch(`http://barretoapps.com.br:3004/delete_agendamento/${idSelecionado}`, {
+
         method: 'DELETE'
+
       });
 
       if (response.ok) {
@@ -100,11 +104,17 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       
         const evento = calendar.getEventById(idSelecionado);
+
         if (evento) evento.remove();
+
       } else {
+
         alert('Erro ao excluir a reserva.');
+
       }
+
     }
+    
   });
 
   calendar.render();
