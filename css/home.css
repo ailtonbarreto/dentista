@@ -228,7 +228,7 @@ input.paciente::placeholder {
 }
 
 #btnExcluir{
-    font-size: 0.7vw;
+    font-size: 1vw;
     border-radius: 0.3vw;
     width: 30%;
     padding: 0.5vw;
