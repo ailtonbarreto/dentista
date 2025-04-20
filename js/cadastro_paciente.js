@@ -60,7 +60,7 @@ window.addEventListener('load', function () {
         mapaNomeId = {};
 
         try {
-            const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
+            const resposta = await fetch("http://localhost:3004/lista_pacientes");
             const dados = await resposta.json();
 
             dados.data.forEach(paciente => {
@@ -77,35 +77,38 @@ window.addEventListener('load', function () {
     btn_dlt_paciente.addEventListener('click', async () => {
         const nomeDigitado = document.getElementById("paciente_remover").value;
         const idPacienteSelecionado = mapaNomeId[nomeDigitado];
-    
-        if (!idPacienteSelecionado) {
-            console.log("Paciente não encontrado no mapa.");
-            alert("Paciente não encontrado.");
-            return;
-        }
-    
-        if (confirm('Tem certeza que deseja excluir este atendimento?')) {
-
-            const response = await fetch(`http://barretoapps.com.br:3004/delete_cliente/${idPacienteSelecionado}`, {
       
-              method: 'DELETE'
+        console.log("ID do paciente para excluir:", idPacienteSelecionado);
       
+        try {
+            const response = await fetch(`http://localhost:3004/delete_cliente/${idPacienteSelecionado}`, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json'
+              }
             });
       
-            if (response.ok) {
-
-                alert("Cadastro Excluído com Sucesso!")
-
+            console.log('Status da resposta:', response.status);  // Log para verificar o status da resposta
       
-            } else {
-      
-              alert('Erro ao excluir Cadastro.');
-      
+            if (!response.ok) {
+              const data = await response.json();  // Pega a resposta do servidor
+              throw new Error(data.message || 'Erro desconhecido');
             }
       
+            const data = await response.json();  // Pega o corpo da resposta
+            console.log("Resposta do servidor:", data);
+      
+            alert(data.message);  // Exibe a mensagem de sucesso
+      
+          } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert('Erro ao tentar se comunicar com o servidor. Detalhes: ' + error.message);
         }
+      
+        window.location.href='cadastro.html';
     });
-
+      
+      
     btn_cadastrar.addEventListener("click", async function (e) {
 
         e.preventDefault();
@@ -129,7 +132,7 @@ window.addEventListener('load', function () {
         };
 
         try {
-            const response = await fetch("http://barretoapps.com.br:3004/input_paciente", {
+            const response = await fetch("http://localhost:3004/input_paciente", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(novo_cadastro)
@@ -152,7 +155,7 @@ window.addEventListener('load', function () {
 async function Lista_pacientes() {
 
     try {
-        const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
+        const resposta = await fetch("http://localhost:3004/lista_pacientes");
         if (!resposta.ok) {
             throw new Error('Erro na requisição: ' + resposta.status);
         }
