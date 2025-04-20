@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch(`http://localhost:3004/delete/${pacienteId}`, {
+            const response = await fetch(`http://barretoapps.com.br:3004/delete/${pacienteId}`, {
                 method: 'DELETE',
                 headers: { 'Accept': 'application/json' }
             });
