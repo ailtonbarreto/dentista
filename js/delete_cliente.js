@@ -62,8 +62,6 @@ window.addEventListener("DOMContentLoaded", function () {
             const data = await response.json();
             if (!response.ok) throw new Error(data.message || "Erro ao excluir");
 
-            alert(data.message || "Paciente removido com sucesso!");
-
             
             await carregarPacientes();
             inputPaciente.value = "";
