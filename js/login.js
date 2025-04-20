@@ -28,69 +28,32 @@ window.addEventListener("load", function () {
         });
     }
 
-    async function obterDadosPlanilha() {
-
-        try {
-            const response = await fetch("./js/keys.json");
-
-            if (!response.ok) throw new Error("Erro ao carregar arquivo keys.json");
-
-            const data = await response.json();
-
-            if (!data.length || !data[0].base) throw new Error("Formato inválido do JSON.");
-
-            const planilhaURL = data[0].base;
-
-            const planilhaResponse = await fetch(planilhaURL);
-
-            if (!planilhaResponse.ok) throw new Error("Erro ao carregar a planilha.");
-
-            const csvText = await planilhaResponse.text();
-
-            return processarCSV(csvText);
-
-        } catch (error) {
-
-            console.error("Erro:", error);
-
-            exibirAlerta("Erro ao carregar dados.");
-
-            return [];
-        }
-    }
-
     async function validarCredenciais(username, password) {
-
-        const usuarios = await obterDadosPlanilha();
-
-        const user = usuarios.find(u => u.user === username && u.password === password);
-
-        if (user) {
-
-            sessionStorage.setItem("user_name", user.user);
-
-            window.dispatchEvent(new Event("storage")); 
-
-            document.getElementById("container-login").style.display = "none";
-
-
-        } else {
-            exibirAlerta("Usuário ou senha incorretos!");
+        try {
+          const response = await fetch("https://barretoapps.com.br/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ usuario: username, senha: password })
+          });
+      
+          const result = await response.json();
+      
+          if (response.ok && result.success) {
+            realizarLogin(result.user);
+          } else {
+            exibirAlerta(result.message || "Usuário ou senha incorretos!");
+          }
+        } catch (err) {
+          console.error(err);
+          exibirAlerta("Erro ao tentar logar.");
         }
-    }
+    };
 
-    function processarCSV(csvText) {
-        const linhas = csvText.split("\n").map(l => l.trim()).filter(l => l);
-        const [cabecalho, ...dados] = linhas;
-        const colunas = cabecalho.split(",");
+    function realizarLogin(user) {
+        sessionStorage.setItem("logon", true);
+        sessionStorage.setItem("currentUser", JSON.stringify(user));
     
-        return dados.map(linha => {
-            const valores = linha.split(",");
-            return colunas.reduce((obj, col, index) => {
-                obj[col.trim()] = valores[index]?.trim() || "";
-                return obj;
-            }, {});
-        });
+        window.location.href = "./page/home.html";
     }
     
 
