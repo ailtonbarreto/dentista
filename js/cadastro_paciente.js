@@ -84,33 +84,27 @@ window.addEventListener('load', function () {
             return;
         }
     
-        if (confirm(`Tem certeza que deseja excluir o paciente ${nomeDigitado}?`)) {
-            try {
-                const response = await fetch(`http://barretoapps.com.br:3004/delete_cliente/${idPacienteSelecionado}`, {
-                    method: 'DELETE',
-                });
-    
-                if (!response.ok) {
-                    throw new Error(`Erro ao excluir paciente. Status: ${response.status}`);
-                }
-    
-           
-                const responseBody = await response.json();
+        if (confirm('Tem certeza que deseja excluir este atendimento?')) {
 
-                alert(responseBody.message || "Paciente excluído com sucesso!");
-    
-                
-                Lista_pacientes();
-    
-            } 
-            
-            catch (error) {
-                console.error('Erro ao comunicar com o servidor:', error);
-                alert('Erro ao comunicar com o servidor: ' + error.message);
+            const response = await fetch(`http://barretoapps.com.br:3004/delete_cliente/${idPacienteSelecionado}`, {
+      
+              method: 'DELETE'
+      
+            });
+      
+            if (response.ok) {
+
+                alert("Cadastro Excluído com Sucesso!")
+
+      
+            } else {
+      
+              alert('Erro ao excluir Cadastro.');
+      
             }
+      
         }
     });
-    
 
     btn_cadastrar.addEventListener("click", async function (e) {
 

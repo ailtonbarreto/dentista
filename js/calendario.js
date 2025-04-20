@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function () {
   const calendarEl = document.getElementById('calendar');
-  let idSelecionado = null; // Declarar a variável idSelecionado fora do FullCalendar
+  let idSelecionado = null;
 
   const response = await fetch('http://barretoapps.com.br:3004/agendamento');
   const dados = await response.json();
