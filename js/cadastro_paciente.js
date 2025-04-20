@@ -4,10 +4,7 @@ window.addEventListener('load', function () {
     const btn_cadastrar = document.getElementById("btn_cadastrar");
     const btn_fechar_modal = document.getElementById("fechar_modal");
 
-    const btn_abrir_modal_remove = document.getElementById('abrir_modal_remove');
-    const btn_fechar_modal_remove = document.getElementById('fechar_modal_remove');
-
-    const btn_dlt_paciente = document.getElementById('btn_remove');
+    
 
     function atualizarUser() {
         return sessionStorage.getItem("user_name") || "Usuário desconhecido";
@@ -33,55 +30,8 @@ window.addEventListener('load', function () {
 
     });
 
-    btn_fechar_modal_remove.addEventListener("click", () => {
-
-        const modal_remove = document.querySelector(".modal_remove").style.display = "none";
 
 
-    });
-
-
-
-    let mapaNomeId = {};
-
-    btn_abrir_modal_remove.addEventListener("click", () => {
-
-        document.querySelector(".modal_remove").style.display = "flex";
-
-        PopularDatalistPacientesRemover();
-    });
-
-    async function PopularDatalistPacientesRemover() {
-
-        const datalist = document.getElementById("listaPacientesRemover");
-        if (!datalist) return;
-
-        datalist.innerHTML = '';
-        mapaNomeId = {};
-
-        try {
-            const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
-            const dados = await resposta.json();
-
-            dados.data.forEach(paciente => {
-                const option = document.createElement("option");
-                option.value = paciente.nome;
-                datalist.appendChild(option);
-                mapaNomeId[paciente.nome] = paciente.id;
-            });
-        } catch (error) {
-            console.error("Erro ao carregar datalist de pacientes:", error);
-        }
-    }
-
-    btn_dlt_paciente.addEventListener('click', async () => {
-
-        this.alert("Ainda preciso desenvolver");
-
-    });
-    
-      
-      
     btn_cadastrar.addEventListener("click", async function (e) {
 
         e.preventDefault();
@@ -114,7 +64,7 @@ window.addEventListener('load', function () {
             if (!response.ok) throw new Error("Erro ao Cadastrar Paciente.");
 
             Lista_pacientes();
-            PopularDatalistPacientesRemover();
+            window.location.href = 'cadastro.html';
             const modal = document.querySelector(".modal").style.display = "none";
         } catch (error) {
             alert("Erro ao conectar com o servidor: " + error.message);
