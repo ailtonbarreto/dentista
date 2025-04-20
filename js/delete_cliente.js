@@ -6,13 +6,13 @@ window.addEventListener("DOMContentLoaded", function () {
     const datalistPacientes = document.getElementById('listaPacientesRemover');
     const modal = document.querySelector(".modal_remove");
 
-    // Mapa global entre nome e ID do paciente
+
     window.mapaNomeId = {};
 
-    // Carrega pacientes e preenche o datalist + mapaNomeId
+   
     async function carregarPacientes() {
         datalistPacientes.innerHTML = '';
-        window.mapaNomeId = {}; // Zera o mapa global
+        window.mapaNomeId = {};
 
         try {
             const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
@@ -25,29 +25,31 @@ window.addEventListener("DOMContentLoaded", function () {
                 window.mapaNomeId[paciente.nome] = paciente.id;
             });
 
-            console.log("✅ Datalist carregado:", window.mapaNomeId);
+            console.log("Datalist carregado:", window.mapaNomeId);
         } catch (error) {
-            console.error("❌ Erro ao carregar pacientes:", error);
+            console.error("Erro ao carregar pacientes:", error);
         }
     }
 
-    // Ação do botão de abrir modal
+  
     abrirModal.addEventListener("click", () => {
         modal.style.display = "flex";
     });
 
-    // Ação do botão de fechar modal
+    
     fecharModal.addEventListener("click", () => {
         modal.style.display = "none";
     });
 
-    // Ação do botão de deletar paciente
+
     btnDelete.addEventListener("click", async () => {
+
         const nome = inputPaciente.value.trim();
+        
         const pacienteId = window.mapaNomeId[nome];
 
         if (!pacienteId) {
-            alert("⚠️ Selecione um paciente válido!");
+            alert("Selecione um paciente válido!");
             return;
         }
 
@@ -70,11 +72,10 @@ window.addEventListener("DOMContentLoaded", function () {
             window.location.href = 'cadastro.html';
 
         } catch (error) {
-            console.error("❌ Erro ao excluir paciente:", error);
+            console.error("Erro ao excluir paciente:", error);
             alert(error.message || "Erro inesperado");
         }
     });
 
-    // Carrega lista ao iniciar
     carregarPacientes();
 });
