@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", function () {
         window.mapaNomeId = {};
 
         try {
-            const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
+            const resposta = await fetch("https://barretoapps.com.br/lista_pacientes");
             const dados = await resposta.json();
 
             dados.data.forEach(paciente => {
@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch(`http://barretoapps.com.br:3004/delete/${pacienteId}`, {
+            const response = await fetch(`https://barretoapps.com.br/delete/${pacienteId}`, {
                 method: 'DELETE',
                 headers: { 'Accept': 'application/json' }
             });

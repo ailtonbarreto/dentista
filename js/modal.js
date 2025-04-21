@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!dataFiltro || !profissional) return;
 
         try {
-            const response = await fetch("http://barretoapps.com.br:3004/agendamento");
+            const response = await fetch("https://barretoapps.com.br/agendamento");
             const { data } = await response.json();
 
             horariosOcupados = {}; // zera
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const novaReserva = { nome, profissional, data, hora_inicio, hora_fim };
 
             try {
-                const response = await fetch("http://barretoapps.com.br:3004/input_agendamento", {
+                const response = await fetch("https://barretoapps.com.br/input_agendamento", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(novaReserva)
@@ -122,14 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
         nomesPacientes = [];
     
         try {
-            const resposta = await fetch("http://barretoapps.com.br:3004/lista_pacientes");
+            const resposta = await fetch("https://barretoapps.com.br/lista_pacientes");
             const dados = await resposta.json();
     
             dados.data.forEach(paciente => {
                 const option = document.createElement("option");
                 option.value = paciente.nome;
                 datalist.appendChild(option);
-                nomesPacientes.push(paciente.nome); // Guarda pra validação depois
+                nomesPacientes.push(paciente.nome);
             });
         } catch (error) {
             console.error("Erro ao carregar pacientes:", error);
