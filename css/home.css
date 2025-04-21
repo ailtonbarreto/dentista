@@ -91,7 +91,7 @@ form {
 
 
     & .paciente input,
-    .sala select,
+    .profissional select,
     .procedimento select,
     .genero select,
     .titulo {
@@ -125,7 +125,7 @@ form {
 
     & .hora_inicio input,
     .paciente input,
-    .sala select,
+    .profissional select,
     .procedimento select,
     .data input,
     .hora_fim input {
@@ -134,7 +134,7 @@ form {
 
     .paciente,
     .procedimento,
-    .sala,
+    .profissional,
     .data,
     .hora_inicio,
     .hora_fim,
