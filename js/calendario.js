@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       color: cor,
       extendedProps: {
         profissional: item.profissional,
-        nome: item.nome
+        nome: item.nome,
+        procedimento: item.procedimento
       }
     };
   });
@@ -45,12 +46,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     },
 
     eventClick: function(info) {
+
+    
       document.getElementById('popupProfissional').textContent = info.event.extendedProps.profissional;
       document.getElementById('popupNome').textContent = info.event.extendedProps.nome;
       document.getElementById('popupInicio').textContent = info.event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       document.getElementById('popupFim').textContent = info.event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('procedimento_popup').textContent = info.event.extendedProps.procedimento;
 
-      // Armazena o id do evento selecionado
+      
       idSelecionado = info.event.id;
 
       document.getElementById('popupReserva').classList.remove('hidden');

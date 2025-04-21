@@ -17,18 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     async function carregarHorariosOcupados() {
+
         const dataFiltro = document.getElementById('data').value;
+
         const profissional = document.getElementById('profissional').value;
 
         if (!dataFiltro || !profissional) return;
 
         try {
             const response = await fetch("https://barretoapps.com.br/agendamento");
+
             const { data } = await response.json();
 
-            horariosOcupados = {}; // zera
+            horariosOcupados = {};
 
             data.forEach(reserva => {
+
                 const dataReserva = new Date(reserva.data).toISOString().split('T')[0];
 
                 if (!horariosOcupados[reserva.profissional]) {
@@ -59,8 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = document.getElementById('data').value;
             const hora_inicio = document.getElementById('hora-inicio').value;
             const hora_fim = document.getElementById('hora-fim').value;
+            const procedimento = document.getElementById('procedimento').value;
 
-            if (!nome || !profissional || !data || !hora_inicio || !hora_fim) {
+            if (!nome || !profissional || !procedimento || !data || !hora_inicio || !hora_fim) {
                 alert("Por favor, preencha todos os campos.");
                 return;
             }
@@ -75,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Verifica conflito
             const reservas = horariosOcupados[profissional]?.[data] || [];
 
             const conflito = reservas.some(({ inicio, fim }) => {
@@ -89,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Envia reserva
-            const novaReserva = { nome, profissional, data, hora_inicio, hora_fim };
+  
+            const novaReserva = { nome, procedimento, data, hora_inicio, hora_fim, profissional };
 
             try {
                 const response = await fetch("https://barretoapps.com.br/input_agendamento", {
