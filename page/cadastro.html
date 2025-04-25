@@ -41,7 +41,7 @@
 
             <div>
 
-                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="person_edit">person_edit</span>
+                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal_edit">person_edit</span>
 
                 <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal">person_add</span>
 
@@ -146,15 +146,43 @@
 
         </form>
 
-
     </div>
 
-    
+
+    <div class="modal_edit" style="display: flex;">
+
+        <form>
+
+            <div class="header_titulo">
+
+                <h2>Editar Cadastro</h2>
+
+                <span class="material-symbols-outlined" id="fechar_modal_edit" style="color: #ffffff;">close</span>
+
+            </div>
+
+            <div class="paciente">
+
+                <input type="text" id="paciente_editar" list="listaPacientesEditar" placeholder="Digite o nome do paciente..." autocomplete="off"/>
+
+                <datalist id="listaPacientesEditar"></datalist>
+
+            </div>
+
+
+
+            <button id="btn_editar" type="button">Salvar Edição</button>
+
+
+        </form>
+
+
+    </div>
 
 </body>
 
     <script src="../js/cadastrar_cliente.js"></script>
     <script src="../js/delete_cliente.js"></script>
-
+    <script src="../js/editar_cliente.js"></script>
 
 </html>

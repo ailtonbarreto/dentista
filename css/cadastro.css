@@ -112,7 +112,7 @@ form {
 }
 
 
-.modal_remove{
+.modal_remove, .modal_edit{
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -238,7 +238,7 @@ input::-webkit-inner-spin-button {
     min-height: 80vh;
     background-color: var(--card_cor);
     border-radius: 0.5vw;
-    padding: 1vw;
+    padding-top: 0;
     overflow-y: scroll;
 }
 
@@ -246,7 +246,6 @@ input::-webkit-inner-spin-button {
 table {
     width: 100%;
     border-collapse: collapse;
-    /* margin-top: 1vw; */
     color: var(--cor_texto);
     font-size: 1vw;
 }
@@ -258,6 +257,8 @@ th, td {
 }
 
 th {
+    position: sticky;
+    top: 0;
     background-color: var(--cor-container);
     color: var(--cor_texto);
 }
