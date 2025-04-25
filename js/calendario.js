@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     eventClick: function(info) {
 
+      console.log(info.event.extendedProps.procedimento);
     
       document.getElementById('popupProfissional').textContent = info.event.extendedProps.profissional;
       document.getElementById('popupNome').textContent = info.event.extendedProps.nome;

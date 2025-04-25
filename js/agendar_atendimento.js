@@ -58,12 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
         btnAgendar.addEventListener('click', async (e) => {
             e.preventDefault();
 
+            
+
             const nome = document.getElementById('paciente').value;
             const profissional = document.getElementById('profissional').value;
             const data = document.getElementById('data').value;
             const hora_inicio = document.getElementById('hora-inicio').value;
             const hora_fim = document.getElementById('hora-fim').value;
             const procedimento = document.getElementById('procedimento').value;
+
+
+            console.log(procedimento);
 
             if (!nome || !profissional || !procedimento || !data || !hora_inicio || !hora_fim) {
                 alert("Por favor, preencha todos os campos.");
@@ -95,6 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
             const novaReserva = { nome, procedimento, data, hora_inicio, hora_fim, profissional };
+
+            console.log(novaReserva);
 
             try {
                 const response = await fetch("https://barretoapps.com.br/input_agendamento", {
