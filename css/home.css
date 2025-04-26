@@ -239,7 +239,7 @@ input.paciente::placeholder {
     margin: 0;
 }
 
-#btnExcluir{
+#btnExcluir {
     font-size: 1vw;
     border-radius: 0.3vw;
     width: 30%;
@@ -265,7 +265,7 @@ input.paciente::placeholder {
 
 /* ------------------------------------------------------- */
 
-tbody {
+table {
     padding: 1vw;
     background-color: var(--cor-botao-hover);
     border-radius: 0.5vw;
@@ -275,6 +275,44 @@ thead {
     font-size: 1.5vw;
     background-color: var(--cor-botao);
 }
+
+.fc-toolbar.fc-header-toolbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fc-toolbar-chunk {
+    flex: 1;
+}
+
+.fc-toolbar-title {
+    text-align: center;
+}
+
+.fc-button-group {
+    justify-content: flex-end;
+}
+
+
+.fc .fc-daygrid-day-frame {
+    height: 4vw;
+    overflow-y: scroll;
+    padding-bottom: 0.2vw;
+    background-color: var(--cor_texto);
+    color: var(--cor-botao);
+    font-size: 1vw;
+}
+
+.fc-day-today {
+    border: 2px solid var(--cor-botao) !important;
+}
+
+
+.fc-daygrid-event-dot {
+    border: 0.5vw solid;
+}
+
 
 .fc .fc-button {
     background-color: var(--cor-botao);
@@ -302,27 +340,44 @@ thead {
     margin-bottom: 1rem;
 }
 
-.fc-scroller::-webkit-scrollbar{
+.fc-scroller::-webkit-scrollbar {
     display: none;
+}
+
+.fc-daygrid-event {
+    font-size: 0.85rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: var(--cor-botao);
+    color: var(--cor_texto);
+}
+
+.fc-daygrid-event:hover {
+    background-color: var(--cor-botao-hover);
 }
 
 .fc-event {
     cursor: pointer;
 }
 
-.fc-day-today{
-    background-color: var(--card_cor);
+
+.fc-timegrid-slot-lane {
+    background-color: var(--bg_cor);
+}
+
+tbody tr {
+    line-height: 2vw;
+}
+
+.fc-list-table {
+    background-color: var(--bg_cor);
     color: var(--cor-botao);
 }
 
-.fc .fc-button-group {
-    font-size: 0.5vw;
+.fc-list-event-dot {
+    width: 0.5vw !important;
 }
 
-
-
-
-tbody tr{
-    line-height: 2vw;
+.fc-theme-standard .fc-list-day-cushion {
+    background-color: var(--card_cor);
 }
-  

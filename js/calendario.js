@@ -31,11 +31,11 @@ document.addEventListener('DOMContentLoaded', async function () {
   
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
-    // initialView: 'dayGridMonth',
-    initialView: 'timeGridWeek',
+    initialView: 'dayGridMonth',
+    // initialView: 'timeGridWeek',
     locale: 'pt-br',
-    hiddenDays: [0], // Escondendo o fim de semana
-    nowIndicator: true,   // opcional, mas deixa mais bonito
+    hiddenDays: [0],
+    nowIndicator: true,
     slotMinTime: "07:00:00",
     slotMaxTime: "18:00:00",
     handleWindowResize: true,
@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     headerToolbar: {
       left: 'prev,next',
       center: 'title',
-      right: ''
+      // right: ''
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     events: eventos,
     dayCellClassNames: function(info) {
