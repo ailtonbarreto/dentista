@@ -248,18 +248,32 @@ input.paciente::placeholder {
     color: var(--cor_texto);
     background-color: var(--cor-botao);
 }
+
+.custom-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-botao) !important;
+}
+
+
+.material-symbols-outlined {
+    font-size: 2vw;
+    cursor: pointer;
+    color: var(--bg_cor);
+}
+
 /* ------------------------------------------------------- */
 
-table {
+tbody {
     padding: 1vw;
-    background-color: var(--card_cor);
-    /* background-color: rebeccapurple; */
+    background-color: var(--cor-botao-hover);
     border-radius: 0.5vw;
-    border: none;
 }
 
 thead {
     font-size: 1.5vw;
+    background-color: var(--cor-botao);
 }
 
 .fc .fc-button {
@@ -288,20 +302,17 @@ thead {
     margin-bottom: 1rem;
 }
 
-.fc-daygrid-event {
-    font-size: 0.85rem;
-    padding: 2px 4px;
-    border-radius: 4px;
-    background-color: var(--cor-botao);
-    color: var(--cor_texto);
+.fc-scroller::-webkit-scrollbar{
+    display: none;
 }
 
 .fc-event {
-    border: none;
-    font-size: 0.7vw;
-    padding: 2px 6px;
-    border-radius: 4px;
     cursor: pointer;
+}
+
+.fc-day-today{
+    background-color: var(--card_cor);
+    color: var(--cor-botao);
 }
 
 .fc .fc-button-group {
@@ -309,64 +320,9 @@ thead {
 }
 
 
-.fc-daygrid-event-dot {
-    border: 0.5vw solid;
-}
-
-.fc-event:hover {
-    color: var(--bg_cor);
-    background-color: var(--cor-botao-hover);
-}
-
-.fc .fc-daygrid-day-frame {
-    height: 4vw;
-    overflow-y: scroll;
-    padding-bottom: 0.2vw;
-    background-color: var(--cor_texto);
-    color: var(--cor-botao);
-    font-size: 1vw;
-}
 
 
-.custom-icons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--cor-botao) !important;
-}
-
-
-.material-symbols-outlined {
-    font-size: 2vw;
-    cursor: pointer;
-    color: var(--bg_cor);
-}
-
-
-.fc-day {
-    background-color: var(--card_cor);
-    color: var(--bg_cor);
-}
-
-.fc-toolbar-chunk {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.fc-toolbar-chunk h2 {
-    display: inline;
-}
-
-.fc-toolbar {
-    display: flex;
-    align-items: center;
-}
-
-.fc-day-today {
-    border: 2px solid var(--cor-botao) !important; /* borda laranja */
-    border-radius: 6px;
+tbody tr{
+    line-height: 2vw;
 }
   

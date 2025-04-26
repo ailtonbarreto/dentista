@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const dados = await response.json();
 
   const coresProfissional = {
-    'profissional a': 'red',
+    'profissional a': 'pink',
     'profissional b': 'blue'
   };
 
@@ -28,10 +28,18 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
   });
 
+  
+
   const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
+    // initialView: 'dayGridMonth',
+    initialView: 'timeGridWeek',
     locale: 'pt-br',
     hiddenDays: [0], // Escondendo o fim de semana
+    nowIndicator: true,   // opcional, mas deixa mais bonito
+    slotMinTime: "07:00:00",
+    slotMaxTime: "18:00:00",
+    handleWindowResize: true,
+    allDaySlot: false,
     headerToolbar: {
       left: 'prev,next',
       center: 'title',
