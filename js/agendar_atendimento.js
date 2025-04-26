@@ -54,6 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
+    
+
     if (btnAgendar) {
         btnAgendar.addEventListener('click', async (e) => {
             e.preventDefault();

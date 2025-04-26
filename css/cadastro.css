@@ -100,7 +100,7 @@ form {
     color: var(--bg_cor);
 }
 
-#btn_cadastrar {
+#btn_cadastrar, #btn_editar, #btn_remove{
     font-size: 1vw;
     background-color: var(--cor-botao);
     color: var(--cor_texto);
@@ -136,15 +136,6 @@ form {
         width: 28vw;
     }
 
-    & #btn_remove{
-        padding: 0.5vw;
-        border-radius: 0.3vw;
-        cursor: pointer;
-        display: flex;
-        background-color: var(--cor-botao);
-        color: var(--cor_texto);
-        flex-direction: column;
-    }
     
 }
 
@@ -287,12 +278,5 @@ tbody tr:hover {
 
 thead th{
     background-color: var(--cor-botao);
-}
-
-#btn_agendar{
-    width: 3vw;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
 }
 
