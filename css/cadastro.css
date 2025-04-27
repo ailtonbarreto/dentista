@@ -146,6 +146,15 @@ form {
     margin-bottom: 1vw;
 }
 
+.header_titulo_editar{
+    width: 40vw;
+    display: flex;
+    color: var(--cor_texto);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
