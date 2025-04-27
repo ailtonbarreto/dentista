@@ -87,7 +87,7 @@ async function Lista_pacientes() {
         const lista = dados.data;
 
 
-        const div = document.getElementById("pacientes_cadastrados");
+        const div = document.getElementById("clientes_cadastrados");
         div.innerHTML = '';
 
         let tabela = document.createElement("table");

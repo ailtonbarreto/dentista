@@ -31,40 +31,39 @@ window.addEventListener('load', function () {
     });
 
 
-
     btn_cadastrar.addEventListener("click", async function (e) {
 
         e.preventDefault();
 
-        const nome = document.getElementById('paciente').value;
-        const data_nascimento = document.getElementById('data').value;
-        const telefone = document.getElementById('fone').value;
-        const genero = document.getElementById('genero').value;
+        const profissional = document.getElementById('profissional').value;
+        const telefone = document.getElementById('telefone').value;
+        const empresa = "empresa teste";
+    
 
-        if (!nome || !data_nascimento || !telefone || !genero) {
+        if (!profissional || !empresa) {
             alert("Por favor, preencha todos os campos.");
 
             return;
         }
 
         const novo_cadastro = {
-            nome,
-            data_nascimento,
+            profissional,
             telefone,
-            genero
+            empresa
         };
 
         try {
-            const response = await fetch("https://barretoapps.com.br/input_paciente", {
+            const response = await fetch("https://barretoapps.com.br/input_profissional", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(novo_cadastro)
             });
 
-            if (!response.ok) throw new Error("Erro ao Cadastrar Paciente.");
+            if (!response.ok) throw new Error("Erro ao Cadastrar Profissional.");
 
-            Lista_pacientes();
-            window.location.href = 'cadastro.html';
+
+            Lista_Profissional();
+            window.location.href = 'cadastro_profissional.html';
             const modal = document.querySelector(".modal").style.display = "none";
         } catch (error) {
             alert("Erro ao conectar com o servidor: " + error.message);
@@ -72,14 +71,16 @@ window.addEventListener('load', function () {
     });
 
 
-    Lista_pacientes();
+    Lista_Profissional();
 });
 
-async function Lista_pacientes() {
+async function Lista_Profissional() {
 
     try {
-        const resposta = await fetch("https://barretoapps.com.br/lista_pacientes");
+        const resposta = await fetch("https://barretoapps.com.br/lista_profissional");
+
         if (!resposta.ok) {
+
             throw new Error('Erro na requisição: ' + resposta.status);
         }
 
@@ -87,7 +88,7 @@ async function Lista_pacientes() {
         const lista = dados.data;
 
 
-        const div = document.getElementById("pacientes_cadastrados");
+        const div = document.getElementById("profissionais_cadastrados");
         div.innerHTML = '';
 
         let tabela = document.createElement("table");
@@ -97,9 +98,7 @@ async function Lista_pacientes() {
         let thead = document.createElement("thead");
         thead.innerHTML = `
           <tr>
-              <th>Nome Completo</th>
-              <th>Data de Nascimento</th>
-              <th>Sexo</th>
+              <th>Profissional</th>
               <th>Telefone</th>
           </tr>
       `;
@@ -107,20 +106,12 @@ async function Lista_pacientes() {
 
         let tbody = document.createElement("tbody");
 
-        function formatarDataISOParaBR(dataISOCompleta) {
-            const data = dataISOCompleta.split("T")[0];
-            const [ano, mes, dia] = data.split("-");
-            return `${dia}/${mes}/${ano}`;
-        }
-
-
-        lista.forEach(paciente => {
+        lista.forEach(profissional => {
             let linha = document.createElement("tr");
             linha.innerHTML = `
-              <td>${paciente.nome}</td>
-              <td>${formatarDataISOParaBR(paciente.data_nascimento)}</td>
-              <td>${paciente.genero}</td>
-              <td>${paciente.telefone}</td>
+              <td>${profissional.profissional}</td>
+              <td>${profissional.telefone}</td>
+
           `;
             tbody.appendChild(linha);
         });
