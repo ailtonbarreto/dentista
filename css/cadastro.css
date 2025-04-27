@@ -90,7 +90,7 @@ h2 {
 form {
     background-color: var(--card_cor);
     width: 40vw;
-    height: 80vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -124,22 +124,23 @@ form {
     margin: 0;
 
 
-
-    & form{
-
-        width: 30vw;
-        height: 30vh;
-
-    }
-
     & .header_titulo{
         width: 28vw;
     }
-
     
 }
 
+.modal_remove form{
 
+    width: 30vw;
+    height: 30vh;
+}
+
+.modal_edit form{
+
+    width: 30vw;
+    height: 60vh;
+}
 
 .header_titulo{
     width: 38vw;

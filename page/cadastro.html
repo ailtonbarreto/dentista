@@ -101,7 +101,7 @@
 
                 <select id="genero">
 
-                    <option value="">Selecione um gênero</option>
+                    <option value="">Selecione um sexo</option>
 
                     <option value="Masculino">Masculino</option>
 
@@ -163,12 +163,53 @@
 
             <div class="paciente">
 
+                <h4>Cadastro</h3>
+
                 <input type="text" id="paciente_editar" list="listaPacientesEditar" placeholder="Digite o nome do paciente..." autocomplete="off"/>
 
                 <datalist id="listaPacientesEditar"></datalist>
 
             </div>
 
+            <div class="paciente">
+
+                <h4>Nome Completo</h3>
+
+                <input type="text" id="nome_editar" required>
+
+            </div>
+
+            <div class="data_nasc_editar data">
+
+                <h4>Data de Nascimento</h3>
+
+                <input type="date" id="data_nasc_editar" required>
+
+            </div>
+
+            <div class="telefone_editar telefone">
+
+                <h4>Telefone</h3>
+
+                <input type="number" id="telefone_editar" required>
+
+            </div>
+
+            <div class="genero_editar genero">
+
+                <h4>Sexo</h3>
+
+                <select id="genero_editar" required>
+
+                    <option value="">Selecione um sexo</option>
+
+                    <option value="Masculino">Masculino</option>
+
+                    <option value="Feminino">Feminino</option>
+
+                </select>
+
+            </div>
 
 
             <button id="btn_editar" type="button">Salvar Edição</button>

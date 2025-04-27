@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 window.mapaNomeId[paciente.nome] = paciente.id;
             });
 
-            console.log("Datalist carregado:", window.mapaNomeId);
+         
         } catch (error) {
             console.error("Erro ao carregar pacientes:", error);
         }
