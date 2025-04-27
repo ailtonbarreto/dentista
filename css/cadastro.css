@@ -119,22 +119,14 @@ form {
     height: 100vh;
     background-color: rgba(20, 20, 20, 0.7);
     margin: 0;
-
-
-    & .header_titulo{
-        width: 28vw;
-    }
-    
-}
-
-.modal_remove form{
-    width: 30vw;
-    height: 30vh;
 }
 
 .modal_edit form{
-    width: 45vw;
-    height: 70vh;
+    height: 80vh;
+}
+
+.modal_remove form{
+    height: 30vh;
 }
 
 .header_titulo{
@@ -208,11 +200,6 @@ input::-webkit-inner-spin-button {
     outline: none;
 }
 
-.container-editar{
-    display: flex;
-    justify-content: space-between;
-    gap: 2vw;
-}
 
 
 .paciente input{
