@@ -4,9 +4,6 @@
     --card_cor: #93d0db;
     --cor-container: #2ea8be;
     --cor-botao: #137b8d;
-    --cor-botao-hover: #63bece;
-    --cor-excluir: #ff4d4d;
-    --cor-excluir-hover: #cc0000;
 }
 
 * {
@@ -100,7 +97,7 @@ form {
     color: var(--bg_cor);
 }
 
-#btn_cadastrar, #btn_editar, #btn_remove{
+#btn_cadastrar, #btn_editar, #btn_remove, #paciente_editar{
     font-size: 1vw;
     background-color: var(--cor-botao);
     color: var(--cor_texto);
@@ -137,8 +134,7 @@ form {
 }
 
 .modal_edit form{
-
-    width: 30vw;
+    width: 45vw;
     height: 70vh;
 }
 
@@ -203,8 +199,14 @@ input::-webkit-inner-spin-button {
     outline: none;
 }
 
+.container-editar{
+    display: flex;
+    justify-content: space-between;
+    gap: 2vw;
+}
+
+
 .paciente input{
-    /* min-width: 25vw; */
     text-align: left;
 }
 
@@ -260,7 +262,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background-color: var(--cor-botao-hover);
+    background-color: var(--card_cor);
     transition: background 0.3s;
 }
 
