@@ -66,7 +66,6 @@ window.addEventListener("load", function () {
 });
 
 
-
 function Exit() {
     sessionStorage.removeItem("logon");
     sessionStorage.removeItem("currentUser");

@@ -99,7 +99,7 @@ async function Lista_pacientes() {
           <tr>
               <th>Nome Completo</th>
               <th>Data de Nascimento</th>
-              <th>Gênero</th>
+              <th>Sexo</th>
               <th>Telefone</th>
           </tr>
       `;

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <title>Cadastrar Paciente</title>
+    <link rel="shortcut icon" href="../assets/report.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/cadastro.css">
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h2>Cadastro de Profissionais</h2>
+
+        <div class="icones">
+
+            <span class="material-symbols-outlined custom-icons" style="color: #93d0db !important;" onclick="window.location.href='home.html'">calendar_month</span>
+
+            <span class="material-symbols-outlined custom-icons" style="color: #93d0db !important;" onclick="window.location.href='cadastro.html'">perm_contact_calendar</span>
+
+            <span class="material-symbols-outlined custom-icons">shield_person</span>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="header_container">
+
+            <h2>Profissionais Cadastrados</h2>
+
+            <div>
+
+                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal_edit">person_edit</span>
+
+                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal">person_add</span>
+
+                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal_remove">person_remove</span>
+
+                
+            </div>
+
+
+        </div>
+
+        <div id="profissionais_cadastrados"></div>
+
+    </div>
+
+    <div class="modal" style="display: none;">
+
+        <form id="form">
+
+            <div class="header_titulo">
+
+                <h2>Cadastrar Novo Profissional</h2>
+
+                <span class="material-symbols-outlined" id="fechar_modal" style="color: #ffffff;">close</span>
+
+
+            </div>
+
+
+            <div class="profissional">
+
+                <h4>Nome Completo</h4>
+
+                <input type="text" id="profissional">
+
+            </div>
+
+
+            <button id="btn_cadastrar">Cadastrar</button>
+
+        </form>
+
+    </div>
+
+
+    <div class="modal_remove" style="display: none;">
+
+        <form>
+
+            <div class="header_titulo">
+
+                <h2>Excluir Profissional</h2>
+
+                <span class="material-symbols-outlined" id="fechar_modal_remove" style="color: #ffffff;">close</span>
+
+                
+            </div>
+
+            <div class="profissional">
+
+                <h4>Profissional</h4>
+
+                <input type="text" id="profissional_remover" list="listaProfissionaisRemover" placeholder="Digite o nome do profissional..." autocomplete="off"/>
+
+                <datalist id="listaProfissionaisRemover"></datalist>
+
+            </div>
+
+            <button id="btn_remove" type="button">Excluir do Sistema</button>
+
+        </form>
+
+    </div>
+
+
+    <div class="modal_edit" style="display: none;" id="modal_edit">
+
+        <form>
+
+            <div class="header_titulo">
+
+                <h2>Editar Cadastro</h2>
+
+                <span class="material-symbols-outlined" id="fechar_modal_edit" style="color: #ffffff;">close</span>
+
+            </div>
+
+            <div class="profissional">
+
+                <h4>Cadastro</h3>
+
+                <input type="text" id="profissional_editar" list="listaProfissioanaisEditar" placeholder="Digite o nome do profissioanal..." autocomplete="off"/>
+
+                <datalist id="listaProfissioanaisEditar"></datalist>
+
+            </div>
+
+            <div class="profissional">
+
+                <h4>Nome Completo</h3>
+
+                <input type="text" id="nome_editar" required>
+
+            </div>
+
+
+            <button id="btn_editar" type="button">Salvar Edição</button>
+
+
+        </form>
+
+
+    </div>
+
+</body>
+
+
+</html>
