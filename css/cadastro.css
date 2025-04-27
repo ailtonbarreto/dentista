@@ -97,7 +97,7 @@ form {
     color: var(--bg_cor);
 }
 
-#btn_cadastrar, #btn_editar, #btn_remove, #paciente_editar{
+#btn_cadastrar, #btn_editar, #btn_remove{
     font-size: 1vw;
     background-color: var(--cor-botao);
     color: var(--cor_texto);
@@ -128,7 +128,6 @@ form {
 }
 
 .modal_remove form{
-
     width: 30vw;
     height: 30vh;
 }
