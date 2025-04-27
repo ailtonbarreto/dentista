@@ -30,13 +30,15 @@ window.addEventListener("load", function () {
 
     async function validarCredenciais(username, password) {
         try {
-          const response = await fetch("https://barretoapps.com.br/login", {
+          const response = await fetch("http://127.0.0.1:3000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ usuario: username, senha: password })
           });
       
           const result = await response.json();
+
+          console.log(result);
       
           if (response.ok && result.success) {
             realizarLogin(result.user);
@@ -50,11 +52,20 @@ window.addEventListener("load", function () {
     };
 
     function realizarLogin(user) {
-        sessionStorage.setItem("logon", true);
-        sessionStorage.setItem("currentUser", JSON.stringify(user));
-    
-        window.location.href = "./page/home.html";
-    }
+      sessionStorage.setItem("logon", true);
+      sessionStorage.setItem("currentUser", JSON.stringify(user));
+      
+      let empresa = user.empresa;
+  
+      if (empresa.startsWith('"') && empresa.endsWith('"')) {
+          empresa = empresa.slice(1, -1);
+      }
+  
+      sessionStorage.setItem("empresa", empresa);
+  
+      window.location.href = "./page/home.html";
+  }
+  
     
 
     function exibirAlerta(mensagem) {

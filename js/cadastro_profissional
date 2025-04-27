@@ -19,14 +19,14 @@ window.addEventListener('load', function () {
 
     btn_abrir_modal.addEventListener("click", () => {
 
-        const modal = document.querySelector(".modal").style.display = "flex";
+        const modal = document.querySelector(".modal_novo_profissional").style.display = "flex";
 
 
     });
 
     btn_fechar_modal.addEventListener("click", function () {
 
-        const modal = document.querySelector(".modal").style.display = "none";
+        const modal = document.querySelector(".modal_novo_profissional").style.display = "none";
 
     });
 
@@ -37,10 +37,12 @@ window.addEventListener('load', function () {
 
         const profissional = document.getElementById('profissional').value;
         const telefone = document.getElementById('telefone').value;
-        const empresa = "empresa teste";
+        const empresa = sessionStorage.getItem('empresa');
+        const cor = document.getElementById("cor").value;
+
     
 
-        if (!profissional || !empresa) {
+        if (!profissional || !telefone || !empresa || !cor) {
             alert("Por favor, preencha todos os campos.");
 
             return;
@@ -49,7 +51,8 @@ window.addEventListener('load', function () {
         const novo_cadastro = {
             profissional,
             telefone,
-            empresa
+            empresa,
+            cor
         };
 
         try {
@@ -64,7 +67,7 @@ window.addEventListener('load', function () {
 
             Lista_Profissional();
             window.location.href = 'cadastro_profissional.html';
-            const modal = document.querySelector(".modal").style.display = "none";
+            const modal = document.querySelector(".modal_novo_profissional").style.display = "none";
         } catch (error) {
             alert("Erro ao conectar com o servidor: " + error.message);
         }

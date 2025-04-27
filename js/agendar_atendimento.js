@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let horariosOcupados = {};
 
+    let corProfissionaisMap = {};
+
     document.addEventListener('click', function (event) {
         if (event.target.id === 'btn_abrir') {
             event.preventDefault();
@@ -17,9 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     async function carregarHorariosOcupados() {
-
         const dataFiltro = document.getElementById('data').value;
-
         const profissional = document.getElementById('profissional').value;
 
         if (!dataFiltro || !profissional) return;
@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             horariosOcupados = {};
 
             data.forEach(reserva => {
-
                 const dataReserva = new Date(reserva.data).toISOString().split('T')[0];
 
                 if (!horariosOcupados[reserva.profissional]) {
@@ -54,14 +53,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function popularSelectProfissionais() {
+        const selectProfissional = document.getElementById('profissional');
+        if (!selectProfissional) return;
+
+        try {
+            const response = await fetch("https://barretoapps.com.br/lista_profissional");
+            const dadosProfissionais = await response.json();
+
+       
+
+            selectProfissional.innerHTML = '';
 
     
+            const optionDefault = document.createElement('option');
+            optionDefault.value = '';
+            optionDefault.textContent = 'Selecione um profissional';
+            selectProfissional.appendChild(optionDefault);
 
+           
+            dadosProfissionais.data.forEach(profissional => {
+                const option = document.createElement('option');
+                option.value = profissional.profissional;
+                option.textContent = profissional.profissional;
+                selectProfissional.appendChild(option);
+
+
+            
+                if (profissional.cor) {
+                    corProfissionaisMap[profissional.profissional] = profissional.cor;
+                } else {
+                    console.warn(`Cor do profissional ${profissional.profissional} não encontrada!`);
+                }
+            });
+
+        } catch (error) {
+            console.error("Erro ao carregar profissionais:", error);
+        }
+    }
+
+    
     if (btnAgendar) {
         btnAgendar.addEventListener('click', async (e) => {
             e.preventDefault();
-
-            
 
             const nome = document.getElementById('paciente').value;
             const profissional = document.getElementById('profissional').value;
@@ -70,8 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const hora_fim = document.getElementById('hora-fim').value;
             const procedimento = document.getElementById('procedimento').value;
 
-
-            console.log(procedimento);
 
             if (!nome || !profissional || !procedimento || !data || !hora_inicio || !hora_fim) {
                 alert("Por favor, preencha todos os campos.");
@@ -82,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Por favor, selecione um paciente válido da lista.");
                 return;
             }
-            
+
             if (hora_fim <= hora_inicio) {
                 alert("O horário de fim deve ser posterior ao horário de início.");
                 return;
@@ -101,10 +133,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-  
-            const novaReserva = { nome, procedimento, data, hora_inicio, hora_fim, profissional };
+            const corProfissional = corProfissionaisMap[profissional] || '#FFFFFF';
 
-            console.log(novaReserva);
+            const novaReserva = { 
+                nome, 
+                procedimento, 
+                data, 
+                hora_inicio, 
+                hora_fim, 
+                profissional, 
+                corProfissional
+            };
+
+            console.log('Nova reserva:', novaReserva);
 
             try {
                 const response = await fetch("https://barretoapps.com.br/input_agendamento", {
@@ -131,14 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
     async function popularSelectPacientes() {
         const datalist = document.getElementById("listaPacientes");
         if (!datalist) return;
-    
+
         datalist.innerHTML = '';
         nomesPacientes = [];
-    
+
         try {
             const resposta = await fetch("https://barretoapps.com.br/lista_pacientes");
             const dados = await resposta.json();
-    
+
             dados.data.forEach(paciente => {
                 const option = document.createElement("option");
                 option.value = paciente.nome;
@@ -149,12 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Erro ao carregar pacientes:", error);
         }
     }
-    
 
+    popularSelectProfissionais();
     document.getElementById('profissional')?.addEventListener('change', carregarHorariosOcupados);
     document.getElementById('data')?.addEventListener('change', carregarHorariosOcupados);
 
     popularSelectPacientes();
-
-
 });

@@ -72,7 +72,7 @@ h2 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.modal{
+.modal, .modal_novo_profissional{
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -82,6 +82,12 @@ h2 {
     height: 100vh;
     background-color: rgba(20, 20, 20, 0.7);
     margin: 0;
+}
+
+
+.modal_novo_profissional form{
+    width: 40vw;
+    height: 50vh;
 }
 
 form {

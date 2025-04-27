@@ -2,18 +2,20 @@ document.addEventListener('DOMContentLoaded', async function () {
   const calendarEl = document.getElementById('calendar');
   let idSelecionado = null;
 
-  const response = await fetch('https://barretoapps.com.br/agendamento');
+
+  const empresa = sessionStorage.getItem("empresa");
+
+
+  // const response = await fetch('https://barretoapps.com.br/agendamento');
+  const response = await fetch(`http://127.0.0.1:3000/filtrar_agendamentos?empresa=${empresa}`);
+
   const dados = await response.json();
 
-  const coresProfissional = {
-    'profissional a': 'pink',
-    'profissional b': 'blue'
-  };
 
   const eventos = dados.data.map(item => {
     const data = item.data.split('T')[0];
-    const nomeProf = item.profissional.toLowerCase();
-    const cor = coresProfissional[nomeProf] || '#e0a80b';
+    const cor = item.cor || '#e0a80b';
+
     return {
       id: item.id,
       title: `${item.profissional} - ${item.nome}`,
@@ -28,7 +30,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
   });
 
-  
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
@@ -47,24 +48,22 @@ document.addEventListener('DOMContentLoaded', async function () {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     events: eventos,
-    dayCellClassNames: function(info) {
+    dayCellClassNames: function (info) {
       if (info.date.getDay() === 6 || info.date.getDay() === 0) {
         return 'fc-sabado-domingo';
       }
       return '';
     },
 
-    eventClick: function(info) {
+    eventClick: function (info) {
 
-      console.log(info.event.extendedProps.procedimento);
-    
       document.getElementById('popupProfissional').textContent = info.event.extendedProps.profissional;
       document.getElementById('popupNome').textContent = info.event.extendedProps.nome;
       document.getElementById('popupInicio').textContent = info.event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       document.getElementById('popupFim').textContent = info.event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       document.getElementById('procedimento_popup').textContent = info.event.extendedProps.procedimento;
 
-      
+
       idSelecionado = info.event.id;
 
       document.getElementById('popupReserva').classList.remove('hidden');
@@ -116,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         document.getElementById('popupReserva').classList.add('hidden');
 
-      
+
         const evento = calendar.getEventById(idSelecionado);
 
         if (evento) evento.remove();
@@ -128,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
 
     }
-    
+
   });
 
   calendar.render();
