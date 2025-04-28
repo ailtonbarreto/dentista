@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   const empresa = sessionStorage.getItem("empresa");
 
-
-  // const response = await fetch('https://barretoapps.com.br/agendamento');
-  const response = await fetch(`http://127.0.0.1:3000/filtrar_agendamentos?empresa=${empresa}`);
+  const response = await fetch(`https://barretoapps.com.br/filtrar_agendamentos/${empresa}`);
 
   const dados = await response.json();
 
