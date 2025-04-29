@@ -26,33 +26,37 @@ window.addEventListener('load', () => {
     // ------------------------------------------------------------------------------------
 
     async function carregarPacientes() {
-
         datalistPacientesEditar.innerHTML = '';
-
         window.mapaNomeId = {};
-
+    
         try {
-            const resposta = await fetch("https://barretoapps.com.br/lista_pacientes");
-
+            const empresa = sessionStorage.getItem('empresa');
+            if (!empresa) {
+                console.error('Empresa não encontrada no sessionStorage.');
+                return;
+            }
+    
+            const resposta = await fetch(`http://127.0.0.1:3000/lista_pacientes/${empresa}`);
             
+            if (!resposta.ok) {
+                throw new Error('Erro ao carregar pacientes: ' + resposta.status);
+            }
+    
             const dados = await resposta.json();
-            pacientes = dados.data;
-
-
-            dados.data.forEach(paciente => {
-
+            const pacientes = dados.data;
+    
+            pacientes.forEach(paciente => {
                 const option = document.createElement("option");
-
                 option.value = paciente.nome;
                 datalistPacientesEditar.appendChild(option);
-
                 window.mapaNomeId[paciente.nome] = paciente.id;
             });
-
+    
         } catch (error) {
             console.error("Erro ao carregar pacientes:", error);
         }
     }
+    
 
     const inputPaciente = document.getElementById('paciente_editar');
 

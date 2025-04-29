@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
     const btn_cadastrar = document.getElementById("btn_cadastrar");
     const btn_fechar_modal = document.getElementById("fechar_modal");
 
-    
+
 
     function atualizarUser() {
         return sessionStorage.getItem("user_name") || "Usuário desconhecido";
@@ -40,6 +40,7 @@ window.addEventListener('load', function () {
         const data_nascimento = document.getElementById('data').value;
         const telefone = document.getElementById('fone').value;
         const genero = document.getElementById('genero').value;
+        const empresa = sessionStorage.getItem("empresa");
 
         if (!nome || !data_nascimento || !telefone || !genero) {
             alert("Por favor, preencha todos os campos.");
@@ -51,11 +52,12 @@ window.addEventListener('load', function () {
             nome,
             data_nascimento,
             telefone,
-            genero
+            genero,
+            empresa
         };
 
         try {
-            const response = await fetch("https://barretoapps.com.br/input_paciente", {
+            const response = await fetch("http://127.0.0.1:3000/input_paciente", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(novo_cadastro)
@@ -76,16 +78,20 @@ window.addEventListener('load', function () {
 });
 
 async function Lista_pacientes() {
-
     try {
-        const resposta = await fetch("https://barretoapps.com.br/lista_pacientes");
+        const empresa = sessionStorage.getItem('empresa');
+        if (!empresa) {
+            console.error('Empresa não encontrada no sessionStorage.');
+            return;
+        }
+
+        const resposta = await fetch(`http://127.0.0.1:3000/lista_pacientes/${empresa}`);
         if (!resposta.ok) {
             throw new Error('Erro na requisição: ' + resposta.status);
         }
 
         const dados = await resposta.json();
         const lista = dados.data;
-
 
         const div = document.getElementById("clientes_cadastrados");
         div.innerHTML = '';
@@ -113,7 +119,6 @@ async function Lista_pacientes() {
             return `${dia}/${mes}/${ano}`;
         }
 
-
         lista.forEach(paciente => {
             let linha = document.createElement("tr");
             linha.innerHTML = `
@@ -126,10 +131,10 @@ async function Lista_pacientes() {
         });
 
         tabela.appendChild(tbody);
-
         div.appendChild(tabela);
 
     } catch (erro) {
         console.error('Erro ao fazer o fetch:', erro);
     }
 }
+

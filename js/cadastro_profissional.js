@@ -78,18 +78,21 @@ window.addEventListener('load', function () {
 });
 
 async function Lista_Profissional() {
-
     try {
-        const resposta = await fetch("https://barretoapps.com.br/lista_profissional");
+        const empresa = sessionStorage.getItem('empresa');
+        if (!empresa) {
+            console.error('Empresa não encontrada no sessionStorage.');
+            return;
+        }
 
+        const resposta = await fetch(`http://127.0.0.1:3000/lista_profissional/${empresa}`);
+        
         if (!resposta.ok) {
-
             throw new Error('Erro na requisição: ' + resposta.status);
         }
 
         const dados = await resposta.json();
         const lista = dados.data;
-
 
         const div = document.getElementById("profissionais_cadastrados");
         div.innerHTML = '';
@@ -114,7 +117,6 @@ async function Lista_Profissional() {
             linha.innerHTML = `
               <td>${profissional.profissional}</td>
               <td>${profissional.telefone}</td>
-
           `;
             tbody.appendChild(linha);
         });
@@ -127,3 +129,4 @@ async function Lista_Profissional() {
         console.error('Erro ao fazer o fetch:', erro);
     }
 }
+

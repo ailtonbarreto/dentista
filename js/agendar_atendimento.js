@@ -53,44 +53,79 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function popularSelectProcedimentos() {
+        const selectProcedimento = document.getElementById('procedimento');
+        if (!selectProcedimento) return;
+    
+        const empresa = sessionStorage.getItem('empresa');
+        if (!empresa) {
+            console.error('Empresa não encontrada no sessionStorage');
+            return;
+        }
+    
+        try {
+            const response = await fetch(`http://127.0.0.1:3000/lista_procedimento/${empresa}`);
+            const dadosProcedimentos = await response.json();
+    
+            selectProcedimento.innerHTML = '';
+    
+            const optionDefault = document.createElement('option');
+            optionDefault.textContent = 'Selecione um procedimento';
+            optionDefault.value = ''; 
+            selectProcedimento.appendChild(optionDefault);
+    
+            dadosProcedimentos.data.forEach(procedimento => {
+                const option = document.createElement('option');
+                option.value = procedimento.procedimento;
+                option.textContent = procedimento.procedimento;
+                selectProcedimento.appendChild(option);
+            });
+    
+        } catch (error) {
+            console.error("Erro ao carregar procedimentos:", error);
+        }
+    }
+    
+
     async function popularSelectProfissionais() {
         const selectProfissional = document.getElementById('profissional');
         if (!selectProfissional) return;
-
+    
         try {
-            const response = await fetch("https://barretoapps.com.br/lista_profissional");
+            const empresa = sessionStorage.getItem("empresa");
+            if (!empresa) {
+                console.error("Empresa não encontrada no sessionStorage.");
+                return;
+            }
+    
+            const response = await fetch(`http://127.0.0.1:3000/lista_profissional/${empresa}`);
             const dadosProfissionais = await response.json();
-
-       
-
+    
             selectProfissional.innerHTML = '';
-
     
             const optionDefault = document.createElement('option');
             optionDefault.value = '';
             optionDefault.textContent = 'Selecione um profissional';
             selectProfissional.appendChild(optionDefault);
-
-           
+    
             dadosProfissionais.data.forEach(profissional => {
                 const option = document.createElement('option');
                 option.value = profissional.profissional;
                 option.textContent = profissional.profissional;
                 selectProfissional.appendChild(option);
-
-
-            
+    
                 if (profissional.cor) {
                     corProfissionaisMap[profissional.profissional] = profissional.cor;
                 } else {
                     console.warn(`Cor do profissional ${profissional.profissional} não encontrada!`);
                 }
             });
-
+    
         } catch (error) {
             console.error("Erro ao carregar profissionais:", error);
         }
     }
+    
 
     
     if (btnAgendar) {
@@ -103,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const hora_inicio = document.getElementById('hora-inicio').value;
             const hora_fim = document.getElementById('hora-fim').value;
             const procedimento = document.getElementById('procedimento').value;
+            const empresa = sessionStorage.getItem("empresa");
 
 
             if (!nome || !profissional || !procedimento || !data || !hora_inicio || !hora_fim) {
@@ -142,13 +178,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 hora_inicio, 
                 hora_fim, 
                 profissional, 
-                corProfissional
+                corProfissional,
+                empresa
             };
 
             console.log('Nova reserva:', novaReserva);
 
             try {
-                const response = await fetch("https://barretoapps.com.br/input_agendamento", {
+                const response = await fetch("http://127.0.0.1:3000/input_agendamento", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(novaReserva)
@@ -172,14 +209,20 @@ document.addEventListener('DOMContentLoaded', () => {
     async function popularSelectPacientes() {
         const datalist = document.getElementById("listaPacientes");
         if (!datalist) return;
-
+    
         datalist.innerHTML = '';
         nomesPacientes = [];
-
+    
         try {
-            const resposta = await fetch("https://barretoapps.com.br/lista_pacientes");
+            const empresa = sessionStorage.getItem('empresa');
+            if (!empresa) {
+                console.error('Empresa não encontrada no sessionStorage');
+                return;
+            }
+    
+            const resposta = await fetch(`http://127.0.0.1:3000/lista_pacientes/${empresa}`);
             const dados = await resposta.json();
-
+    
             dados.data.forEach(paciente => {
                 const option = document.createElement("option");
                 option.value = paciente.nome;
@@ -190,10 +233,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Erro ao carregar pacientes:", error);
         }
     }
+    
 
     popularSelectProfissionais();
     document.getElementById('profissional')?.addEventListener('change', carregarHorariosOcupados);
     document.getElementById('data')?.addEventListener('change', carregarHorariosOcupados);
 
+    popularSelectProcedimentos();
     popularSelectPacientes();
+
+
 });
