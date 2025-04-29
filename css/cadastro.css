@@ -165,7 +165,7 @@ input::-webkit-inner-spin-button {
 }
 
 
-.paciente, .data, .telefone, .genero{
+.paciente, .data, .telefone, .genero, .profissional{
     background-color: var(--cor-botao);
     display: flex;
     flex-direction: column;
@@ -195,6 +195,7 @@ input::-webkit-inner-spin-button {
 
 .paciente input,
 .telefone input, 
+.profissional input,
 .data input{
     background-color: var(--cor-container);
     color: var(--cor_texto);
