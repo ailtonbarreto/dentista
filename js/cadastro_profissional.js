@@ -85,7 +85,7 @@ async function Lista_Profissional() {
             return;
         }
 
-        const resposta = await fetch(`http://127.0.0.1:3000/lista_profissional/${empresa}`);
+        const resposta = await fetch(`https://barretoapps.com.br/lista_profissional/${empresa}`);
         
         if (!resposta.ok) {
             throw new Error('Erro na requisição: ' + resposta.status);

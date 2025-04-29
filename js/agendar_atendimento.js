@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         try {
-            const response = await fetch(`http://127.0.0.1:3000/lista_procedimento/${empresa}`);
+            const response = await fetch(`https://barretoapps.com.br/lista_procedimento/${empresa}`);
             const dadosProcedimentos = await response.json();
     
             selectProcedimento.innerHTML = '';
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
     
-            const response = await fetch(`http://127.0.0.1:3000/lista_profissional/${empresa}`);
+            const response = await fetch(`https://barretoapps.com.br/lista_profissional/${empresa}`);
             const dadosProfissionais = await response.json();
     
             selectProfissional.innerHTML = '';
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Nova reserva:', novaReserva);
 
             try {
-                const response = await fetch("http://127.0.0.1:3000/input_agendamento", {
+                const response = await fetch("https://barretoapps.com.br/input_agendamento", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(novaReserva)
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
     
-            const resposta = await fetch(`http://127.0.0.1:3000/lista_pacientes/${empresa}`);
+            const resposta = await fetch(`https://barretoapps.com.br/lista_pacientes/${empresa}`);
             const dados = await resposta.json();
     
             dados.data.forEach(paciente => {

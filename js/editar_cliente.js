@@ -36,7 +36,7 @@ window.addEventListener('load', () => {
                 return;
             }
     
-            const resposta = await fetch(`http://127.0.0.1:3000/lista_pacientes/${empresa}`);
+            const resposta = await fetch(`https://barretoapps.com.br/lista_pacientes/${empresa}`);
             
             if (!resposta.ok) {
                 throw new Error('Erro ao carregar pacientes: ' + resposta.status);

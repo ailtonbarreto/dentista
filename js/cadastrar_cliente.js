@@ -57,7 +57,7 @@ window.addEventListener('load', function () {
         };
 
         try {
-            const response = await fetch("http://127.0.0.1:3000/input_paciente", {
+            const response = await fetch("https://barretoapps.com.br/input_paciente", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(novo_cadastro)
@@ -85,7 +85,7 @@ async function Lista_pacientes() {
             return;
         }
 
-        const resposta = await fetch(`http://127.0.0.1:3000/lista_pacientes/${empresa}`);
+        const resposta = await fetch(`https://barretoapps.com.br/lista_pacientes/${empresa}`);
         if (!resposta.ok) {
             throw new Error('Erro na requisição: ' + resposta.status);
         }

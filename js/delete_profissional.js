@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 return;
             }
     
-            const resposta = await fetch(`http://127.0.0.1:3000/lista_profissional/${empresa}`);
+            const resposta = await fetch(`https://barretoapps.com.br/lista_profissional/${empresa}`);
             if (!resposta.ok) {
                 throw new Error('Erro ao carregar pacientes: ' + resposta.status);
             }
@@ -65,7 +65,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:3000/delete_profissional/${profisionalId}`, {
+            const response = await fetch(`https://barretoapps.com.br/delete_profissional/${profisionalId}`, {
                 method: 'DELETE',
                 headers: { 'Accept': 'application/json' }
             });

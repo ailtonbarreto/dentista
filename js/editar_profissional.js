@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
                 return;
             }
 
-            const resposta = await fetch(`http://127.0.0.1:3000/lista_profissional/${empresa}`);
+            const resposta = await fetch(`https://barretoapps.com.br/lista_profissional/${empresa}`);
             if (!resposta.ok) {
                 throw new Error('Erro ao carregar profissionais: ' + resposta.status);
             }
@@ -88,7 +88,7 @@ window.addEventListener('load', () => {
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:3000/update_profissional/${profissionalId}`, {
+            const response = await fetch(`https://barretoapps.com.br/update_profissional/${profissionalId}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
