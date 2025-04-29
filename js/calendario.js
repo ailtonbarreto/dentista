@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       return '';
     },
 
+
     eventClick: function (info) {
 
       document.getElementById('popupProfissional').textContent = info.event.extendedProps.profissional;
