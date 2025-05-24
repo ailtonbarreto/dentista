@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
                 return;
             }
 
-            const resposta = await fetch(`https://barretoapps.com.br/lista_profissional/${empresa}`);
+            const resposta = await fetch(`https://api-barretoapps.onrender.com/lista_profissional/${empresa}`);
             if (!resposta.ok) {
                 throw new Error('Erro ao carregar profissionais: ' + resposta.status);
             }
@@ -88,7 +88,7 @@ window.addEventListener('load', () => {
         }
 
         try {
-            const response = await fetch(`https://barretoapps.com.br/update_profissional/${profissionalId}`, {
+            const response = await fetch(`https://api-barretoapps.onrender.com/update_profissional/${profissionalId}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -96,6 +96,7 @@ window.addEventListener('load', () => {
                 },
                 body: JSON.stringify({
                     profissional: nome_editado,
+                    empresa: sessionStorage.getItem('empresa'),
                     telefone: telefone_editado,
                     cor: cor_editada
                 })
@@ -111,7 +112,7 @@ window.addEventListener('load', () => {
             inputProfissional.value = "";
             modal_edit.style.display = "none";
 
-            window.location.href = 'cadastro_profissional.html';
+            window.location.reload();
 
         } catch (error) {
             console.error("Erro ao atualizar profissional:", error);

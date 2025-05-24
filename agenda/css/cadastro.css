@@ -1,10 +1,10 @@
 :root {
-    --cor_texto: #ffffff;
-    --bg_cor: #ffffff;
-    --card_cor: #93d0db;
-    --cor-container: #2ea8be;
-    --cor-botao: #137b8d;
+    --cor-primaria: #fff;
+    --cor-secundaria: #fff;
+    --cor-terciaria: #fff;
+    --cor-texto: #fff;  
 }
+
 
 * {
     margin: 0;
@@ -16,12 +16,13 @@
 }
 
 body {
-    background-color: var(--bg_cor);
+    background-color: var(--cor-texto);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-top: -3vw;
 }
 
 .titulo_topo{
@@ -32,20 +33,20 @@ body {
 
 
 h2 {
-    color: var(--cor_texto);
+    color: var(--cor-texto);
 }
 
 .material-symbols-outlined{
     font-size: 2vw;
     cursor: pointer;
-    color: var(--cor-container);
+    color: var(--cor-secundaria);
     
 }
 
 
 .header {
     display: flex;
-    color: var(--cor-botao);
+    color: var(--cor-primaria);
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1vw;
@@ -53,7 +54,7 @@ h2 {
 }
 
 .header h2{
-    color: var(--cor-botao);
+    color: var(--cor-primaria);
 }
 
 .container {
@@ -62,12 +63,11 @@ h2 {
     justify-content: space-between;
     text-align: center;
     max-width: 98vw;
-    max-height: 90vh;
     width: 100vw;
-    height: 95vh;
-    background-color: var(--cor-container);
+    height: 80vh;
+    background-color: var( --cor-secundaria);
     padding: 1vw;
-    color: var(--cor_texto);
+    color: var(--cor-texto);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -91,7 +91,7 @@ h2 {
 }
 
 form {
-    background-color: var(--card_cor);
+    background-color: var(--cor-terciaria);
     width: 40vw;
     height: 70vh;
     display: flex;
@@ -100,13 +100,18 @@ form {
     padding: 1vw;
     align-items: center;
     border-radius: 0.5vw;
-    color: var(--bg_cor);
+    color: var(--cor-primaria);
+
+    & h2{
+        color: var(--cor-primaria);
+    }
+
 }
 
 #btn_cadastrar, #btn_editar, #btn_remove{
     font-size: 1vw;
-    background-color: var(--cor-botao);
-    color: var(--cor_texto);
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
     border-radius: 0.3vw;
     width: 20vw;
     height: 3vw;
@@ -128,7 +133,7 @@ form {
 }
 
 .modal_edit form{
-    height: 80vh;
+    height: 60vh;
 }
 
 .modal_remove form{
@@ -138,7 +143,7 @@ form {
 .header_titulo{
     width: 38vw;
     display: flex;
-    color: var(--cor_texto);
+    color: var(--cor-primaria);
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1vw;
@@ -147,7 +152,7 @@ form {
 .header_titulo_editar{
     width: 40vw;
     display: flex;
-    color: var(--cor_texto);
+    color: var(--cor-primaria);
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1vw;
@@ -166,21 +171,21 @@ input::-webkit-inner-spin-button {
 
 
 .paciente, .data, .telefone, .genero, .profissional{
-    background-color: var(--cor-botao);
+    background-color: var(--cor-primaria);
     display: flex;
     flex-direction: column;
     border-radius: 0.5vw;
     padding: 0.5vw 1vw;
     width: 20vw;
-    color: var(--bg_cor);
+    color: var(--cor-texto);
     font-weight: bold;
 }
 
 
 
 .genero select{
-    background-color: var(--cor-container);
-    color: var(--cor_texto);
+    background-color: var( --cor-secundaria);
+    color: var(--cor-texto);
     border: 1px solid #fff;
     padding: 0.3vw;
     border-radius: 0.3vw;
@@ -197,8 +202,8 @@ input::-webkit-inner-spin-button {
 .telefone input, 
 .profissional input,
 .data input{
-    background-color: var(--cor-container);
-    color: var(--cor_texto);
+    background-color: var( --cor-secundaria);
+    color: var(--cor-texto);
     border: 1px solid #fff;
     padding: 0.3vw;
     border-radius: 0.3vw;
@@ -232,8 +237,9 @@ input::-webkit-inner-spin-button {
 }
 
 #clientes_cadastrados, #profissionais_cadastrados {
-    min-height: 80vh;
-    background-color: var(--card_cor);
+    height: 70vh;
+    min-height: 70vh;
+    background-color: var(--cor-secundaria);
     border-radius: 0.5vw;
     padding-top: 0;
     overflow-y: scroll;
@@ -243,7 +249,7 @@ input::-webkit-inner-spin-button {
 table {
     width: 100%;
     border-collapse: collapse;
-    color: var(--cor_texto);
+    color: var(--cor-texto);
     font-size: 1vw;
 }
 
@@ -256,8 +262,8 @@ th, td {
 th {
     position: sticky;
     top: 0;
-    background-color: var(--cor-container);
-    color: var(--cor_texto);
+    background-color: var( --cor-secundaria);
+    color: var(--cor-texto);
 }
 
 tbody tr:nth-child(even) {
@@ -265,7 +271,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background-color: var(--card_cor);
+    background-color: var(--cor-terciaria);
     transition: background 0.3s;
 }
 
@@ -283,6 +289,6 @@ tbody tr:hover {
 }
 
 thead th{
-    background-color: var(--cor-botao);
+    background-color: var(--cor-primaria);
 }
 

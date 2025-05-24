@@ -1,9 +1,8 @@
 :root {
-    --cor_texto: #ffffff;
-    --bg_cor: #ffffff;
-    --card_cor: #93d0db;
-    --cor-container: #2ea8be;
-    --cor-botao: #137b8d;
+    --cor-primaria: #fff;
+    --cor-secundaria: #fff;
+    --cor-terciaria: #fff;
+    --cor-texto: #fff;  
 }
 
 * {
@@ -16,7 +15,7 @@
 }
 
 body {
-    background-color: var(--bg_cor);
+    background-color: var(--cor-texto);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,7 +26,7 @@ body {
 
 .header {
     display: flex;
-    color: var(--cor-botao);
+    color: var(--cor-primaria);
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1vw;
@@ -53,7 +52,7 @@ body {
 }
 
 form {
-    background-color: var(--card_cor);
+    background-color: var(--cor-terciaria);
     width: 40vw;
     height: 70vh;
     display: flex;
@@ -62,40 +61,55 @@ form {
     padding: 1vw;
     align-items: center;
     border-radius: 0.5vw;
-    color: var(--bg_cor);
+    color: var(--cor-primaria);
 
     & .btn {
         display: flex;
+        align-items: center;
+        text-align: center;
         width: 95%;
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: 1vw;
+
+
+        & span{
+            color: var(--cor-primaria);
+        }
+
+    }    
+
+    & .btns{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        width: 95%;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 1vw;
+
+
+        & span{
+            color: var(--cor-primaria);
+        }
+
     }
 
     & button {
-        background-color: var(--cor-botao);
+        background-color: var(--cor-primaria);
         padding: 0.5vw;
         border-radius: 50%;
         cursor: pointer;
-        color: var(--bg_cor);
+        color: var(--cor-texto);
     }
-
-    & #btn_agendar {
-        font-size: 1.2vw;
-        border-radius: 0.3vw;
-        width: 22vw;
-        height: 3vw;
-        margin-bottom: 1vw;
-    }
-
 
     & .paciente input,
     .profissional select,
     .procedimento select,
     .genero select,
     .titulo {
-        background-color: var(--cor-container);
-        color: var(--cor_texto);
+        background-color: var(--cor-primaria);
+        color: var(--cor-texto);
         border: 1px solid #fff;
         padding: 0.3vw;
         border-radius: 0.3vw;
@@ -111,8 +125,8 @@ form {
     .procedimento input,
     .titulo input,
     .hora_fim input {
-        background-color: var(--cor-container);
-        color: var(--cor_texto);
+        background-color: var(--cor-primaria);
+        color: var(--cor-texto);
         border: 1px solid #fff;
         padding: 0.3vw;
         border-radius: 0.3vw;
@@ -139,13 +153,13 @@ form {
     .hora_fim,
     .telefone,
     .genero {
-        background-color: var(--cor-botao);
+        background-color: var(--cor-primaria);
         display: flex;
         flex-direction: column;
         border-radius: 0.5vw;
         padding: 0.5vw 1vw;
         min-width: 15vw;
-        color: var(--bg_cor);
+        color: var(--cor-texto);
         font-weight: bold;
     }
 
@@ -160,19 +174,19 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 input.paciente::placeholder {
-    color: var(--cor_texto);
+    color: var(--cor-texto) !important;
 }
 
 
 #calendar {
     display: flex;
     max-width: 98vw;
-    max-height: 90vh;
+    max-height: 80vh;
     width: 98vw;
     height: 95vh;
-    background-color: var(--cor-container);
+    background-color: var(--cor-secundaria);
     padding: 1vw;
-    color: var(--cor_texto);
+    color: var(--cor-texto);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -208,8 +222,8 @@ input.paciente::placeholder {
     justify-content: space-around;
     text-align: center;
     align-items: center;
-    background: var(--card_cor);
-    color: var(--cor_texto);
+    background: var(--cor-terciaria);
+    color: var(--cor-primaria);
     padding: 20px 30px;
     border-radius: 10px;
     min-width: 40vw;
@@ -218,13 +232,15 @@ input.paciente::placeholder {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.popup .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2vw;
-    cursor: pointer;
+.header_titulo{
+    width: 38vw;
+    display: flex;
+    color: var(--cor-primaria);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
 }
+
 
 .popup-horarios {
     display: flex;
@@ -238,47 +254,48 @@ input.paciente::placeholder {
     margin: 0;
 }
 
-#btnExcluir {
+#btnExcluir, #btn_agendar{
     font-size: 1vw;
     border-radius: 0.3vw;
     width: 30%;
     padding: 0.5vw;
     cursor: pointer;
-    color: var(--cor_texto);
-    background-color: var(--cor-botao);
+    color: var(--cor-texto);
+    background-color: var(--cor-primaria);
 }
 
 .custom-icons {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--cor-botao) !important;
+    color: var(--cor-primaria) !important;
 }
 
 
 .material-symbols-outlined {
     font-size: 2vw;
     cursor: pointer;
-    color: var(--bg_cor);
+    color: var(--cor-primaria);
 }
 
 /* ------------------------------------------------------- */
 
 table {
     padding: 1vw;
-    background-color: var(--card_cor);
+    background-color: var(--cor-primaria);
     border-radius: 0.5vw;
 }
 
 thead {
     font-size: 1.5vw;
-    background-color: var(--cor-botao);
+    background-color: var(--cor-primaria);
 }
 
 .fc-toolbar.fc-header-toolbar {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 3vw;
 }
 
 .fc-toolbar-chunk {
@@ -291,6 +308,7 @@ thead {
 
 .fc-button-group {
     justify-content: flex-end;
+    /* margin-left: 5vw; */
 }
 
 
@@ -298,13 +316,13 @@ thead {
     height: 4vw;
     overflow-y: scroll;
     padding-bottom: 0.2vw;
-    background-color: var(--cor_texto);
-    color: var(--cor-botao);
+    background-color: var(--cor-texto);
+    color: var(--cor-primaria);
     font-size: 1vw;
 }
 
 .fc-day-today {
-    border: 2px solid var(--cor-botao) !important;
+    border: 2px solid var(--cor-primaria) !important;
 }
 
 
@@ -314,7 +332,7 @@ thead {
 
 
 .fc .fc-button {
-    background-color: var(--cor-botao);
+    background-color: var(--cor-primaria);
     border: none;
     color: #fff;
     padding: 0.5rem 1rem;
@@ -325,13 +343,9 @@ thead {
 }
 
 .fc .fc-button:hover {
-    background-color: var(--cor-container);
+    background-color: var(--cor-primaria);
 }
 
-.fc .fc-button:disabled {
-    background-color: var(--card_cor);
-    cursor: not-allowed;
-}
 
 .fc-toolbar-title {
     font-size: 1.5rem;
@@ -347,12 +361,11 @@ thead {
     font-size: 0.85rem;
     padding: 2px 4px;
     border-radius: 4px;
-    background-color: var(--cor-botao);
-    color: var(--cor_texto);
+    color: var(--cor-primaria);
 }
 
 .fc-daygrid-event:hover {
-    background-color: var(--card_cor);
+    background-color: var(--cor-terciaria);
 }
 
 .fc-event {
@@ -361,7 +374,7 @@ thead {
 
 
 .fc-timegrid-slot-lane {
-    background-color: var(--bg_cor);
+    background-color: var(--cor-texto);
 }
 
 tbody tr {
@@ -369,8 +382,8 @@ tbody tr {
 }
 
 .fc-list-table {
-    background-color: var(--bg_cor);
-    color: var(--cor-botao);
+    background-color: var(--cor-texto);
+    color: var(--cor-primaria);
 }
 
 .fc-list-event-dot {
@@ -378,5 +391,117 @@ tbody tr {
 }
 
 .fc-theme-standard .fc-list-day-cushion {
-    background-color: var(--card_cor);
+    background-color: var(--cor-texto);
+}
+
+/* -------------------------------------------------------------------- */
+
+
+@media (max-width: 900px) {
+
+    body{
+        margin-bottom: 10vh;
+    }
+
+    .fc-header-toolbar{
+        flex-direction: column;
+    }
+
+    .popup-content{
+        width: 100vw;
+        height: 100vh;
+        padding: 0.2vw;
+        margin: 0;
+    }
+
+
+    #calendar{
+        width: 100vw;
+        padding-top: 4vw;
+        margin-bottom: 10vw;
+    }
+
+    .fc .fc-daygrid-day-frame {
+        height: 10vh;
+    }
+
+    tbody tr {
+        line-height: 5vh;
+    }
+
+    form {
+        width: 100vw;
+        height: 100vh;
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .btn {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+
+    .popup-horarios{
+        width: 90vw;
+    }
+
+    .paciente input,
+    .profissional select,
+    .procedimento select,
+    .genero select,
+    .titulo,
+    .telefone input,
+    .hora_inicio input,
+    .data input,
+    .hora_fim input {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    .paciente,
+    .procedimento,
+    .profissional,
+    .data,
+    .hora_inicio,
+    .hora_fim,
+    .telefone,
+    .genero {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+ 
+    .header_titulo {
+        width: 95%;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    /* Ajustar ícones */
+    .custom-icons {
+        font-size: 2rem;
+    }
+
+    .material-symbols-outlined {
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+
+    #btn_agendar,
+    #btnExcluir {
+        width: 50%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .popup-content {
+        width: 100vw;
+        height: 100vh;
+        padding-bottom: 30vw;
+    }
 }

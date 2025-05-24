@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <title>Cadastrar Serviço</title>
+    <link rel="shortcut icon" href="../assets/report.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <script defer src="../js/temas.js"></script>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h2>Cadastro de Serviços</h2>
+
+        <div class="icones">
+
+            <span class="material-symbols-outlined custom-icons" style="color: var(--cor-terciaria) !important;" onclick="window.location.href='/pages/agenda.html'">calendar_month</span>
+
+            <span class="material-symbols-outlined custom-icons" style="color: var(--cor-terciaria) !important;" onclick="window.location.href='cadastro.html'">perm_contact_calendar</span>
+
+            <span class="material-symbols-outlined custom-icons" style="color: var(--cor-terciaria) !important;" onclick="window.location.href='cadastro_profissional.html'">account_circle</span>
+
+            <span class="material-symbols-outlined custom-icons" style="color: var(--cor-primaria) !important;">settings</span>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="header_container">
+
+            <h2>Serviços Cadastrados</h2>
+
+            <div>
+
+                <span class="material-symbols-outlined custom-icons" style="color: var(--cor-texto) !important;" id="abrir_modal_edit">label</span>
+
+                <span class="material-symbols-outlined custom-icons" style="color: var(--cor-texto)  !important;" id="abrir_modal">new_label</span>
+
+                <span class="material-symbols-outlined custom-icons" style="color: var(--cor-texto)  !important;" id="abrir_modal_remove">label_off</span>
+
+
+                
+            </div>
+
+
+        </div>
+
+        <div id="profissionais_cadastrados"></div>
+
+    </div>
+
+    <div class="modal_novo_profissional" style="display: none;">
+
+        <form id="form">
+
+            <div class="header_titulo">
+
+                <h2>Cadastrar Novo Serviço</h2>
+
+                <span class="material-symbols-outlined" id="fechar_modal" style="color: var(--cor-primaria) ;">close</span>
+
+
+            </div>
+
+
+            <div class="telefone">
+
+                <h4>Serviço</h4>
+
+                <input type="text" id="profissional">
+
+            </div>
+
+            <div class="telefone">
+
+
+                <h4>Valor</h4>
+
+                <input type="number" id="telefone">
+
+
+            </div>
+
+
+            <button id="btn_cadastrar">Cadastrar</button>
+
+        </form>
+
+    </div>
+
+
+    <div class="modal_remove" style="display: none;">
+
+        <form>
+
+            <div class="header_titulo">
+
+                <h2>Excluir Serviço</h2>
+
+                <span class="material-symbols-outlined" id="fechar_modal_remove" style="color: var(--cor-primaria) ;">close</span>
+
+                
+            </div>
+
+            <div class="profissional">
+
+                <h4>Serviço</h4>
+
+                <input type="text" id="profissional_remover" list="listaServicosRemover" placeholder="Digite o nome do servicos..." autocomplete="off"/>
+
+                <datalist id="listaServicosRemover"></datalist>
+
+            </div>
+
+            <button id="btn_remove" type="button">Excluir do Sistema</button>
+
+        </form>
+
+    </div>
+
+
+    <div class="modal_edit" style="display: none;" id="modal_edit">
+        <form>
+    
+            <div class="header_titulo">
+
+                <h2>Editar Serviço</h2>
+
+                <span class="material-symbols-outlined" id="fechar_modal_edit" style="color: var(--cor-primaria) ;">close</span>
+
+            </div>
+    
+            <div class="profissional">
+
+                <h4>Cadastro</h4>
+
+                <input type="text" id="profissional_editar" list="listaServicosEditar" placeholder="Digite o nome do serviço..." autocomplete="off"/>
+
+                <datalist id="listaServicosEditar"></datalist>
+
+            </div>
+    
+            <div class="profissional">
+
+                <h4>Serviço</h4>
+
+                <input type="text" id="nome_editar" required>
+
+            </div>
+    
+            <div class="profissional">
+
+                <h4>Valor</h4>
+
+                <input type="text" id="telefone_editar" required>
+
+            </div>
+    
+    
+            <button id="btn_editar" type="button">Salvar Edição</button>
+    
+        </form>
+    </div>
+    
+
+</body>
+
+    <script src="../js/cadastro_servico.js"></script>
+    <script src="../js/delete_servico.js"></script>
+    <script src="../js/editar_servico.js"></script>
+
+</html>

@@ -5,18 +5,17 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   const empresa = sessionStorage.getItem("empresa");
 
-  const response = await fetch(`https://barretoapps.com.br/filtrar_agendamentos/${empresa}`);
+  const response = await fetch(`https://api-barretoapps.onrender.com/filtrar_agendamentos/${empresa}`);
 
   const dados = await response.json();
-
-
+ 
   const eventos = dados.data.map(item => {
     const data = item.data.split('T')[0];
     const cor = item.cor || '#e0a80b';
 
     return {
       id: item.id,
-      title: `${item.profissional} - ${item.nome}`,
+      title: `${item.nome}`,
       start: `${data}T${item.hora_inicio}`,
       end: `${data}T${item.hora_fim}`,
       color: cor,
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
+    initialView: 'timeGridWeek',
     // initialView: 'timeGridWeek',
     locale: 'pt-br',
     hiddenDays: [0],
@@ -43,7 +42,9 @@ document.addEventListener('DOMContentLoaded', async function () {
       left: 'prev,next',
       center: 'title',
       // right: ''
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      // right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      right: 'timeGridWeek,timeGridDay,listWeek'
+
     },
     events: eventos,
     dayCellClassNames: function (info) {
@@ -104,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     if (confirm('Tem certeza que deseja excluir este atendimento?')) {
 
-      const response = await fetch(`https://barretoapps.com.br/delete_agendamento/${idSelecionado}`, {
+      const response = await fetch(`https://api-barretoapps.onrender.com/delete_agendamento/${idSelecionado}`, {
 
         method: 'DELETE'
 

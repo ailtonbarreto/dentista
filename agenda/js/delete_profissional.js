@@ -1,17 +1,17 @@
 window.addEventListener("DOMContentLoaded", function () {
     const btnDelete = document.getElementById('btn_remove');
-    const inputPaciente = document.getElementById('paciente_remover');
+    const inputPaciente = document.getElementById('profissional_remover');
     const abrirModal = document.getElementById('abrir_modal_remove');
     const fecharModal = document.getElementById('fechar_modal_remove');
-    const datalistPacientes = document.getElementById('listaPacientesRemover');
+    const datalistProfissionais = document.getElementById('listaProfissionaisRemover');
     const modal = document.querySelector(".modal_remove");
 
 
     window.mapaNomeId = {};
 
    
-    async function carregarPacientes() {
-        datalistPacientes.innerHTML = '';
+    async function carregarProfissionais() {
+        datalistProfissionais.innerHTML = '';
         window.mapaNomeId = {};
     
         try {
@@ -21,19 +21,20 @@ window.addEventListener("DOMContentLoaded", function () {
                 return;
             }
     
-            const resposta = await fetch(`https://barretoapps.com.br/lista_pacientes/${empresa}`);
+            const resposta = await fetch(`https://api-barretoapps.onrender.com/lista_profissional/${empresa}`);
             if (!resposta.ok) {
                 throw new Error('Erro ao carregar pacientes: ' + resposta.status);
             }
     
             const dados = await resposta.json();
     
-            dados.data.forEach(paciente => {
+            dados.data.forEach(profissional => {
                 const option = document.createElement("option");
-                option.value = paciente.nome;
-                datalistPacientes.appendChild(option);
-                window.mapaNomeId[paciente.nome] = paciente.id;
+                option.value = profissional.profissional;
+                datalistProfissionais.appendChild(option);
+                window.mapaNomeId[profissional.profissional] = profissional.id;
             });
+            
     
         } catch (error) {
             console.error("Erro ao carregar pacientes:", error);
@@ -56,15 +57,15 @@ window.addEventListener("DOMContentLoaded", function () {
 
         const nome = inputPaciente.value.trim();
         
-        const pacienteId = window.mapaNomeId[nome];
+        const profisionalId = window.mapaNomeId[nome];
 
-        if (!pacienteId) {
-            alert("Selecione um paciente válido!");
+        if (!profisionalId) {
+            alert("Selecione um profissional válido!");
             return;
         }
 
         try {
-            const response = await fetch(`https://barretoapps.com.br/delete/${pacienteId}`, {
+            const response = await fetch(`https://api-barretoapps.onrender.com/delete_profissional/${profisionalId}`, {
                 method: 'DELETE',
                 headers: { 'Accept': 'application/json' }
             });
@@ -73,11 +74,11 @@ window.addEventListener("DOMContentLoaded", function () {
             if (!response.ok) throw new Error(data.message || "Erro ao excluir");
 
             
-            await carregarPacientes();
+            await carregarProfissionais();
             inputPaciente.value = "";
             modal.style.display = "none";
 
-            window.location.href = 'cadastro.html';
+            window.location.reload();
 
         } catch (error) {
             console.error("Erro ao excluir paciente:", error);
@@ -85,5 +86,5 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    carregarPacientes();
+    carregarProfissionais();
 });

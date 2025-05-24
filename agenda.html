@@ -3,16 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendário dos Atendimentos</title>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-   <script src="../js/index.global.min.js"></script>
-  <link rel="stylesheet" href="../css/home.css">
-  <link rel="shortcut icon" href="../assets/report.png" type="image/x-icon">
-  <script src="../js/calendario.js"></script>
-  <script src="../js/agendar_atendimento.js"></script>
+  <script src="agenda/js/index.global.min.js"></script>
+  <script defer src="agenda/js/temas.js"></script>
+  <link rel="stylesheet" href="/agenda/css/home.css">
+  <script src="/agenda/js/calendario.js"></script>
+  <script src="agenda/js/agendar_atendimento.js"></script>
+  
 </head>
 
-<body>
+<body style="margin-top: -3vw;">
 
   <div class="modal" id="modal">
 
@@ -25,8 +27,6 @@
         <span class="material-symbols-outlined" id="fechar_modal">close</span>
 
       </div>
-
-
 
       <div class="popup-horarios">
 
@@ -68,7 +68,7 @@
 
         <div class="procedimento">
 
-          <h4>Procedimento</h4>
+          <h4>Serviços</h4>
 
           <select id="procedimento">
 
@@ -101,9 +101,9 @@
 
       </div>
 
-      <div class="botao">
+      <div class="btns">
 
-        <button id="btn_agendar">Confirmar</button>
+        <button id="btn_agendar">Agendar</button>
 
       </div>
 
@@ -120,11 +120,14 @@
 
       <div>
 
-        <span class="material-symbols-outlined custom-icons">calendar_month</span>
+        <span class="material-symbols-outlined custom-icons" style="color: var(--cor-primaria)">calendar_month</span>
 
-        <span class="material-symbols-outlined custom-icons" onclick="window.location.href='cadastro.html'" style="color: #93d0db !important;">perm_contact_calendar</span>
+        <span class="material-symbols-outlined custom-icons" onclick="window.location.href='page/cadastro.html'" style="color: var(--cor-terciaria) !important;">perm_contact_calendar</span>
 
-        <span class="material-symbols-outlined custom-icons" onclick="window.location.href='cadastro_profissional.html'" style="color: #93d0db !important;">shield_person</span>
+        <span class="material-symbols-outlined custom-icons" onclick="window.location.href='page/cadastro_profissional.html'" style="color: var(--cor-terciaria) !important;">account_circle</span>
+
+        <span class="material-symbols-outlined custom-icons" onclick="window.location.href='page/cadastro_servicos.html'" style="color: var(--cor-terciaria) !important;">settings</span>
+
 
       </div>
 
@@ -138,15 +141,20 @@
 
     <div class="popup-content">
 
-      <span class="material-symbols-outlined close">close</span>
+      <div class="header_titulo">
 
-      <h2>Detalhes do Atendimento</h2>
+        <h2>Detalhes do Atendimento</h2>
 
-      <p><strong>Profissional:</strong> <span id="popupProfissional"></span></p>
+        <span class="material-symbols-outlined close">close</span>
 
-      <p><strong>Paciente:</strong> <span id="popupNome"></span></p>
+      </div>
+      
 
-      <p><strong>Procedimento:</strong> <span id="procedimento_popup"></span></p>
+      <p><span id="popupProfissional"></span></p>
+
+      <p><span id="popupNome"></span></p>
+
+      <p><span id="procedimento_popup"></span></p>
 
 
       <div class="popup-horarios">
@@ -157,7 +165,7 @@
 
       </div>
 
-      <button id="btnExcluir" class="btn-excluir">Excluir Reserva</button>
+      <button id="btnExcluir">Excluir Reserva</button>
 
     </div>
 

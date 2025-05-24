@@ -1,27 +1,77 @@
 
 :root{
-    --bg : #ffffff;
-    --cor-texto: #2ea8be;
-    --cor-container: #2ea8be;
+    --bg : #0B1548;
+    --cor-texto: #fffffff;
+    --cor-container: #ffffff;
 }
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    max-width: 100vw;
 }
 
 body{
     height: 100vh;
     width: 100vw;
     color: var(--bg);
+    overflow-y: hidden;
+    background-color: var(--cor-container);
 }
 
+#menu-icon{
+    cursor: pointer;
+    font-size: 40px;
+    margin-left: -1vw;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: var(--bg);
+    padding-top: 60px;
+    transition: 0.3s;
+}
+
+.sidebar img{
+    width: 150px;
+    margin-bottom: 2vw;
+}
+
+.sidebar button, .exit-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--cor-container);
+    transition: 0.3s;
+    border-radius: 0px;
+    margin-bottom: 1vw;
+}
+
+.sidebar button:hover {
+    background-color: var(--cor-container);
+    color: var(--bg);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2vw;
+    color: var(--cor-container);
+    cursor: pointer;
+}
 
 .logo{
-    width: 10vw;
-    margin-bottom: 2vw;
-    margin-top: 2vw;
+    width: 20vw;
+    margin-bottom: 3vw;
 }
 
 .container{
@@ -45,6 +95,7 @@ form{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 0.4vw;
     border-radius: 4px;
     width: 25vw;
     height: 30vw;
@@ -52,18 +103,25 @@ form{
 
 input{
     outline: none;
-    border: none;
-    margin: 0.5vw 0 0.5vw 0;
     height: 1.5vw;
-    border-radius: 0.3vw;
     width: 100%;
     color: var(--cor-texto);
 }
 
+.campos{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    width: 90%;
+}
+
+label{
+    font-weight: bold;
+}
 
 button{
     margin-top: 1vw;
-    color: var(--cor-texto);
+    color: var(--cor-container);
     border: none;
     background-color: var(--bg);
     height: 2vw;
@@ -71,7 +129,7 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 40%;
     border-radius: 3px;
     margin-bottom: 1vw;
     cursor: pointer;
@@ -92,14 +150,13 @@ button{
     height: 2.5vw;
     padding: 0vw 2vw;
     align-items: center;
-    background-color: var(--cor-container);
-    color: var(--cor-texto);
 
 }
 
 .msg img{
     width: 8vw;
 }
+
 
 .screen-logged{
     height: 100vh;
@@ -114,16 +171,32 @@ button{
 
 
 iframe{
-    height: 100vh;
+    height: 102vh;
     width: 100vw;
     border: none;
     
 }
 
 
+.desapear{
+    display: none;
+}
+
+#logged-message{
+    text-transform: capitalize;
+    display: flex;
+    font-size: 1vw;
+    justify-content: center;
+}
+
+#frame2{
+    display: none;
+}
+
 /* ---------------------------------------------------- */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+
 
     .form{
         justify-content: space-around;
@@ -131,8 +204,8 @@ iframe{
         width: 100vw;
         border: none;
         margin: 0;
-        text-align: center;
     }
+
 
     .form img{
         width: 50vw;
@@ -140,9 +213,21 @@ iframe{
     }
 
     #menu-icon{
-        width: 8vw;
+       font-size: 10vw;
+
     }
     
+    .form button{
+        margin-top: 3vw;
+        padding: 3vw;
+        height: 10vw;
+        width: 70vw;
+    }
+
+    .sidebar img{
+        width: 220px;
+        margin-bottom: 2vw;
+    }
 
     .close-btn {
         position: absolute;
@@ -160,17 +245,15 @@ iframe{
     input{
         outline: none;
         height: 8vw;
-        width: 80%;
-        color: var(--cor-container);
+        width: 100%;
+        color: var(--cor-texto);
     } 
     
     button{
         border: none;
         height: 10vw;
-        width: 80%;
-        margin-top: 6vw;
+        width: 40%;
         border-radius: 3px;
-        font-size: 5vw;
     }
 
     iframe{
@@ -188,9 +271,19 @@ iframe{
     }
 
 
+    #logged-message{
+        text-transform: capitalize;
+        display: flex;
+        font-size: 5vw;
+        text-align: center;
+    }
+
+    .msg img{
+        width: 30vw;
+    }
+
     .message{
-        margin: auto;
-        /* margin-bottom: 50vw; */
+        margin-bottom: 50vw;
     }
     
 }

@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", function () {
     const inputPaciente = document.getElementById('profissional_remover');
     const abrirModal = document.getElementById('abrir_modal_remove');
     const fecharModal = document.getElementById('fechar_modal_remove');
-    const datalistProfissionais = document.getElementById('listaProfissionaisRemover');
+    const datalistServicos = document.getElementById('listaServicosRemover');
     const modal = document.querySelector(".modal_remove");
 
 
@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
    
     async function carregarProfissionais() {
-        datalistProfissionais.innerHTML = '';
+        datalistServicos.innerHTML = '';
         window.mapaNomeId = {};
     
         try {
@@ -21,18 +21,18 @@ window.addEventListener("DOMContentLoaded", function () {
                 return;
             }
     
-            const resposta = await fetch(`https://barretoapps.com.br/lista_profissional/${empresa}`);
+            const resposta = await fetch(`https://api-barretoapps.onrender.com/lista_procedimento/${empresa}`);
             if (!resposta.ok) {
                 throw new Error('Erro ao carregar pacientes: ' + resposta.status);
             }
     
             const dados = await resposta.json();
     
-            dados.data.forEach(profissional => {
+            dados.data.forEach(servico => {
                 const option = document.createElement("option");
-                option.value = profissional.profissional;
-                datalistProfissionais.appendChild(option);
-                window.mapaNomeId[profissional.profissional] = profissional.id;
+                option.value = servico.procedimento;
+                datalistServicos.appendChild(option);
+                window.mapaNomeId[servico.procedimento] = servico.id;
             });
             
     
@@ -57,15 +57,15 @@ window.addEventListener("DOMContentLoaded", function () {
 
         const nome = inputPaciente.value.trim();
         
-        const profisionalId = window.mapaNomeId[nome];
+        const servicoId = window.mapaNomeId[nome];
 
-        if (!profisionalId) {
+        if (!servicoId) {
             alert("Selecione um profissional válido!");
             return;
         }
 
         try {
-            const response = await fetch(`https://barretoapps.com.br/delete_profissional/${profisionalId}`, {
+            const response = await fetch(`https://api-barretoapps.onrender.com/delete_servico/${servicoId}`, {
                 method: 'DELETE',
                 headers: { 'Accept': 'application/json' }
             });

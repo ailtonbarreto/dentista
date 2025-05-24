@@ -11,6 +11,7 @@
     <title>Cadastrar Cliente</title>
     <link rel="shortcut icon" href="../assets/report.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/cadastro.css">
+    <script defer src="../js/temas.js"></script>
 
 </head>
 
@@ -22,11 +23,14 @@
 
         <div class="icones">
 
-            <span class="material-symbols-outlined custom-icons" style="color: #93d0db !important;" onclick="window.location.href='home.html'">calendar_month</span>
+            <span class="material-symbols-outlined custom-icons" style="color: var(--cor-terciaria) !important;" onclick="window.location.href='/pages/agenda.html'">calendar_month</span>
 
-            <span class="material-symbols-outlined custom-icons">perm_contact_calendar</span>
+            <span class="material-symbols-outlined custom-icons" style="color: var(--cor-primaria) !important;">perm_contact_calendar</span>
 
-            <span class="material-symbols-outlined custom-icons" onclick="window.location.href='cadastro_profissional.html'" style="color: #93d0db !important;">shield_person</span>
+            <span class="material-symbols-outlined custom-icons" onclick="window.location.href='cadastro_profissional.html'" style="color: var(--cor-terciaria)  !important;">account_circle</span>
+
+            <span class="material-symbols-outlined custom-icons" onclick="window.location.href='cadastro_servicos.html'" style="color: var(--cor-terciaria) !important;">settings</span>
+
 
         </div>
 
@@ -40,11 +44,11 @@
 
             <div>
 
-                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal_edit">person_edit</span>
+                <span class="material-symbols-outlined custom-icons" style="color: var(--cor-texto)  !important;" id="abrir_modal_edit">person_edit</span>
 
-                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal">person_add</span>
+                <span class="material-symbols-outlined custom-icons" style="color: var(--cor-texto) !important;" id="abrir_modal">person_add</span>
 
-                <span class="material-symbols-outlined custom-icons" style="color: #ffffff !important;" id="abrir_modal_remove">person_remove</span>
+                <span class="material-symbols-outlined custom-icons" style="color: var(--cor-texto)  !important;" id="abrir_modal_remove">person_remove</span>
 
                 
             </div>
@@ -64,7 +68,7 @@
 
                 <h2>Cadastrar Novo Cliente</h2>
 
-                <span class="material-symbols-outlined" id="fechar_modal" style="color: #ffffff;">close</span>
+                <span class="material-symbols-outlined" id="fechar_modal" style="color: var(--cor-primaria) ;">close</span>
 
 
             </div>
@@ -106,6 +110,7 @@
 
                     <option value="Feminino">Feminino</option>
 
+
                 </select>
 
             </div>
@@ -125,7 +130,7 @@
 
                 <h2>Excluir Cliente</h2>
 
-                <span class="material-symbols-outlined" id="fechar_modal_remove" style="color: #ffffff;">close</span>
+                <span class="material-symbols-outlined" id="fechar_modal_remove" style="color: var(--cor-primaria) ;">close</span>
 
                 
             </div>
@@ -156,7 +161,7 @@
 
                 <h2>Editar Cadastro</h2>
 
-                <span class="material-symbols-outlined" id="fechar_modal_edit" style="color: #ffffff;">close</span>
+                <span class="material-symbols-outlined" id="fechar_modal_edit" style="color: var(--cor-primaria) ;">close</span>
 
             </div>
 

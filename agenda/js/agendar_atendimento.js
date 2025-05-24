@@ -22,10 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const dataFiltro = document.getElementById('data').value;
         const profissional = document.getElementById('profissional').value;
 
+        const empresa = sessionStorage.getItem('empresa');
+        if (!empresa) {
+            console.error('Empresa não encontrada no sessionStorage');
+            return;
+        }
+
         if (!dataFiltro || !profissional) return;
 
         try {
-            const response = await fetch("https://barretoapps.com.br/agendamento");
+            const response = await fetch(`https://api-barretoapps.onrender.com/filtrar_agendamentos/${empresa}`);
 
             const { data } = await response.json();
 
@@ -53,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const mapaPrecoProcedimentos = {};
+
     async function popularSelectProcedimentos() {
         const selectProcedimento = document.getElementById('procedimento');
         if (!selectProcedimento) return;
@@ -64,13 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         try {
-            const response = await fetch(`https://barretoapps.com.br/lista_procedimento/${empresa}`);
+            const response = await fetch(`https://api-barretoapps.onrender.com/lista_procedimento/${empresa}`);
             const dadosProcedimentos = await response.json();
-    
+
+  
             selectProcedimento.innerHTML = '';
     
             const optionDefault = document.createElement('option');
-            optionDefault.textContent = 'Selecione um procedimento';
+            optionDefault.textContent = 'Selecione um serviço';
             optionDefault.value = ''; 
             selectProcedimento.appendChild(optionDefault);
     
@@ -79,12 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 option.value = procedimento.procedimento;
                 option.textContent = procedimento.procedimento;
                 selectProcedimento.appendChild(option);
+    
+            
+                mapaPrecoProcedimentos[procedimento.procedimento] = procedimento.valor;
             });
     
         } catch (error) {
             console.error("Erro ao carregar procedimentos:", error);
         }
     }
+    
     
 
     async function popularSelectProfissionais() {
@@ -98,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
     
-            const response = await fetch(`https://barretoapps.com.br/lista_profissional/${empresa}`);
+            const response = await fetch(`https://api-barretoapps.onrender.com/lista_profissional/${empresa}`);
             const dadosProfissionais = await response.json();
     
             selectProfissional.innerHTML = '';
@@ -169,7 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const corProfissional = corProfissionaisMap[profissional] || '#FFFFFF';
+            const valor = mapaPrecoProcedimentos[procedimento];
+            if (!valor) {
+                alert("Erro: Valor do procedimento não encontrado.");
+                return;
+            }
+
 
             const novaReserva = { 
                 nome, 
@@ -178,14 +196,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 hora_inicio, 
                 hora_fim, 
                 profissional, 
-                corProfissional,
-                empresa
+                empresa,
+                valor
             };
 
-            console.log('Nova reserva:', novaReserva);
 
             try {
-                const response = await fetch("https://barretoapps.com.br/input_agendamento", {
+                const response = await fetch("https://api-barretoapps.onrender.com/input_agendamento", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(novaReserva)
@@ -197,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 modal.style.display = 'none';
                 calendar.style.display = 'flex';
-                window.location.href = 'home.html';
+                window.location.reload();
             } catch (error) {
                 alert("Erro ao conectar com o servidor: " + error.message);
             }
@@ -220,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
     
-            const resposta = await fetch(`https://barretoapps.com.br/lista_pacientes/${empresa}`);
+            const resposta = await fetch(`https://api-barretoapps.onrender.com/lista_pacientes/${empresa}`);
             const dados = await resposta.json();
     
             dados.data.forEach(paciente => {

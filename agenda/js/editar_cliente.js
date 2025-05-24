@@ -25,6 +25,8 @@ window.addEventListener('load', () => {
 
     // ------------------------------------------------------------------------------------
 
+    let pacientes = [];
+
     async function carregarPacientes() {
         datalistPacientesEditar.innerHTML = '';
         window.mapaNomeId = {};
@@ -36,14 +38,14 @@ window.addEventListener('load', () => {
                 return;
             }
     
-            const resposta = await fetch(`https://barretoapps.com.br/lista_pacientes/${empresa}`);
+            const resposta = await fetch(`https://api-barretoapps.onrender.com/lista_pacientes/${empresa}`);
             
             if (!resposta.ok) {
-                throw new Error('Erro ao carregar pacientes: ' + resposta.status);
+                throw new Error('Erro ao carregar clientes: ' + resposta.status);
             }
     
             const dados = await resposta.json();
-            const pacientes = dados.data;
+            pacientes = dados.data;
     
             pacientes.forEach(paciente => {
                 const option = document.createElement("option");
@@ -56,6 +58,7 @@ window.addEventListener('load', () => {
             console.error("Erro ao carregar pacientes:", error);
         }
     }
+    
     
 
     const inputPaciente = document.getElementById('paciente_editar');
@@ -115,7 +118,7 @@ window.addEventListener('load', () => {
         }
 
         try {
-            const response = await fetch(`https://barretoapps.com.br/update_cadastro/${pacienteId}`, {
+            const response = await fetch(`https://api-barretoapps.onrender.com/update_cadastro/${pacienteId}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',

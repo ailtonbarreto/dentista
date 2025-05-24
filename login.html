@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="/agenda/css/login.css">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+    <title>BARR3TO SOLUÇÕES</title>
+</head>
+
+<body>
+
+    <div id="container-login" class="container">
+
+        <form id="loginForm" class="form">
+
+            <img class="logo" src="../img/logo-login.png" alt="">
+
+            <div class="campos">
+
+                <label for="username">Usuário</label>
+
+                <input id="input-user" type="text">
+
+                <label for="password">Senha</label>
+
+                <input id="password" type="password">
+
+            </div>
+            <button type="submit">Entrar</button>
+
+            <p id="alert" class="message"></p>
+
+        </form>
+
+    </div>
+
+    <div class="screen-logged">
+
+        <div>
+
+            <div class="sidebar" id="sidebar">
+
+                <img src="" id="logotipo">
+
+                <span class="close-btn" onclick="toggleMenu()">&times;</span>
+
+                
+            </div>
+
+            <div class="msg">
+
+                <span class="material-symbols-outlined" id="menu-icon">menu</span>
+
+                <h2 id="logged-message"></h2>
+
+            </div>
+
+            <iframe id="iframe" src=""></iframe>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
